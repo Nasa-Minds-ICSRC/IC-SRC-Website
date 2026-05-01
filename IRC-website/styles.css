@@ -10,34 +10,13 @@
 }
 
 /* =========================
-   2. ROOT VARIABLES
-========================= */
-:root {
-  --primary-color: #3498db;
-  --secondary-color: #2ecc71;
-  --font-main: Arial, sans-serif;
-  --max-width: 1200px;
-}
-
-/* =========================
-   3. GLOBAL STYLES
-========================= */
-body {
-  font-family: var(--font-main);
-  line-height: 1.6;
-  background-color: #fff;
-  color: #333;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-/* =========================
-   4. TYPOGRAPHY
+    TYPOGRAPHY
 ========================= */
 h1 {
+    @font-face {
+        font-family: 'Alan Sans';
+        src: url('https://cdn.jsdelivr.net/fontsource/fonts/alan-sans:vf@latest/latin-wght-normal.woff2');
+    }
 }
 h2 {
 } 
@@ -65,7 +44,7 @@ a:hover {
 }
 
 /* =========================
-   5. LAYOUT
+   LAYOUT
 ========================= */
 .container {
   width: 90%;
@@ -77,66 +56,4 @@ a:hover {
 .main { }
 .footer { }
 
-/* =========================
-   6. COMPONENTS
-========================= */
-.button {
-  display: inline-block;
-  padding: 0.5em 1em;
-  border: none;
-  background-color: var(--primary-color);
-  color: #fff;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: #2980b9;
-}
-
-.card {
-  border: 1px solid #ddd;
-  padding: 1em;
-  border-radius: 5px;
-}
-
-/* =========================
-   7. FORMS
-========================= */
-input,
-textarea,
-select {
-  width: 100%;
-  padding: 0.5em;
-  margin-bottom: 1em;
-}
-
-label {
-  display: block;
-  margin-bottom: 0.5em;
-}
-
-/* =========================
-   8. UTILITIES
-========================= */
-.text-center {
-  text-align: center;
-}
-
-.hidden {
-  display: none;
-}
-
-/* =========================
-   9. MEDIA QUERIES
-========================= */
-@media (min-width: 768px) {
-  .container {
-    width: 85%;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    width: 80%;
-  }
 }
