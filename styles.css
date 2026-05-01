@@ -1,59 +1,484 @@
-/* =========================
-   1. RESET / NORMALIZE
-========================= */
-*,
-*::before,
-*::after {
+@font-face {
+  font-family: "Alan Sans";
+  src:
+    local("Alan Sans"),
+    local("AlanSans"),
+    url("fonts/alan-sans.woff2") format("woff2"),
+    url("fonts/alan-sans.woff") format("woff");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Allkin";
+  src:
+    local("Allkin"),
+    url("fonts/allkin.woff2") format("woff2"),
+    url("fonts/allkin.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #0F0C1F;
+  --bg-deep: #162845;
+  --surface: #D8AB34;
+  --surface-soft: #f1d37b;
+  --surface-cream: #f5ead0;
+  --text-dark: #000000;
+  --text-light: #FFFFFF;
+  --text-muted: #493f32;
+  --line: rgba(255, 255, 255, 0.14);
+  --shadow: 0 14px 30px rgba(8, 16, 31, 0.22);
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --shell-max: 1200px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 20%),
+    linear-gradient(180deg, #233b62 0%, var(--bg) 100%);
+  color: var(--text-light);
+  font-family: "Alan Sans", "Inter", Arial, sans-serif;
 }
 
-/* =========================
-    TYPOGRAPHY
-========================= */
-h1 {
-    @font-face {
-        font-family: 'Alan Sans';
-        src: url('https://cdn.jsdelivr.net/fontsource/fonts/alan-sans:vf@latest/latin-wght-normal.woff2');
-    }
-}
-h2 {
-} 
-h3 {
-} 
-h4 {
-} 
-h5 {
-} 
-h6 {
-  margin-bottom: 0.5em;
+img {
+  max-width: 100%;
+  display: block;
 }
 
-p {
-  margin-bottom: 1em;
-}
-
-a {
-  text-decoration: none;
-  color: var(--primary-color);
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* =========================
-   LAYOUT
-========================= */
-.container {
-  width: 90%;
-  max-width: var(--max-width);
+.page-shell {
+  max-width: var(--shell-max);
   margin: 0 auto;
+  padding: 0 16px 40px;
 }
 
-.header { }
-.main { }
-.footer { }
+.topbar {
+  padding-top: 16px;
+}
 
+.topbar .navbar {
+  background: linear-gradient(180deg, rgba(7, 13, 28, 0.92), rgba(17, 27, 49, 0.9));
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.topbar .container-fluid {
+  padding: 0;
+}
+
+.brand-wrap {
+  gap: 14px;
+  padding: 14px 18px 10px;
+  color: var(--text-light);
+}
+
+.brand-mark {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #96b7ff 0%, #4d69ad 45%, #203760 100%);
+  display: grid;
+  place-items: center;
+  font-family: "Allkin", Georgia, serif;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: white;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.24);
+}
+
+.brand-mark .planet {
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+}
+
+.brand-mark .brand-text {
+  position: relative;
+  z-index: 1;
+}
+
+.brand-wrap h1 {
+  margin: 0;
+  font-family: "Alan Sans", "Inter", Arial, sans-serif;
+  font-size: clamp(1rem, 1.5vw + 0.65rem, 1.55rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.nav-tabs {
+  gap: 10px;
+  padding: 0 16px 16px;
+}
+
+.nav-tabs .nav-link {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  transition: 0.2s ease;
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link.active {
+  background: var(--surface);
+  color: #1d2431;
+  border-color: transparent;
+}
+
+.hero,
+.event-spotlight {
+  margin-top: 18px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.hero img,
+.event-spotlight img,
+.profile-card .card-img-top,
+.advisor-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  background:
+    linear-gradient(135deg, rgba(26, 43, 74, 0.78), rgba(41, 65, 106, 0.88)),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.1) 0,
+      rgba(255, 255, 255, 0.1) 12px,
+      rgba(255, 255, 255, 0.02) 12px,
+      rgba(255, 255, 255, 0.02) 24px
+    );
+}
+
+.hero img,
+.event-spotlight img {
+  aspect-ratio: 16 / 8;
+  min-height: 260px;
+}
+
+.info-stack,
+.success-intro,
+.alumni-grid,
+.advisor-section {
+  margin-top: 18px;
+}
+
+.info-card,
+.content-panel,
+.advisor-card,
+.profile-card {
+  background: var(--surface);
+  color: var(--text-dark);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+}
+
+.info-card .card-body,
+.content-panel,
+.advisor-content {
+  padding: 1.4rem 1.25rem;
+}
+
+.info-card .card-title,
+.section-banner h2,
+.profile-card .card-title,
+.advisor-card .card-title {
+  font-family: "Allkin", Georgia, serif;
+  letter-spacing: 0.02em;
+}
+
+.info-card .card-title {
+  text-align: center;
+  font-size: 1.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.info-card .card-text,
+.custom-list .list-group-item,
+.content-panel p,
+.profile-card .card-text,
+.advisor-card .card-text,
+.blockquote,
+.year {
+  font-family: "Alan Sans", "Inter", Arial, sans-serif;
+}
+
+.info-card .card-text,
+.content-panel p,
+.advisor-card .card-text,
+.blockquote {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.custom-list {
+  background: transparent;
+}
+
+.custom-list .list-group-item {
+  border: 0;
+  padding: 0.5rem 0 0.5rem 1.3rem;
+  background: transparent;
+  color: var(--text-dark);
+  line-height: 1.55;
+  position: relative;
+}
+
+.custom-list .list-group-item::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  color: #775300;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.section-banner {
+  margin-top: 22px;
+  text-align: center;
+  padding: 0.95rem 1rem;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.events-banner,
+.alumni-banner,
+.advisor-banner {
+  background: linear-gradient(180deg, rgba(168, 136, 176, 0.95), rgba(111, 129, 178, 0.95));
+}
+
+.section-banner h2 {
+  margin: 0;
+  color: white;
+  font-size: clamp(1.4rem, 1vw + 1rem, 2rem);
+}
+
+.content-panel {
+  padding: 1.25rem 1.15rem;
+}
+
+.alumni-grid .row,
+.info-stack .row,
+.advisor-section .row {
+  --bs-gutter-x: 1rem;
+  --bs-gutter-y: 1rem;
+}
+
+.profile-card {
+  overflow: hidden;
+}
+
+.profile-card .card-img-top {
+  aspect-ratio: 4 / 5;
+  min-height: 260px;
+}
+
+.profile-body {
+  padding: 1rem 1rem 1.15rem;
+}
+
+.profile-card .card-title {
+  text-align: center;
+  font-size: 1.45rem;
+  margin-bottom: 0.25rem;
+}
+
+.year {
+  text-align: center;
+  color: #5d4f2d;
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.profile-card .card-text {
+  font-size: 0.96rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.advisor-card {
+  overflow: hidden;
+}
+
+.advisor-image {
+  min-height: 100%;
+  aspect-ratio: 3 / 4;
+}
+
+.advisor-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.advisor-card .card-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.7rem;
+}
+
+.blockquote {
+  border-left: 4px solid rgba(31, 29, 26, 0.18);
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  font-size: 1rem;
+}
+
+.blockquote span {
+  display: inline-block;
+  margin-top: 0.45rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.hero img,
+.event-spotlight img,
+.profile-card .card-img-top,
+.advisor-image {
+  color: transparent;
+}
+
+.hero img[alt],
+.event-spotlight img[alt],
+.profile-card .card-img-top[alt],
+.advisor-image[alt] {
+  position: relative;
+}
+
+.hero img::before,
+.event-spotlight img::before,
+.profile-card .card-img-top::before,
+.advisor-image::before {
+  content: "Image Placeholder";
+  display: none;
+}
+
+footer {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 991.98px) {
+  .page-shell {
+    padding-inline: 14px;
+  }
+
+  .brand-wrap {
+    padding-bottom: 12px;
+  }
+
+  .info-card .card-title {
+    font-size: 1.45rem;
+  }
+
+  .advisor-card .card-title {
+    font-size: 1.55rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .topbar {
+    padding-top: 10px;
+  }
+
+  .brand-wrap {
+    align-items: center;
+  }
+
+  .brand-mark {
+    width: 50px;
+    height: 50px;
+  }
+
+  .nav-tabs {
+    gap: 8px;
+    padding: 0 12px 14px;
+  }
+
+  .nav-tabs .nav-link {
+    font-size: 0.84rem;
+    padding: 0.42rem 0.78rem;
+  }
+
+  .hero img,
+  .event-spotlight img {
+    aspect-ratio: 4 / 3;
+    min-height: 220px;
+  }
+
+  .info-card .card-body,
+  .content-panel,
+  .advisor-content {
+    padding: 1.15rem 1rem;
+  }
+
+  .profile-card .card-img-top {
+    aspect-ratio: 16 / 10;
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .page-shell {
+    max-width: 440px;
+    padding-inline: 10px;
+  }
+
+  .brand-wrap {
+    gap: 10px;
+    padding: 12px 12px 10px;
+  }
+
+  .brand-wrap h1 {
+    font-size: 0.96rem;
+  }
+
+  .info-card,
+  .content-panel,
+  .advisor-card,
+  .profile-card,
+  .section-banner,
+  .hero,
+  .event-spotlight {
+    border-radius: 18px;
+  }
+
+  .info-card .card-title,
+  .section-banner h2,
+  .profile-card .card-title,
+  .advisor-card .card-title {
+    font-size: 1.3rem;
+  }
+
+  .info-card .card-text,
+  .custom-list .list-group-item,
+  .content-panel p,
+  .profile-card .card-text,
+  .advisor-card .card-text,
+  .blockquote,
+  .year {
+    font-size: 0.95rem;
+  }
 }
