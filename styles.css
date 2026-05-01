@@ -1,0 +1,59 @@
+/* =========================
+   1. RESET / NORMALIZE
+========================= */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+    TYPOGRAPHY
+========================= */
+h1 {
+    @font-face {
+        font-family: 'Alan Sans';
+        src: url('https://cdn.jsdelivr.net/fontsource/fonts/alan-sans:vf@latest/latin-wght-normal.woff2');
+    }
+}
+h2 {
+} 
+h3 {
+} 
+h4 {
+} 
+h5 {
+} 
+h6 {
+  margin-bottom: 0.5em;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.container {
+  width: 90%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.header { }
+.main { }
+.footer { }
+
+}
