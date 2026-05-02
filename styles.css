@@ -266,8 +266,7 @@ img {
 .events-banner,
 .alumni-banner,
 .advisor-banner {
-  background: linear-gradient(180deg, rgba(168, 136, 176, 0.95), rgba(111, 129, 178, 0.95));
-}
+  background:linear-gradient(180deg, rgba(168, 136, 176, 0.95), rgba(111, 129, 178, 0.95));
 
 .section-banner h2 {
   margin: 0;
