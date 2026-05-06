@@ -22,13 +22,13 @@
 }
 
 :root {
-  --bg: #0F0C1F;
+  --bg: #0f0c1f;
   --bg-deep: #162845;
-  --surface: #D8AB34;
+  --surface: #d8ab34;
   --surface-soft: #f1d37b;
   --surface-cream: #f5ead0;
   --text-dark: #000000;
-  --text-light: #FFFFFF;
+  --text-light: #ffffff;
   --text-muted: #493f32;
   --line: rgba(255, 255, 255, 0.14);
   --shadow: 0 14px 30px rgba(8, 16, 31, 0.22);
@@ -56,6 +56,13 @@ img {
   display: block;
 }
 
+.logo {
+  width: 160px;
+  height: 160px;
+  top: 0;
+  left: 0;
+}
+
 .page-shell {
   max-width: var(--shell-max);
   margin: 0 auto;
@@ -67,7 +74,11 @@ img {
 }
 
 .topbar .navbar {
-  background: linear-gradient(180deg, rgba(7, 13, 28, 0.92), rgba(17, 27, 49, 0.9));
+  background: linear-gradient(
+    180deg,
+    rgba(7, 13, 28, 0.92),
+    rgba(17, 27, 49, 0.9)
+  );
   border: 1px solid var(--line);
   border-radius: 20px;
   box-shadow: var(--shadow);
@@ -79,8 +90,8 @@ img {
 }
 
 .brand-wrap {
-  gap: 14px;
-  padding: 14px 18px 10px;
+  gap: 150px;
+  padding: 14px 18px 0px;
   color: var(--text-light);
 }
 
@@ -89,7 +100,12 @@ img {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #96b7ff 0%, #4d69ad 45%, #203760 100%);
+  background: radial-gradient(
+    circle at 35% 35%,
+    #96b7ff 0%,
+    #4d69ad 45%,
+    #203760 100%
+  );
   display: grid;
   place-items: center;
   font-family: "Allkin", Georgia, serif;
@@ -115,14 +131,15 @@ img {
 .brand-wrap h1 {
   margin: 0;
   font-family: "Alan Sans", "Inter", Arial, sans-serif;
-  font-size: clamp(1rem, 1.5vw + 0.65rem, 1.55rem);
+  font-size: clamp(1.55rem, 1.5vw + 1.1rem, 2.1rem);
+  /* font-size: 1.55rem; */
   font-weight: 700;
   line-height: 1.15;
 }
 
 .nav-tabs {
   gap: 10px;
-  padding: 0 16px 16px;
+  padding: 0px 16px 16px;
 }
 
 .nav-tabs .nav-link {
@@ -266,7 +283,12 @@ img {
 .events-banner,
 .alumni-banner,
 .advisor-banner {
-  background:linear-gradient(180deg, rgba(168, 136, 176, 0.95), rgba(111, 129, 178, 0.95));
+  background: linear-gradient(
+    180deg,
+    rgba(168, 136, 176, 0.95),
+    rgba(111, 129, 178, 0.95)
+  );
+}
 
 .section-banner h2 {
   margin: 0;
@@ -491,18 +513,13 @@ body {
 body {
   min-height: 100vh;
   background-image:
-    url("images/Background_!.png"),
-    url("images/Simeis147_Ferritti_4112.jpg");
+    url("images/Background_!.png"), url("images/Simeis147_Ferritti_4112.jpg");
 
   background-size:
     100% 50%,
     100% 50%;
 
-  background-position:
-    top,
-    bottom;
+  background-position: top, bottom;
 
-  background-repeat:
-    no-repeat,
-    no-repeat;
+  background-repeat: no-repeat, no-repeat;
 }
