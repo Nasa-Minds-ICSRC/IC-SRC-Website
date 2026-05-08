@@ -36,6 +36,7 @@
   --radius-lg: 18px;
   --radius-md: 12px;
   --shell-max: 1200px;
+  --type-h2: clamp(1.6rem, 2.5vw, 2.3rem);
 }
 
 html {
@@ -51,12 +52,17 @@ body {
   font-family: "Alan Sans", "Allkin";
 }
 
-
-
 img {
+  width: 100%;
   max-width: 100%;
+  height: auto;
   display: block;
   object-fit: contain;
+}
+
+.img-fluid {
+  width: 100%;
+  height: auto;
 }
 
 .logo {
@@ -425,6 +431,11 @@ footer {
     align-items: center;
   }
 
+  .brand-wrap h1 {
+    font-size: 1.25rem;
+    margin-left: -80px;
+  }
+
   .brand-mark {
     width: 50px;
     height: 50px;
@@ -469,6 +480,11 @@ footer {
     padding: 12px 12px 10px;
   }
 
+  .brand-wrap h1 {
+    font-size: 1rem;
+    margin-left: 0;
+  }
+
   .info-card,
   .content-panel,
   .advisor-card,
@@ -479,22 +495,24 @@ footer {
     border-radius: 18px;
   }
 
-h1, p {
-  font-family: "Alan Sans";
+:root {
+    --type-h2: clamp(1.3rem, 5vw, 1.8rem);
+  }
 }
 
 h1 {
-  font-size: 72px;
+  font-family: "Alan Sans";
+  font-size: calc(var(--type-h2) * 1.3);
 }
 
 h2 {
   font-family: "Allkin";
-  font-size: 48px;
+  font-size: var(--type-h2);
 }
 
-p {
-  font-size: 32px;
-}
+p, ul {
+  font-family: "Alan Sans";
+  font-size: calc(var(--type-h2) / 1.5);
 }
 
 html,
