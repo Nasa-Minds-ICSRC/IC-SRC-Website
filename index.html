@@ -1,293 +1,1020 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Inter-Cosmic STEM Research Club at Cal State LA."
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Inter-Cosmic STEM Research Club at Cal State LA. We build robotic technologies for NASA competitions and open doors to research careers for every student.">
+
+<title>Inter-Cosmic STEM Research Club</title>
+
+<!-- Favicons (from your repo's favicon_io/ folder) -->
+<link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
+<link rel="manifest" href="./favicon_io/site.webmanifest">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --deep-navy: #0d0b1e;
+  --gold: #d4a420;
+  --gold-hover: #e8bc40;
+  --text-light: #f0eeff;
+  --text-muted: #a89fc8;
+  --section-navy: rgba(26, 21, 53, 0.90);
+  --section-dark: rgba(8, 6, 22, 0.92);
+  --section-slate: rgba(34, 46, 88, 0.88);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--deep-navy);
+  color: var(--text-light);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── STARFIELD ── */
+#starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.nebula {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 65% 45% at 10% 25%, rgba(90,45,175,0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 40% at 88% 65%, rgba(45,25,130,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 35% at 55% 10%, rgba(110,55,190,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 25% at 30% 80%, rgba(60,30,140,0.10) 0%, transparent 70%);
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.13s; }
+.reveal-delay-2 { transition-delay: 0.26s; }
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8, 6, 22, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1.5px solid rgba(106, 95, 192, 0.4);
+  padding: 0.5rem 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.nav-logo-img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(150,110,255,0.5));
+}
+
+.nav-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.93rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.nav-links { display: flex; gap: 0.2rem; margin-left: auto; }
+
+.nav-links a {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #a89fc8;
+  text-decoration: none;
+  padding: 0.38rem 1.1rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+.nav-links a:hover { color: #fff; border-color: rgba(106,95,192,0.6); }
+.nav-links a.active { background: #fff; color: #1a1535; }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 560px;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+  opacity: 0.62;
+  transition: transform 10s ease;
+}
+.hero:hover .hero-img { transform: scale(1.04); }
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(8,6,22,0.2) 0%, rgba(8,6,22,0.05) 35%, rgba(8,6,22,0.82) 100%),
+    linear-gradient(to right, rgba(8,6,22,0.45) 0%, transparent 65%);
+}
+
+.hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 4rem;
+  max-width: 680px;
+}
+
+.hero-eyebrow {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.8s 0.3s ease forwards;
+}
+
+.hero-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s 0.5s ease forwards;
+}
+.hero-title span { color: var(--gold); }
+
+.hero-sub {
+  font-size: 1rem;
+  color: rgba(240,238,255,0.72);
+  line-height: 1.68;
+  max-width: 460px;
+  margin-bottom: 1.9rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s 0.7s ease forwards;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--gold);
+  color: #1a1535;
+  font-weight: 700;
+  font-size: 0.93rem;
+  padding: 0.72rem 1.75rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.9s ease forwards;
+  width: fit-content;
+}
+.hero-cta:hover { background: var(--gold-hover); transform: translateY(-2px); }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0.38;
+  animation: bounce 2s 1.5s ease-in-out infinite;
+}
+.hero-scroll span {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: #fff;
+}
+.hero-scroll-arrow {
+  width: 18px;
+  height: 18px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(45deg);
+}
+
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(7px); }
+}
+
+/* ── SECTION WRAPPER ── */
+.section-wrap { position: relative; z-index: 1; }
+.section-wrap.navy  { background: var(--section-navy); }
+.section-wrap.dark  { background: var(--section-dark); }
+.section-wrap.slate { background: var(--section-slate); }
+
+/* ── SECTION TITLE ── */
+.section-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: #fff;
+  display: inline-block;
+  position: relative;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45%;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+/* ── GOLD CARDS ── */
+.info-section {
+  padding: 4.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Two-up layout for Who Are We / Why Join */
+.info-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 960px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.gold-card {
+  background: var(--gold);
+  border-radius: 22px;
+  padding: 2.2rem 2.5rem;
+  color: #1a1535;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.45);
+}
+
+.gold-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1535;
+  margin-bottom: 0.3rem;
+  text-align: center;
+}
+
+.card-divider {
+  width: 60px;
+  height: 3px;
+  background: rgba(26,21,53,0.35);
+  margin: 0.5rem auto 1.1rem;
+  border-radius: 2px;
+}
+
+.gold-card p { font-size: 0.97rem; line-height: 1.75; color: #1a1535; }
+.gold-card ul { padding-left: 1.3rem; }
+.gold-card ul li { font-size: 0.97rem; line-height: 1.75; color: #1a1535; margin-bottom: 0.3rem; }
+
+/* ── JOIN CTA BANNER ── */
+.join-banner {
+  padding: 2.8rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  border-top: 1px solid rgba(106,95,192,0.2);
+  border-bottom: 1px solid rgba(106,95,192,0.2);
+}
+
+.join-banner h3 {
+  font-family: 'Orbitron', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.join-banner p { font-size: 0.95rem; color: var(--text-muted); max-width: 500px; line-height: 1.65; }
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--gold);
+  color: #1a1535;
+  font-weight: 700;
+  font-size: 0.93rem;
+  padding: 0.7rem 1.75rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-gold:hover { background: var(--gold-hover); transform: translateY(-2px); }
+
+/* ── EVENTS ── */
+.events-section { padding: 0; }
+.events-header { text-align: center; padding: 3rem 2.5rem 0; }
+
+.events-photo {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  margin-top: 2.5rem;
+}
+.events-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  opacity: 0.75;
+}
+.events-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(26,21,53,0.65) 100%);
+}
+
+.event-badge {
+  position: absolute;
+  bottom: 1.8rem;
+  right: 2.5rem;
+  background: var(--gold);
+  border-radius: 14px;
+  padding: 1.1rem 1.6rem;
+  color: #1a1535;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+.event-badge .event-date { font-size: 0.8rem; font-weight: 700; text-align: right; margin-bottom: 0.25rem; opacity: 0.65; }
+.event-badge .event-name { font-size: 1rem; font-weight: 700; }
+.event-badge .event-time { font-size: 0.86rem; font-weight: 600; margin-top: 0.2rem; opacity: 0.78; }
+
+/* Meeting info cards (two-up) */
+.meetings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 2rem 2.5rem 1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.meeting-card {
+  background: var(--gold);
+  border-radius: 18px;
+  padding: 1.6rem 1.8rem;
+  color: #1a1535;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.32);
+}
+
+.meeting-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: #1a1535;
+}
+
+.card-divider-sm {
+  width: 45px;
+  height: 2px;
+  background: rgba(26,21,53,0.3);
+  margin: 0.45rem 0 0.9rem;
+  border-radius: 1px;
+}
+
+.meeting-card p { font-size: 0.93rem; line-height: 1.72; color: #1a1535; }
+
+.meeting-card ul { padding-left: 1.2rem; }
+.meeting-card ul li { font-size: 0.93rem; line-height: 1.75; color: #1a1535; margin-bottom: 0.3rem; }
+.meeting-card ul li strong { font-weight: 700; }
+
+/* Upcoming talks label */
+.talks-label {
+  text-align: center;
+  padding: 0 2.5rem 1.2rem;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+.talks-label span {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+/* Upcoming talks cards */
+.talks-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  padding: 0 2.5rem 3rem;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.talk-card {
+  background: var(--gold);
+  border-radius: 16px;
+  padding: 1.4rem 1.5rem;
+  color: #1a1535;
+  border-left: 4px solid rgba(26,21,53,0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: transform 0.22s, box-shadow 0.22s;
+}
+.talk-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(0,0,0,0.42); }
+.talk-card .tc-date { font-weight: 700; font-size: 0.93rem; margin-bottom: 0.18rem; }
+.talk-card .tc-time { font-size: 0.83rem; opacity: 0.72; margin-bottom: 0.12rem; }
+.talk-card .tc-room { font-size: 0.83rem; opacity: 0.72; margin-bottom: 0.65rem; }
+.talk-card .tc-title { font-weight: 700; font-size: 0.94rem; font-style: italic; border-top: 1px solid rgba(26,21,53,0.15); padding-top: 0.6rem; }
+
+/* ── NEWS ── */
+.news-section { padding: 4.5rem 2.5rem; text-align: center; }
+.news-section .section-title { margin-bottom: 2.5rem; }
+
+.news-container {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--gold);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.4);
+}
+
+.news-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.95rem 1.8rem;
+  border-bottom: 1px solid rgba(26,21,53,0.1);
+  transition: background 0.15s;
+  color: #1a1535;
+  text-align: left;
+}
+.news-item:last-child { border-bottom: none; }
+.news-item:hover { background: rgba(26,21,53,0.06); }
+.news-dot { width: 7px; height: 7px; border-radius: 50%; background: #1a1535; flex-shrink: 0; opacity: 0.42; }
+.news-text { font-size: 0.96rem; font-weight: 600; flex: 1; }
+.news-tag {
+  font-size: 0.69rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+  background: rgba(26,21,53,0.14); color: #1a1535; white-space: nowrap;
+}
+
+/* ── ALUMNI ── */
+.alumni-section { padding: 4.5rem 2.5rem 5rem; }
+
+.alumni-section h2 {
+  font-size: 1.75rem; font-weight: 700; text-align: center; color: #fff;
+  text-decoration: underline; text-underline-offset: 7px;
+  text-decoration-color: rgba(212,164,32,0.55);
+  margin-bottom: 3rem;
+}
+
+.alumni-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  max-width: 980px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.alumni-card {
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+  transition: transform 0.22s;
+}
+.alumni-card:hover { transform: translateY(-5px); }
+
+.alumni-photo-wrap {
+  width: 160px; height: 195px;
+  border-radius: 10px; overflow: hidden;
+  border: 2.5px solid var(--gold);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 18px rgba(212,164,32,0.12);
+  flex-shrink: 0;
+}
+.alumni-photo-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top; display: block;
+}
+
+.alumni-info {
+  background: var(--gold); border-radius: 16px; padding: 1.3rem 1.5rem;
+  color: #1a1535; width: 100%; text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.28);
+}
+.alumni-info h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.15rem; }
+.alumni-divider { width: 48px; height: 2px; background: rgba(26,21,53,0.28); margin: 0.45rem auto 0.65rem; border-radius: 1px; }
+.alumni-meta { font-size: 0.83rem; font-weight: 600; opacity: 0.68; }
+.alumni-quote {
+  font-size: 0.82rem; line-height: 1.65; margin-top: 0.8rem;
+  font-style: italic; border-top: 1px solid rgba(26,21,53,0.12);
+  padding-top: 0.72rem; opacity: 0.88;
+}
+
+/* ── ADVISOR ── */
+.advisor-section { padding: 1rem 2.5rem 5rem; }
+
+.advisor-section h2 {
+  font-size: 1.6rem; font-weight: 700; text-align: center; color: #fff;
+  text-decoration: underline; text-underline-offset: 7px;
+  text-decoration-color: rgba(212,164,32,0.55); margin-bottom: 2.5rem;
+}
+
+.advisor-card {
+  max-width: 760px; margin: 0 auto;
+  display: flex; gap: 2rem; align-items: flex-start;
+}
+
+.advisor-photo-wrap {
+  width: 170px; height: 210px;
+  border-radius: 10px; overflow: hidden;
+  border: 2.5px solid var(--gold);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 18px rgba(212,164,32,0.12);
+  flex-shrink: 0;
+}
+.advisor-photo-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top; display: block;
+}
+
+.advisor-info {
+  background: var(--gold); border-radius: 18px; padding: 1.7rem 1.9rem;
+  color: #1a1535; flex: 1; box-shadow: 0 4px 22px rgba(0,0,0,0.28);
+}
+.advisor-info h3 { font-size: 1.12rem; font-weight: 700; margin-bottom: 0.9rem; text-align: center; }
+.advisor-info p { font-size: 0.9rem; line-height: 1.72; margin-bottom: 0.85rem; text-align: center; opacity: 0.88; }
+.advisor-pub {
+  font-size: 0.86rem; font-style: italic; opacity: 0.78;
+  text-align: center; margin-bottom: 0.85rem;
+}
+.advisor-quote {
+  font-style: italic; font-size: 0.88rem; line-height: 1.65;
+  border-top: 1px solid rgba(26,21,53,0.16); padding-top: 0.9rem;
+  text-align: center; opacity: 0.8;
+}
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 1;
+  background: rgba(5, 4, 14, 0.97);
+  border-top: 1.5px solid rgba(106,95,192,0.28);
+  padding: 3.5rem 2.5rem 2rem;
+  color: var(--text-muted);
+}
+
+.footer-inner {
+  max-width: 860px; margin: 0 auto 2.5rem;
+  display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 2.5rem;
+}
+
+.footer-logo-wrap {
+  display: flex; align-items: center; gap: 0.7rem;
+  margin-bottom: 0.9rem; text-decoration: none;
+}
+.footer-logo-wrap img { width: 36px; height: 36px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(150,110,255,0.4)); }
+.footer-logo-wrap span { font-family: 'Orbitron', monospace; font-size: 0.75rem; font-weight: 600; color: #fff; line-height: 1.3; }
+
+.footer-tagline { font-size: 0.84rem; line-height: 1.72; color: var(--text-muted); margin-bottom: 1rem; }
+
+.footer-col h4 {
+  font-family: 'Orbitron', monospace; font-size: 0.67rem;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.9rem;
+}
+.footer-col p, .footer-col a {
+  font-size: 0.86rem; line-height: 1.9;
+  color: var(--text-muted); text-decoration: none; display: block;
+}
+.footer-col a:hover { color: #fff; }
+
+.footer-social { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
+.footer-social a {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: 0.84rem; color: var(--text-muted); text-decoration: none;
+  border: 1px solid rgba(168,159,200,0.25); border-radius: 6px;
+  padding: 0.35rem 0.85rem; transition: all 0.2s;
+}
+.footer-social a:hover { color: #fff; border-color: rgba(212,164,32,0.5); background: rgba(212,164,32,0.08); }
+.footer-social svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+.footer-bottom {
+  text-align: center; border-top: 1px solid rgba(106,95,192,0.15);
+  padding-top: 1.5rem; font-size: 0.76rem; color: rgba(168,159,200,0.38);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 760px) {
+  nav { flex-wrap: wrap; padding: 0.5rem 1rem; }
+  .nav-links { margin-left: 0; width: 100%; justify-content: center; }
+  .hero { height: 420px; }
+  .hero-content { padding: 0 1.8rem; max-width: 100%; }
+  .hero-title { font-size: 1.75rem; }
+  .info-pair { grid-template-columns: 1fr; }
+  .meetings-grid { grid-template-columns: 1fr; }
+  .talks-row { grid-template-columns: 1fr; }
+  .alumni-grid { grid-template-columns: 1fr; max-width: 340px; }
+  .advisor-card { flex-direction: column; align-items: center; }
+  .footer-inner { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div class="nebula"></div>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <!-- Using your real logo from the repo -->
+    <img
+      class="nav-logo-img"
+      src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/ICSRC_Logo.webp"
+      alt="ICSRC Logo"
     />
-    <title>Inter-Cosmic STEM Research Club</title>
+    <span class="nav-title">Inter-Cosmic STEM<br>Research Club</span>
+  </a>
+  <div class="nav-links">
+    <a href="#home" class="active">Home</a>
+    <a href="#contact">Contact Us</a>
+    <a href="#portfolio">Portfolio</a>
+  </div>
+</nav>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="styles.css" />
+<!-- ── HERO ── -->
+<section id="home" class="hero">
+  <!-- Your real club photo from the repo -->
+  <img
+    class="hero-img"
+    src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/Homepage_Image1.webp"
+    alt="Students collaborating in a STEM lab."
+  />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Cal State LA · NASA Competitions</p>
+    <h1 class="hero-title">Reach for<br>the <span>Stars</span></h1>
+    <p class="hero-sub">We build robotic technologies for space exploration, compete in NASA challenges, and open doors to research careers for every student.</p>
+    <a href="#contact" class="hero-cta">Get Involved →</a>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="hero-scroll-arrow"></div>
+  </div>
+</section>
 
-    <!-- favicons use on multiple devices -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="./favicon_io/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./favicon_io/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="./favicon_io/favicon-16x16.png"
-    />
-    <link rel="manifest" href="./favicon_io/site.webmanifest" />
-  </head>
+<!-- ── WHO ARE WE / WHY JOIN ── -->
+<section class="section-wrap navy">
+  <div class="info-section">
+    <div class="info-pair reveal">
+      <div class="gold-card">
+        <h2>Who Are We?</h2>
+        <div class="card-divider"></div>
+        <p>Our club organizes research teams focused on developing robotic technologies to support space exploration for NASA competitions. We're always open to collaborating with other people to expand research opportunities across all fields!</p>
+      </div>
+      <div class="gold-card">
+        <h2>Why Should You Join?</h2>
+        <div class="card-divider"></div>
+        <ul>
+          <li>Apply academic skills to real-world projects</li>
+          <li>Collaborate with other people excited about changing the world</li>
+          <li>Learn about internship and scholarship opportunities through club collaborations and past alumni club members</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  <!--Navbar-->
-  <body>
-    <div class="page-shell">
-      <header class="topbar">
-        <nav class="navbar navbar-expand-sm p-0" aria-label="Main navigation">
-          <div class="container-fluid px-0 d-block">
-            <div class="brand-wrap d-flex align-items-center">
-              <img
-                class="logo"
-                src="images/ICSRC_Logo.webp"
-                alt="logo for the ICSRC club"
-              />
-              <h1 class="mb-0">Inter-Cosmic STEM Research Club</h1>
-            </div>
+  <!-- JOIN CTA -->
+  <div class="join-banner reveal">
+    <h3>READY TO LAUNCH YOUR CAREER?</h3>
+    <p>Weekly meetings every Friday, 12–2 pm in BIOS-361. No experience required — just curiosity and drive.</p>
+    <a href="#contact" class="btn-gold">Join the Club →</a>
+  </div>
+</section>
 
-            <div
-              class="nav-tabs nav nav-pills justify-content-center"
-              role="navigation"
-            >
-              <a class="nav-link active" href="#home">Home</a>
-              <a class="nav-link" href="#contact">Contact Us</a>
-              <a class="nav-link" href="#portfolio">Portfolio</a>
-            </div>
-          </div>
-        </nav>
-      </header>
-
-      <!--hero/about us-->
-      <main>
-        <section id="home" class="hero">
-          <img
-            class="img-fluid"
-            src="images\Homepage_Image1.webp"
-            alt="Students collaborating in a STEM lab."
-          />
-        </section>
-
-        <section id="home_about" class="info-stack container-fluid">
-          <div class="row g-3 g-md-4">
-            <div class="col-12 col-md-6 d-flex">
-              <article class="card info-card w-100 border-0">
-                <div class="card-body">
-                  <h2 class="card-title">Who Are We?</h2>
-                  <p class="card-text">
-                    Our club organizes research teams focused on developing
-                    robotic technologies to support space exploration for NASA
-                    competitions. We’re always open to collaborating with other
-                    people to expand research opportunities across all fields!
-                  </p>
-                </div>
-              </article>
-            </div>
-
-            <div class="col-12 col-md-6 d-flex">
-              <article class="card info-card w-100 border-0">
-                <div class="card-body">
-                  <h2 class="card-title">Why Should You Join?</h2>
-                  <ul class="list-group list-group-flush custom-list">
-                    <li class="list-group-item">
-                      Apply academic skills to real-world projects
-                    </li>
-                    <li class="list-group-item">
-                      Collaborate with other people excited about changing the
-                      world
-                    </li>
-                    <li class="list-group-item">
-                      Learn about internship and scholarship opportunities
-                      through club collaborations and past alumni club members
-                    </li>
-                  </ul>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <!--events-->
-        <section class="section-banner events-banner" id="contact">
-          <h2>Events</h2>
-        </section>
-
-        <section class="event-spotlight">
-          <img
-            class="img-fluid"
-            src="images/IMG_0108.webp"
-            alt="Club members at California State University, Los Angeles."
-          />
-        </section>
-
-        <section class="info-stack meetings container-fluid">
-          <div class="row g-3 g-md-4">
-            <div class="col-12 col-md-6 d-flex">
-              <article class="card info-card w-100 border-0">
-                <div class="card-body">
-                  <h2 class="card-title">How to Meet with Us</h2>
-                  <p class="card-text">
-                    The club lab is in room
-                    <strong>361 of the Biological Sciences Building</strong> at
-                    <strong>Cal State LA</strong>. We have weekly club meetings
-                    every Friday from <strong>12:00 PM to 2:00 PM</strong>. On
-                    Fridays, the lab is kept open for everyone to work in from
-                    <strong>11:00 AM to 3:00 PM</strong>.
-                  </p>
-                </div>
-              </article>
-            </div>
-
-            <div class="col-12 col-md-6 d-flex">
-              <article class="card info-card w-100 border-0">
-                <div class="card-body">
-                  <h2 class="card-title">When are Team Meetings?</h2>
-                  <ul
-                    class="list-group list-group-flush custom-list meeting-list"
-                  >
-                    <li class="list-group-item">
-                      <strong>Cryo-UAV Team:</strong> Friday from 12:00 PM to
-                      3:00 PM
-                    </li>
-                    <li class="list-group-item">
-                      <strong>Cryo-Bot Team:</strong> Friday from 12:00 PM to
-                      2:30 PM
-                    </li>
-                    <li class="list-group-item">
-                      <strong>Cryo-Sense Team:</strong> Friday from 1:30 PM to
-                      3:00 PM
-                    </li>
-                  </ul>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <!--student success-->
-        <section class="section-banner alumni-banner" id="portfolio">
-          <h2>Student Success</h2>
-        </section>
-
-        <section class="alumni-grid container-fluid">
-          <div class="row g-2 g-md-4 justify-content-center">
-            <div class="col-12 col-md-4 d-flex">
-              <article class="card profile-card compact w-100 border-0">
-                <img
-                  src="images/Alumni_David_San_Headshot.webp"
-                  class="card-img-top img-fluid"
-                  alt="Portrait of David San"
-                />
-                <div class="card-body profile-body">
-                  <h3 class="card-title">David San</h3>
-                  <p class="year">2020 Alumni<br />Major CS</p>
-                  <p class="card-text">
-                    “I thought it was nice... especially as someone who was
-                    mostly studying computer science. It was nice to see what
-                    Dr. Hays had learned from his studies and from his time at
-                    JPL.”
-                  </p>
-                </div>
-              </article>
-            </div>
-
-            <div class="col-12 col-md-4 d-flex">
-              <article class="card profile-card compact w-100 border-0">
-                <img
-                  src="images/Alumni_Sophia_Head_Shot.webp"
-                  class="card-img-top img-fluid"
-                  alt="Portrait of Sophia Sherzai"
-                />
-                <div class="card-body profile-body">
-                  <h3 class="card-title">Sophia Sherzai</h3>
-                  <p class="year">2025 Alumni<br />Major EE/BME</p>
-                  <p class="card-text">
-                    “I was the head of the Cryo-Swarm Software team in
-                    2022-2023, where the team was able to put together a
-                    functional drone.... Now, I work in the neurotechnology lab
-                    at Harvard MGH.”
-                  </p>
-                </div>
-              </article>
-            </div>
-
-            <div class="col-12 col-md-4 d-flex">
-              <article class="card profile-card compact w-100 border-0">
-                <img
-                  src="images/Alumni_David_Camacho_headshot.webp"
-                  class="card-img-top img-fluid"
-                  alt="Portrait of David Camacho"
-                />
-                <div class="card-body profile-body">
-                  <h3 class="card-title">David Camacho</h3>
-                  <p class="year">2021 Alumni<br />Major CS</p>
-                  <p class="card-text">
-                    “The club and NASA MINDS gave me the chance to learn many
-                    skills including being a leader, systems engineering,
-                    programming robots with Python, and teamwork.”
-                  </p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <!--advisor-->
-        <section class="section-banner advisor-banner">
-          <h2>Advisor</h2>
-        </section>
-
-        <section class="advisor-section container-fluid pb-4">
-          <article class="card advisor-card border-0">
-            <div class="row g-0 h-100 align-items-stretch">
-              <div class="col-12 col-sm-4 col-md-3">
-                <img
-                  src="images/Advisor_charles_c_hays.webp"
-                  alt="Portrait of Professor Charles C. Hays"
-                  class="img-fluid h-100 w-100 advisor-image"
-                />
-              </div>
-              <div class="col-12 col-sm-8 col-md-9">
-                <div class="card-body advisor-content">
-                  <h3 class="card-title">Professor Charles C. Hays</h3>
-                  <p class="card-text mb-3">
-                    Currently works in the Department of Physics and Astronomy,
-                    at California State University, Los Angeles. Dr. Hays does
-                    research in Experimental Physics and Condensed Matter
-                    Physics. Their most recent publication is ‘Background
-                    Studies for the MINER Coherent Neutrino Scattering Reactor
-                    Experiment’.
-                  </p>
-                  <blockquote class="blockquote mb-0">
-                    “Logic will get you from A to Z; imagination will get you
-                    everywhere.”<br />
-                    <span>― Albert Einstein</span>
-                  </blockquote>
-                </div>
-              </div>
-            </div>
-          </article>
-        </section>
-      </main>
+<!-- ── EVENTS ── -->
+<section class="section-wrap slate" id="contact">
+  <div class="events-section">
+    <div class="events-header reveal">
+      <span class="section-title">EVENTS</span>
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    <!-- Your real CSULA photo from the repo -->
+    <div class="events-photo">
+      <img
+        src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/IMG_0108.webp"
+        alt="Club members at California State University, Los Angeles."
+      />
+      <div class="events-photo-overlay"></div>
+      <div class="event-badge reveal">
+        <div class="event-date">Weekly</div>
+        <div class="event-name">Club Meeting</div>
+        <div class="event-time">Fridays · 12–2 pm · BIOS-361</div>
+      </div>
+    </div>
+
+    <!-- How to Meet / Team Meetings -->
+    <div class="meetings-grid reveal">
+      <div class="meeting-card">
+        <h3>How to Meet with Us</h3>
+        <div class="card-divider-sm"></div>
+        <p>The club lab is in room <strong>361 of the Biological Sciences Building</strong> at <strong>Cal State LA</strong>. We have weekly club meetings every Friday from <strong>12:00 PM to 2:00 PM</strong>. On Fridays, the lab is kept open for everyone to work in from <strong>11:00 AM to 3:00 PM</strong>.</p>
+      </div>
+      <div class="meeting-card">
+        <h3>When Are Team Meetings?</h3>
+        <div class="card-divider-sm"></div>
+        <ul>
+          <li><strong>Cryo-UAV Team:</strong> Friday, 12:00 PM – 3:00 PM</li>
+          <li><strong>Cryo-Bot Team:</strong> Friday, 12:00 PM – 2:30 PM</li>
+          <li><strong>Cryo-Sense Team:</strong> Friday, 1:30 PM – 3:00 PM</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Upcoming talks label -->
+    <div class="talks-label reveal">
+      <span>Upcoming Talks</span>
+    </div>
+
+    <!-- Upcoming talks -->
+    <div class="talks-row reveal reveal-delay-1">
+      <div class="talk-card">
+        <div class="tc-date">4/23/26</div>
+        <div class="tc-time">3 pm – 5 pm</div>
+        <div class="tc-room">BIOS-144</div>
+        <div class="tc-title">"Illuminating Dark Energy" Talk</div>
+      </div>
+      <div class="talk-card">
+        <div class="tc-date">4/30/26</div>
+        <div class="tc-time">3 pm – 5 pm</div>
+        <div class="tc-room">BIOS-144</div>
+        <div class="tc-title">"Quantum Computation" Talk</div>
+      </div>
+      <div class="talk-card">
+        <div class="tc-date">5/07/26</div>
+        <div class="tc-time">3 pm – 5 pm</div>
+        <div class="tc-room">BIOS-144</div>
+        <div class="tc-title">"Exoplanets" Talk</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NEWS ── -->
+<section class="section-wrap navy">
+  <div class="news-section">
+    <span class="section-title reveal">NEWS</span>
+    <div class="news-container reveal reveal-delay-1">
+      <div class="news-item"><div class="news-dot"></div><span class="news-text">Artemis II launch on 4/1/2026</span><span class="news-tag">NASA</span></div>
+      <div class="news-item"><div class="news-dot"></div><span class="news-text">Artemis II return on 4/10/2304</span><span class="news-tag">NASA</span></div>
+      <div class="news-item"><div class="news-dot"></div><span class="news-text">CSULA Preview Day on 4/19/2026</span><span class="news-tag">Campus</span></div>
+      <div class="news-item"><div class="news-dot"></div><span class="news-text">ORBIT deliverables due 5/4/2026</span><span class="news-tag">Club</span></div>
+      <div class="news-item"><div class="news-dot"></div><span class="news-text">Artemis III launch in mid-2027</span><span class="news-tag">NASA</span></div>
+      <div class="news-item"><div class="news-dot"></div><span class="news-text">VIPER Rover launch in mid-2027</span><span class="news-tag">NASA</span></div>
+      <div class="news-item"><div class="news-dot"></div><span class="news-text">CADRE Rovers launch in late 2026</span><span class="news-tag">NASA</span></div>
+      <div class="news-item"><div class="news-dot"></div><span class="news-text">Pizza Party – Everyday!</span><span class="news-tag">🍕</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ALUMNI SUCCESS ── -->
+<section class="section-wrap dark" id="portfolio">
+  <div class="alumni-section">
+    <h2 class="reveal">Alumni Success</h2>
+    <div class="alumni-grid">
+
+      <div class="alumni-card reveal">
+        <div class="alumni-photo-wrap">
+          <img
+            src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/Alumni_David_San_Headshot.webp"
+            alt="Portrait of David San"
+          />
+        </div>
+        <div class="alumni-info">
+          <h3>David San</h3>
+          <div class="alumni-divider"></div>
+          <div class="alumni-meta">2020 Alumni · Major CS</div>
+          <div class="alumni-quote">"I thought it was nice… especially as someone who was mostly studying computer science. It was nice to see what Dr. Hays had learned from his studies and from his time at JPL."</div>
+        </div>
+      </div>
+
+      <div class="alumni-card reveal reveal-delay-1">
+        <div class="alumni-photo-wrap">
+          <img
+            src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/Alumni_Sophia_Head_Shot.webp"
+            alt="Portrait of Sophia Sherzai"
+          />
+        </div>
+        <div class="alumni-info">
+          <h3>Sophia Sherzai</h3>
+          <div class="alumni-divider"></div>
+          <div class="alumni-meta">2025 Alumni · Major EE/BME</div>
+          <div class="alumni-quote">"I was the head of the Cryo-Swarm Software team in 2022–2023, where the team was able to put together a functional drone…. Now, I work in the neurotechnology lab at Harvard MGH."</div>
+        </div>
+      </div>
+
+      <div class="alumni-card reveal reveal-delay-2">
+        <div class="alumni-photo-wrap">
+          <img
+            src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/Alumni_David_Camacho_headshot.webp"
+            alt="Portrait of David Camacho"
+          />
+        </div>
+        <div class="alumni-info">
+          <h3>David Camacho</h3>
+          <div class="alumni-divider"></div>
+          <div class="alumni-meta">2021 Alumni · Major CS</div>
+          <div class="alumni-quote">"The club and NASA MINDS gave me the chance to learn many skills including being a leader, systems engineering, programming robots with Python, and teamwork."</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── ADVISOR ── -->
+<section class="section-wrap navy">
+  <div class="advisor-section">
+    <h2 class="reveal">Our Advisor:</h2>
+    <div class="advisor-card reveal reveal-delay-1">
+      <div class="advisor-photo-wrap">
+        <img
+          src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/Advisor_charles_c_hays.webp"
+          alt="Portrait of Professor Charles C. Hays"
+        />
+      </div>
+      <div class="advisor-info">
+        <h3>Professor Charles C. Hays</h3>
+        <p>Currently works in the Department of Physics and Astronomy at California State University, Los Angeles. Dr. Hays does research in Experimental Physics and Condensed Matter Physics.</p>
+        <p class="advisor-pub">Most recent publication: <em>"Background Studies for the MINER Coherent Neutrino Scattering Reactor Experiment"</em></p>
+        <div class="advisor-quote">
+          "Logic will get you from A to Z;<br>imagination will get you everywhere."<br><br>― Albert Einstein
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <a href="#home" class="footer-logo-wrap">
+        <img
+          src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/ICSRC_Logo.webp"
+          alt="ICSRC Logo"
+        />
+        <span>Inter-Cosmic STEM<br>Research Club</span>
+      </a>
+      <p class="footer-tagline">Developing the next generation of space researchers at Cal State LA.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:intercosmicstemresearchclub@gmail.com">intercosmicstemresearchclub@gmail.com</a>
+      <p>Dept. of Physics &amp; Astronomy<br>California State University, LA</p>
+      <div class="footer-social" style="margin-top:0.9rem;">
+        <a href="https://www.instagram.com/csulanasaminds/" target="_blank" rel="noopener">
+          <!-- Instagram icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
+          @csulanasaminds
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Visit Us</h4>
+      <p>Fridays · 12:00 – 2:00 PM<br>BIOS-361, Cal State LA<br>Los Angeles, CA 90032<br>Lab open 11 AM – 3 PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Inter-Cosmic STEM Research Club · All rights reserved
+  </div>
+</footer>
+
+<script>
+// ── ANIMATED STARFIELD ──
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function initStars() {
+  stars = [];
+  const count = Math.floor((canvas.width * canvas.height) / 3200);
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.4 + 0.2,
+      alpha: Math.random() * 0.6 + 0.2,
+      speed: Math.random() * 0.003 + 0.0007,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+}
+
+let t = 0;
+function drawStars() {
+  t += 0.016;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    const a = s.alpha * (0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase));
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${a})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+
+resize();
+initStars();
+drawStars();
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.09 });
+revealEls.forEach(el => observer.observe(el));
+
+// ── NAV ACTIVE STATE ON SCROLL ──
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+</script>
+</body>
 </html>
