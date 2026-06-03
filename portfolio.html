@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Projects Portfolio of the Inter-Cosmic STEM Research Club at Cal State LA. Explore our NASA ORBIT, HuLC, and NASA MINDS achievements.">
+
+<title>Projects Portfolio - Inter-Cosmic STEM Research Club</title>
+
+<!-- Favicons (from your repo's favicon_io/ folder) -->
+<link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
+<link rel="manifest" href="./favicon_io/site.webmanifest">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --deep-navy: #0d0b1e;
+  --gold: #d4a420;
+  --gold-hover: #e8bc40;
+  --text-light: #f0eeff;
+  --text-muted: #a89fc8;
+  --section-navy: rgba(26, 21, 53, 0.90);
+  --section-dark: rgba(8, 6, 22, 0.92);
+  --section-slate: rgba(34, 46, 88, 0.88);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Custom Scrollbar for modern standard browsers */
+  scrollbar-color: rgba(168, 159, 200, 0.3) var(--deep-navy);
+  scrollbar-width: thin;
+}
+
+/* Custom Scrollbar for Webkit Browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--deep-navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 159, 200, 0.25);
+  border-radius: 5px;
+  border: 2px solid var(--deep-navy);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--deep-navy);
+  color: var(--text-light);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── STARFIELD ── */
+#starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.nebula {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 65% 45% at 10% 25%, rgba(90,45,175,0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 40% at 88% 65%, rgba(45,25,130,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 35% at 55% 10%, rgba(110,55,190,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 25% at 30% 80%, rgba(60,30,140,0.10) 0%, transparent 70%);
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8, 6, 22, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1.5px solid rgba(106, 95, 192, 0.4);
+  padding: 0.5rem 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.nav-logo-img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(150,110,255,0.5));
+}
+
+.nav-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.93rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.nav-links { display: flex; gap: 0.2rem; margin-left: auto; }
+
+.nav-links a {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #a89fc8;
+  text-decoration: none;
+  padding: 0.38rem 1.1rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+.nav-links a:hover { color: #fff; border-color: rgba(106,95,192,0.6); }
+.nav-links a.active { background: var(--gold); color: #1a1535; border-color: transparent; }
+
+/* ── SECTION WRAPPER ── */
+.section-wrap { position: relative; z-index: 1; padding: 4.5rem 2.5rem; }
+.section-wrap.navy  { background: var(--section-navy); }
+.section-wrap.dark  { background: var(--section-dark); }
+.section-wrap.slate { background: var(--section-slate); }
+
+/* ── PORTFOLIO GRADIENT BANNERS ── */
+.portfolio-banner {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: linear-gradient(135deg, rgba(69, 123, 167, 0.9), rgba(121, 155, 199, 0.9));
+  padding: 1.6rem 2.5rem;
+  text-align: center;
+  margin-bottom: 3.5rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  border-top: 1.5px solid rgba(255,255,255,0.15);
+  border-bottom: 1.5px solid rgba(255,255,255,0.15);
+}
+
+.portfolio-banner h2 {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 2px;
+  display: inline-block;
+  position: relative;
+}
+
+.portfolio-banner h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+}
+
+/* ── PROJECT WRAPPERS ── */
+.portfolio-container {
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.project-section {
+  margin-bottom: 6rem;
+}
+.project-section:last-child {
+  margin-bottom: 2rem;
+}
+
+.project-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.8rem;
+  text-align: left;
+}
+
+.project-title.centered {
+  text-align: center;
+}
+
+/* ── IMAGE WRAPPERS & CAPTIONS ── */
+.project-hero-img-wrap {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(106, 95, 192, 0.35);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  background: rgba(26, 21, 53, 0.5);
+  margin-bottom: 1rem;
+}
+
+.project-hero-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.4s ease;
+}
+
+.project-caption {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 2.2rem;
+  padding: 0 0.5rem;
+}
+
+/* ── MISSION GOALS SUBHEADINGS ── */
+.sub-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.8rem;
+  display: inline-block;
+  position: relative;
+}
+
+.sub-title::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+}
+
+/* ── TWO COLUMN LAYOUT ── */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  align-items: stretch;
+  margin-bottom: 2rem;
+}
+
+.project-grid.reverse {
+  grid-template-columns: 0.8fr 1.2fr;
+}
+
+/* ── GOLD CARDS ── */
+.gold-card {
+  background: var(--gold);
+  border-radius: 22px;
+  padding: 2.2rem 2.5rem;
+  color: #1a1535;
+  box-shadow: 0 10px 45px rgba(0,0,0,0.45);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gold-card ul {
+  list-style: none;
+}
+
+.gold-card ul li {
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: #1a1535;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-left: 1.2rem;
+}
+.gold-card ul li:last-child {
+  margin-bottom: 0;
+}
+
+.gold-card ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.4rem;
+  color: #1a1535;
+  line-height: 1.5rem;
+}
+
+.gold-card ul li strong {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+}
+
+/* ── SIDE IMAGES ── */
+.side-img-wrap {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1.5px solid rgba(106, 95, 192, 0.35);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  background: rgba(26, 21, 53, 0.5);
+  align-self: center;
+}
+
+.side-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── TWO-UP IMAGE GRID (NASA MINDS) ── */
+.two-up-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.two-up-grid .side-img-wrap {
+  align-self: stretch;
+}
+
+.two-up-grid .side-img-wrap img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── FOOTER ── */
+footer {
+  position: relative;
+  z-index: 1;
+  background: rgba(5, 4, 14, 0.97);
+  border-top: 1.5px solid rgba(106,95,192,0.28);
+  padding: 3.5rem 2.5rem 2rem;
+  color: var(--text-muted);
+}
+
+.footer-inner {
+  max-width: 860px;
+  margin: 0 auto 2.5rem;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.footer-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 0.9rem;
+  text-decoration: none;
+}
+.footer-logo-wrap img { width: 36px; height: 36px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(150,110,255,0.4)); }
+.footer-logo-wrap span { font-family: 'Orbitron', monospace; font-size: 0.75rem; font-weight: 600; color: #fff; line-height: 1.3; }
+
+.footer-tagline { font-size: 0.84rem; line-height: 1.72; color: var(--text-muted); margin-bottom: 1rem; }
+
+.footer-col h4 {
+  font-family: 'Orbitron', monospace; font-size: 0.67rem;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.9rem;
+}
+.footer-col p, .footer-col a:not(.footer-logo-wrap) {
+  font-size: 0.86rem; line-height: 1.9;
+  color: var(--text-muted); text-decoration: none; display: block;
+}
+.footer-col a:hover { color: #fff; }
+
+.footer-social { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
+.footer-social a {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: 0.84rem; color: var(--text-muted); text-decoration: none;
+  border: 1px solid rgba(168,159,200,0.25); border-radius: 6px;
+  padding: 0.35rem 0.85rem; transition: all 0.2s;
+}
+.footer-social a:hover { color: #fff; border-color: rgba(212,164,32,0.5); background: rgba(212,164,32,0.08); }
+.footer-social svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid rgba(106,95,192,0.15);
+  padding-top: 1.5rem;
+  font-size: 0.76rem;
+  color: rgba(168,159,200,0.38);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 760px) {
+  nav { flex-wrap: wrap; padding: 0.5rem 1rem; }
+  .nav-links { margin-left: 0; width: 100%; justify-content: center; }
+  .section-wrap { padding: 3rem 1.2rem; }
+  .project-title { font-size: 1.45rem; text-align: center !important; }
+  .project-grid { grid-template-columns: 1fr !important; gap: 1.8rem; }
+  .two-up-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .portfolio-banner h2 { font-size: 1.35rem; }
+  .sub-title { font-size: 1.20rem; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div class="nebula"></div>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html#home" class="nav-logo">
+    <img
+      class="nav-logo-img"
+      src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/ICSRC_Logo.webp"
+      alt="ICSRC Logo"
+    />
+    <span class="nav-title">Inter-Cosmic STEM<br>Research Club</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#home">Home</a>
+    <a href="index.html#contact">Contact Us</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+  </div>
+</nav>
+
+<!-- ── SECTION: WHAT WE'RE DOING NOW ── -->
+<section class="section-wrap navy">
+  <div class="portfolio-container">
+    
+    <div class="portfolio-banner reveal">
+      <h2>What We're Doing Now</h2>
+    </div>
+
+    <!-- NASA ORBIT Competition -->
+    <div class="project-section">
+      <h3 class="project-title reveal">NASA ORBIT Competition</h3>
+      
+      <div class="project-hero-img-wrap reveal reveal-delay-1">
+        <!-- Placeholder is fallback, replaced when actual file is added to /images -->
+        <img
+          src="images/orbit_drone_swarm.webp"
+          onerror="this.src='https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/ICSRC_Team_Hero_Image.webp'"
+          alt="Tello EDU drone swarm preparing to take off"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      <p class="project-caption reveal">Tello EDU drone swarm preparing to take off from the Lunar Geology Lab - Flight Enclosure in a synchronized flight formation</p>
+
+      <div class="reveal">
+        <h4 class="sub-title">Mission Goals</h4>
+      </div>
+
+      <div class="project-grid reveal reveal-delay-1">
+        <div class="gold-card">
+          <ul>
+            <li>
+              <strong>Cryo-Bot Team:</strong> Develop autonomous swarm of rovers to navigate the lunar environment and map critical resources.
+            </li>
+            <li>
+              <strong>Cryo-UAV Team:</strong> Develop cold-gas thruster drone swarm to search for water-ice in permanently shaded regions of the Moon.
+            </li>
+          </ul>
+        </div>
+        
+        <div class="side-img-wrap">
+          <!-- Placeholder is fallback, replaced when actual file is added to /images -->
+          <img
+            src="images/orbit_robotic_arm.webp"
+            onerror="this.src='https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/ICSRC_School_Sign.webp'"
+            alt="Cryo-Bot Hardware setup"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- NASA Human Lander Challenge (HuLC) -->
+    <div class="project-section">
+      <h3 class="project-title centered reveal">NASA Human Lander Challenge (HuLC)</h3>
+      
+      <div class="project-hero-img-wrap reveal">
+        <!-- Placeholder is fallback, replaced when actual file is added to /images -->
+        <img
+          src="images/hulc_sensor_diagram.webp"
+          onerror="this.src='https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/Past_Project_NasaMinds.webp'"
+          alt="Diagram of Rack-Mountable Sensor Packages"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <p class="project-caption reveal" style="text-align: center;">Diagram of Rack-Mountable Sensor Packages (in Yellow) which will be distributed throughout the Human Landing System cabin</p>
+
+      <div class="reveal">
+        <h4 class="sub-title">Mission Goal</h4>
+      </div>
+
+      <div class="project-grid reverse reveal reveal-delay-1">
+        <div class="side-img-wrap">
+          <!-- Placeholder is fallback, replaced when actual file is added to /images -->
+          <img
+            src="images/hulc_team.webp"
+            onerror="this.src='https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/ICSRC_School_Sign.webp'"
+            alt="Cryo-Sense Team Photo"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="gold-card">
+          <ul>
+            <li>
+              <strong>Cryo-Sense Team:</strong> Integrate Sony Spresense hardware and Edge AI sensor fusion to improve the mass and power efficiencies of the Environmental Control and Life Support Systems for the Human Landing Systems.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── SECTION: WHAT WE HAVE DONE BEFORE ── -->
+<section class="section-wrap dark">
+  <div class="portfolio-container">
+    
+    <div class="portfolio-banner reveal" style="background: linear-gradient(135deg, rgba(49, 75, 97, 0.9), rgba(255, 123, 126, 0.7));">
+      <h2>What We Have Done Before</h2>
+    </div>
+
+    <!-- NASA MINDS Competition -->
+    <div class="project-section">
+      <h3 class="project-title reveal">NASA MINDS Competition</h3>
+
+      <div class="two-up-grid reveal reveal-delay-1">
+        <div class="side-img-wrap">
+          <!-- Placeholder is fallback, replaced when actual file is added to /images -->
+          <img
+            src="images/minds_drone.webp"
+            onerror="this.src='https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/Advisor_charles_c_hays.webp'"
+            alt="Cryo-Swarm drone in flight"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="side-img-wrap">
+          <!-- Real team photo celebrating 1st place in front of whiteboard -->
+          <img
+            src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/Past_Project_NasaMinds.webp"
+            alt="Cryo-UAV Team celebrating 1st Place at NASA MINDS"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      <div class="reveal">
+        <h4 class="sub-title">Achievements</h4>
+      </div>
+
+      <div class="gold-card reveal reveal-delay-1" style="width: 100%;">
+        <ul>
+          <li><strong>1st Place</strong> - Cryo-UAV Systems Engineering Paper - Senior Division (2023, 2025)</li>
+          <li><strong>3rd Place</strong> - Cryo-Swarm UAV Team Champion - Senior Division (2023)</li>
+          <li><strong>4th Place</strong> - Cryo-Spyderbot Team Champion - Senior Division (2023)</li>
+          <li><strong>Competition Finalist</strong> - Cryo-UAV Team - Senior Division (2023, 2025)</li>
+          <li><strong>Competition Finalist</strong> - Cryo-Spyderbot Team - Senior Division (2023, 2024, 2025)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <a href="index.html#home" class="footer-logo-wrap">
+        <img
+          src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/ICSRC_Logo.webp"
+          alt="ICSRC Logo"
+        />
+        <span>Inter-Cosmic STEM<br>Research Club</span>
+      </a>
+      <p class="footer-tagline">Developing the next generation of space researchers at Cal State LA.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:intercosmicstemresearchclub@gmail.com">intercosmicstemresearchclub@gmail.com</a>
+      <p>Dept. of Physics &amp; Astronomy<br>California State University, LA</p>
+      <div class="footer-social" style="margin-top:0.9rem;">
+        <a href="https://www.instagram.com/csulanasaminds/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
+          @csulanasaminds
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Visit Us</h4>
+      <p>Fridays · 12:00 – 2:00 PM<br>BIOS-361, Cal State LA<br>Los Angeles, CA 90032<br>Lab open 11 AM – 3 PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Inter-Cosmic STEM Research Club · All rights reserved
+  </div>
+</footer>
+
+<script>
+// ── ANIMATED STARFIELD ──
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function initStars() {
+  stars = [];
+  const count = Math.floor((canvas.width * canvas.height) / 3200);
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.4 + 0.2,
+      alpha: Math.random() * 0.6 + 0.2,
+      speed: Math.random() * 0.003 + 0.0007,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+}
+
+let t = 0;
+function drawStars() {
+  t += 0.016;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    const a = s.alpha * (0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase));
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${a})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+
+resize();
+initStars();
+drawStars();
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px 80px 0px' });
+revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
