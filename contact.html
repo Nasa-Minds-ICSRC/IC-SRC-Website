@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Join the Inter-Cosmic STEM Research Club at Cal State LA or get in touch with our team.">
+  <title>Contact – Inter-Cosmic STEM Research Club</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="./favicon_io/site.webmanifest">
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --deep-navy: #0d0b1e;
+      --gold: #d4a420;
+      --gold-hover: #e8bc40;
+      --text-light: #f0eeff;
+      --text-muted: #a89fc8;
+      --section-dark: rgba(8, 6, 22, 0.92);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-color: rgba(168, 159, 200, 0.3) var(--deep-navy);
+      scrollbar-width: thin;
+      background-color: var(--deep-navy);
+    }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--deep-navy); }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(168, 159, 200, 0.25);
+      border-radius: 5px;
+      border: 2px solid var(--deep-navy);
+    }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: url('contact-images/eddie-campus-walkway.jpg') center top/cover fixed no-repeat;
+      background-color: var(--deep-navy);
+      color: var(--text-light);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── CONTACT HERO INTRO ── */
+    .contact-hero {
+      position: relative;
+      z-index: 1;
+      background: rgba(6, 4, 18, 0.82);
+      text-align: center;
+      padding: 3.5rem 2rem 3rem;
+    }
+    .contact-hero h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 4px;
+      margin-bottom: 0.85rem;
+    }
+    .contact-hero p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 6, 22, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1.5px solid rgba(106, 95, 192, 0.4);
+      padding: 0.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+    }
+    .nav-logo-img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 8px rgba(150,110,255,0.5));
+    }
+    .nav-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+    .nav-links { display: flex; gap: 0.2rem; margin-left: auto; }
+    .nav-links a {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #a89fc8;
+      text-decoration: none;
+      padding: 0.38rem 1.1rem;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover { color: #fff; border-color: rgba(106,95,192,0.6); }
+    .nav-links a.active { background: var(--gold); color: #1a1535; border-color: transparent; }
+
+    /* ── SECTION BANNERS ── */
+    .contact-banner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 1.4rem 2rem;
+      box-shadow: 0 4px 28px rgba(0,0,0,0.5);
+    }
+    .contact-banner.joining {
+      background: var(--gold);
+      border-bottom: 2px solid rgba(255,255,255,0.15);
+    }
+    .contact-banner.joining h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.05rem, 2.4vw, 1.55rem);
+      font-weight: 700;
+      color: #1a1535;
+      letter-spacing: 4px;
+      text-decoration: underline;
+      text-underline-offset: 8px;
+      text-decoration-color: rgba(26,21,53,0.4);
+    }
+    .contact-banner.reaching {
+      background: rgba(8, 12, 30, 0.95);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 2px solid rgba(212, 164, 32, 0.45);
+    }
+    .contact-banner.reaching h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.05rem, 2.4vw, 1.55rem);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 4px;
+    }
+
+    /* ── FORM SECTIONS ── */
+    .form-section {
+      position: relative;
+      z-index: 1;
+    }
+    .form-section.join-section .form-overlay {
+      background: rgba(6, 4, 18, 0.55);
+    }
+    .form-section.contact-section .form-overlay {
+      background: rgba(6, 4, 18, 0.55);
+    }
+    .form-overlay {
+      position: absolute;
+      inset: 0;
+    }
+    .form-container {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem;
+    }
+
+    /* ── FORM GRID ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem 2rem;
+    }
+    .form-field { display: flex; flex-direction: column; gap: 0.38rem; }
+    .form-field.full-width { grid-column: 1 / -1; }
+
+    .form-field label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: rgba(240, 238, 255, 0.92);
+      letter-spacing: 0.3px;
+    }
+    .form-field label .required { color: #f07070; margin-left: 2px; }
+    .form-field label .optional {
+      font-weight: 400;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-left: 4px;
+    }
+
+    .field-hint {
+      font-size: 0.8rem;
+      color: rgba(240, 238, 255, 0.72);
+      margin-top: 0.25rem;
+      line-height: 1.45;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 0.72rem 1rem;
+      border-radius: 8px;
+      border: 1.5px solid rgba(255,255,255,0.18);
+      background: rgba(255, 255, 255, 0.97);
+      color: #1a1535;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(26,21,53,0.35); }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212,164,32,0.18);
+    }
+    .form-field input.error,
+    .form-field textarea.error { border-color: #f07070; }
+
+    /* Custom select arrow */
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: '▾';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(26,21,53,0.5);
+      pointer-events: none;
+      font-size: 0.85rem;
+    }
+    .select-wrap select { padding-right: 2.2rem; cursor: pointer; }
+
+    .form-field textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+
+    /* ── SUBMIT ROW ── */
+    .form-submit-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1rem;
+      grid-column: 1 / -1;
+    }
+    .btn-submit {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      border: none;
+      background: var(--gold);
+      color: #1a1535;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-submit:hover { background: var(--gold-hover); transform: translateY(-2px); }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* ── SUCCESS STATE ── */
+    .form-success {
+      text-align: center;
+      padding: 3rem 2rem;
+      animation: fadeUp 0.5s ease forwards;
+    }
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(40, 160, 100, 0.18);
+      border: 2px solid rgba(40,160,100,0.5);
+      color: #72dda8;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+    .form-success h3 {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      letter-spacing: 1px;
+    }
+    .form-success p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── CSULA EMAIL WARNING MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(5, 4, 14, 0.82);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      backdrop-filter: blur(4px);
+    }
+    .modal-overlay[hidden] { display: none; }
+    .modal-box {
+      background: #1a1535;
+      border: 1.5px solid rgba(212,164,32,0.35);
+      border-radius: 18px;
+      padding: 2.2rem 2.4rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      animation: fadeUp 0.3s ease;
+    }
+    .modal-box p {
+      font-size: 0.97rem;
+      line-height: 1.72;
+      color: rgba(240,238,255,0.88);
+      margin-bottom: 1.75rem;
+    }
+    .modal-actions { display: flex; gap: 1rem; justify-content: flex-end; }
+    .btn-modal-secondary {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 0.6rem 1.4rem;
+      border-radius: 7px;
+      border: 1.5px solid rgba(255,255,255,0.22);
+      background: transparent;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .btn-modal-secondary:hover { border-color: rgba(255,255,255,0.5); }
+    .btn-modal-primary {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 0.6rem 1.4rem;
+      border-radius: 7px;
+      border: none;
+      background: var(--gold);
+      color: #1a1535;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-modal-primary:hover { background: var(--gold-hover); }
+
+    /* ── CAT EASTER EGG ── */
+    .cat-egg {
+      display: block;
+      position: fixed;
+      bottom: 1.2rem;
+      right: 1.4rem;
+      z-index: 50;
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      overflow: hidden;
+      opacity: 0.12;
+      transition: opacity 0.3s, transform 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .cat-egg:hover { opacity: 1; transform: scale(1.08); }
+    .cat-egg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: rgba(5, 4, 14, 0.97);
+      border-top: 1.5px solid rgba(106,95,192,0.28);
+      padding: 3.5rem 2.5rem 2rem;
+      color: var(--text-muted);
+    }
+    .footer-inner {
+      max-width: 860px;
+      margin: 0 auto 2.5rem;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+    .footer-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.9rem;
+      text-decoration: none;
+    }
+    .footer-logo-wrap img { width: 36px; height: 36px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(150,110,255,0.4)); }
+    .footer-logo-wrap span { font-family: 'Orbitron', monospace; font-size: 0.75rem; font-weight: 600; color: #fff; line-height: 1.3; }
+    .footer-tagline { font-size: 0.84rem; line-height: 1.72; color: var(--text-muted); margin-bottom: 1rem; }
+    .footer-col h4 {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.67rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+    .footer-col p,
+    .footer-col a:not(.footer-logo-wrap) {
+      font-size: 0.86rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: block;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-social { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      border: 1px solid rgba(168,159,200,0.25);
+      border-radius: 6px;
+      padding: 0.35rem 0.85rem;
+      transition: all 0.2s;
+    }
+    .footer-social a:hover { color: #fff; border-color: rgba(212,164,32,0.5); background: rgba(212,164,32,0.08); }
+    .footer-social svg { width: 15px; height: 15px; flex-shrink: 0; position: relative; top: 2px; }
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid rgba(106,95,192,0.15);
+      padding-top: 1.5rem;
+      font-size: 0.76rem;
+      color: rgba(168,159,200,0.38);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 767px) {
+      nav { flex-wrap: wrap; padding: 0.5rem 1rem; }
+      .nav-links { margin-left: 0; width: 100%; justify-content: center; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-field.full-width { grid-column: 1; }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+
+    #page-veil {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--deep-navy);
+      pointer-events: none;
+      animation: veilOut 0.22s 0.04s ease-out forwards;
+    }
+    @keyframes veilOut { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes veilIn  { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img
+      class="nav-logo-img"
+      src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/ICSRC_Logo.webp"
+      alt="ICSRC Logo"
+    />
+    <span class="nav-title">Inter-Cosmic STEM<br>Research Club</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#home">Home</a>
+    <a href="contact.html" class="active">Contact Us</a>
+    <a href="portfolio.html">Portfolio</a>
+  </div>
+</nav>
+
+<!-- ── INTRO ── -->
+<div class="contact-hero">
+  <h1>Get Involved</h1>
+  <p>Open to all majors and all backgrounds. No experience required. Just bring curiosity and drive.</p>
+</div>
+
+<!-- ════════════════════════════════════
+     JOIN THE CLUB
+════════════════════════════════════ -->
+<div class="contact-banner joining">
+  <h2>Join the Club</h2>
+</div>
+
+<section class="form-section join-section">
+  <div class="form-overlay"></div>
+  <div class="form-container">
+
+    <form id="join-form" novalidate>
+      <div class="form-grid">
+
+        <!-- Email -->
+        <div class="form-field full-width">
+          <label for="join-email">Email <span class="required">*</span></label>
+          <input
+            type="email"
+            id="join-email"
+            name="email"
+            placeholder="yourname@calstatela.edu"
+            autocomplete="email"
+            required
+          />
+          <p class="field-hint">Please use your CSULA email if you have one (@calstatela.edu)</p>
+        </div>
+
+        <!-- First Name | Last Name -->
+        <div class="form-field">
+          <label for="join-first">First Name <span class="required">*</span></label>
+          <input type="text" id="join-first" name="firstName" autocomplete="given-name" required />
+        </div>
+        <div class="form-field">
+          <label for="join-last">Last Name <span class="required">*</span></label>
+          <input type="text" id="join-last" name="lastName" autocomplete="family-name" required />
+        </div>
+
+        <!-- Major | Year -->
+        <div class="form-field">
+          <label for="join-major">Major <span class="optional">(optional)</span></label>
+          <input type="text" id="join-major" name="major" placeholder="e.g. Computer Science" />
+        </div>
+        <div class="form-field">
+          <label for="join-year">Year <span class="optional">(optional)</span></label>
+          <div class="select-wrap">
+            <select id="join-year" name="year">
+              <option value="">Select year</option>
+              <option value="Freshman">Freshman</option>
+              <option value="Sophomore">Sophomore</option>
+              <option value="Junior">Junior</option>
+              <option value="Senior">Senior</option>
+              <option value="Graduate Student">Graduate Student</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="form-submit-row">
+          <button type="submit" class="btn-submit" id="join-submit">Submit</button>
+        </div>
+
+      </div>
+    </form>
+
+    <div id="join-success" class="form-success" hidden>
+      <div class="success-icon">✓</div>
+      <h3>You're in!</h3>
+      <p>Thanks for signing up. We'll be in touch soon. See you Friday!</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     GET IN TOUCH
+════════════════════════════════════ -->
+<div class="contact-banner reaching">
+  <h2>Get in Touch</h2>
+</div>
+
+<section class="form-section contact-section">
+  <div class="form-overlay"></div>
+  <div class="form-container">
+
+    <form id="contact-form" novalidate>
+      <div class="form-grid">
+
+        <!-- Name | Organization -->
+        <div class="form-field">
+          <label for="contact-name">Name <span class="required">*</span></label>
+          <input type="text" id="contact-name" name="name" autocomplete="name" required />
+        </div>
+        <div class="form-field">
+          <label for="contact-org">Organization <span class="optional">(optional)</span></label>
+          <input type="text" id="contact-org" name="organization" autocomplete="organization" />
+        </div>
+
+        <!-- Email -->
+        <div class="form-field full-width">
+          <label for="contact-email">Email <span class="required">*</span></label>
+          <input type="email" id="contact-email" name="email" autocomplete="email" required />
+        </div>
+
+        <!-- Message -->
+        <div class="form-field full-width">
+          <label for="contact-message">Message <span class="required">*</span></label>
+          <textarea id="contact-message" name="message" placeholder="Tell us about your inquiry..." required></textarea>
+        </div>
+
+        <!-- Submit -->
+        <div class="form-submit-row">
+          <button type="submit" class="btn-submit" id="contact-submit">Send Message</button>
+        </div>
+
+      </div>
+    </form>
+
+    <div id="contact-success" class="form-success" hidden>
+      <div class="success-icon">✓</div>
+      <h3>Message sent!</h3>
+      <p>Thanks for reaching out. We'll get back to you at your email address soon.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CSULA EMAIL WARNING MODAL ── -->
+<div id="email-modal" class="modal-overlay" hidden>
+  <div class="modal-box">
+    <p>It looks like you're not using a CSULA email. If you have one, please use it. If you don't yet, that's okay. Go ahead and submit.</p>
+    <div class="modal-actions">
+      <button class="btn-modal-secondary" id="modal-back">Go back</button>
+      <button class="btn-modal-primary" id="modal-continue">Submit anyway</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <a href="index.html" class="footer-logo-wrap">
+        <img
+          src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/ICSRC_Logo.webp"
+          alt="ICSRC Logo"
+        />
+        <span>Inter-Cosmic STEM<br>Research Club</span>
+      </a>
+      <p class="footer-tagline">Developing the next generation of space researchers at Cal State LA.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:intercosmicstemresearchclub@gmail.com">intercosmicstemresearchclub@gmail.com</a>
+      <p>Dept. of Physics &amp; Astronomy<br>California State University, LA</p>
+      <div class="footer-social" style="margin-top:0.9rem;">
+        <a href="https://www.instagram.com/csulanasaminds/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
+          @csulanasaminds
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Visit Us</h4>
+      <p>Fridays · 12:00 – 2:00 PM<br>BIOS-361, Cal State LA<br>Los Angeles, CA 90032<br>Lab open 11 AM – 3 PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Inter-Cosmic STEM Research Club · All rights reserved
+  </div>
+</footer>
+
+<script>
+  // ── GOOGLE FORMS CONFIGURATION ──
+  // After creating your Google Forms, replace these placeholders with the real values.
+  // To get entry IDs: open your form → ⋮ menu → Get pre-filled link → fill dummy values → copy the URL.
+  // Each field's ID looks like: entry.123456789
+
+  const JOIN_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSehrz21ovKFUVRESgd9N2iG6pwnS5q46kkEmOfrOaW_daLxPQ/formResponse';
+  const JOIN_ENTRY = {
+    email:     'entry.297927063',
+    firstName: 'entry.554839467',
+    lastName:  'entry.1214557736',
+    major:     'entry.452332934',
+    year:      'entry.1015918259'
+  };
+
+  const CONTACT_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdq4VTrCm5ybnRrK7xGYcCNbIZ8s0xie_OU_AOXw8sadZsKQw/formResponse';
+  const CONTACT_ENTRY = {
+    name:         'entry.1663567365',
+    organization: 'entry.314388129',
+    email:        'entry.350401685',
+    message:      'entry.967484196'
+  };
+
+  // ── HELPERS ──
+  function showEl(id)  { document.getElementById(id).hidden = false; }
+  function hideEl(id)  { document.getElementById(id).hidden = true; }
+  function getVal(id)  { return document.getElementById(id).value.trim(); }
+
+  function submitToGoogleForms(url, entryMap, values) {
+    if (!url) return Promise.resolve(); // no-op until URL is configured
+    const body = new FormData();
+    Object.entries(entryMap).forEach(([key, entryId]) => {
+      if (entryId && values[key] !== undefined) body.append(entryId, values[key]);
+    });
+    return fetch(url, { method: 'POST', mode: 'no-cors', body });
+  }
+
+  // ── JOIN FORM ──
+  let pendingJoinSubmit = false;
+
+  document.getElementById('join-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = getVal('join-email');
+    if (!email) return;
+
+    if (!email.toLowerCase().endsWith('@calstatela.edu') && !pendingJoinSubmit) {
+      showEl('email-modal');
+    } else {
+      doJoinSubmit();
+    }
+  });
+
+  function doJoinSubmit() {
+    pendingJoinSubmit = false;
+    hideEl('email-modal');
+
+    const btn = document.getElementById('join-submit');
+    btn.disabled = true;
+    btn.textContent = 'Submitting…';
+
+    const values = {
+      email:     getVal('join-email'),
+      firstName: getVal('join-first'),
+      lastName:  getVal('join-last'),
+      major:     getVal('join-major'),
+      year:      getVal('join-year')
+    };
+
+    submitToGoogleForms(JOIN_FORM_URL, JOIN_ENTRY, values).then(() => {
+      document.getElementById('join-form').hidden = true;
+      showEl('join-success');
+    });
+  }
+
+  document.getElementById('modal-back').addEventListener('click', function() {
+    hideEl('email-modal');
+    pendingJoinSubmit = false;
+  });
+
+  document.getElementById('modal-continue').addEventListener('click', function() {
+    pendingJoinSubmit = true;
+    doJoinSubmit();
+  });
+
+  // Close modal on overlay click
+  document.getElementById('email-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      hideEl('email-modal');
+      pendingJoinSubmit = false;
+    }
+  });
+
+  // ── CONTACT FORM ──
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('contact-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const values = {
+      name:         getVal('contact-name'),
+      organization: getVal('contact-org'),
+      email:        getVal('contact-email'),
+      message:      getVal('contact-message')
+    };
+
+    submitToGoogleForms(CONTACT_FORM_URL, CONTACT_ENTRY, values).then(() => {
+      document.getElementById('contact-form').hidden = true;
+      showEl('contact-success');
+    });
+  });
+
+  // ── PAGE TRANSITIONS ──
+  let navigating = false;
+  document.addEventListener('click', e => {
+    if (navigating) return;
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('http') || link.target === '_blank') return;
+    e.preventDefault();
+    navigating = true;
+    const dest = link.href;
+    const veil = document.getElementById('page-veil');
+    veil.style.animation = 'veilIn 0.18s ease-in forwards';
+    veil.addEventListener('animationend', () => { location.href = dest; }, { once: true });
+  });
+</script>
+
+<div id="page-veil"></div>
+
+<!-- ── CAT EASTER EGG ── -->
+<a
+  href="https://www.instagram.com/claw.command/"
+  target="_blank"
+  rel="noopener"
+  class="cat-egg"
+  title="psst..."
+>
+  <img src="contact-images/cat-easter-egg.jpg" alt="" />
+</a>
+
+</body>
+</html>

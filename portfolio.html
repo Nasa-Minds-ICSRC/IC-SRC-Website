@@ -6,135 +6,311 @@
   <meta name="description" content="Projects Portfolio of the Inter-Cosmic STEM Research Club at Cal State LA. Explore our NASA ORBIT, HuLC, and NASA MINDS achievements.">
   <title>Projects Portfolio – Inter-Cosmic STEM Research Club</title>
 
-  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
   <link rel="manifest" href="./favicon_io/site.webmanifest">
 
-  <!-- Bootstrap 5 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
-  <!-- Site stylesheet (fonts, nav, cards, background, etc.) -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" as="image" href="portfolio-images/background-stars.jpg" fetchpriority="high">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ── SCROLLBAR ── */
-    :root { --deep-navy: #0f0c1f; }
-    html {
-      scrollbar-color: rgba(168,159,200,0.3) var(--deep-navy);
-      scrollbar-width: thin;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --deep-navy: #0d0b1e;
+      --gold: #d4a420;
+      --gold-hover: #e8bc40;
+      --text-light: #f0eeff;
+      --text-muted: #a89fc8;
+      --section-navy: rgba(26, 21, 53, 0.90);
+      --section-dark: rgba(8, 6, 22, 0.92);
     }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-color: rgba(168, 159, 200, 0.3) var(--deep-navy);
+      scrollbar-width: thin;
+      background-color: var(--deep-navy);
+    }
+
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: var(--deep-navy); }
     ::-webkit-scrollbar-thumb {
-      background: rgba(168,159,200,0.25);
+      background: rgba(168, 159, 200, 0.25);
       border-radius: 5px;
       border: 2px solid var(--deep-navy);
     }
-    ::-webkit-scrollbar-thumb:hover { background: var(--surface); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
-    /* ── GRADIENT SECTION BANNERS ── */
-    .banner-doing {
-      background: linear-gradient(90deg, #4b7fa3 0%, #7ba3c7 100%);
-      text-align: center;
-      padding: 1.25rem 1rem;
-      width: 100vw;
-      margin-left: calc(-50vw + 50%);
-      border-top: 1px solid rgba(255,255,255,0.12);
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    body {
+      font-family: 'Nunito', sans-serif;
+      background:
+        url('portfolio-images/panstarrs-background.jpg') center/cover fixed no-repeat;
+      background-color: var(--deep-navy);
+      color: var(--text-light);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
-    .banner-done {
-      background: linear-gradient(90deg, #4b7fa3 0%, #c07878 100%);
-      text-align: center;
-      padding: 1.25rem 1rem;
-      width: 100vw;
-      margin-left: calc(-50vw + 50%);
-      border-top: 1px solid rgba(255,255,255,0.12);
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+
+    /* ── IMAGE FADE-IN ON LOAD ── */
+    .project-photo img,
+    .side-photo img {
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
-    .banner-doing h2,
-    .banner-done h2 {
-      font-family: 'Allkin', Georgia, serif;
+    .project-photo img.loaded,
+    .side-photo img.loaded {
+      opacity: 1;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 6, 22, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1.5px solid rgba(106, 95, 192, 0.4);
+      padding: 0.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+    }
+    .nav-logo-img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 8px rgba(150,110,255,0.5));
+    }
+    .nav-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.93rem;
+      font-weight: 600;
       color: #fff;
-      margin: 0;
-      font-size: clamp(1.3rem, 3vw, 2rem);
-      text-decoration: underline;
-      text-underline-offset: 7px;
-      text-decoration-color: rgba(255,255,255,0.65);
+      line-height: 1.3;
     }
 
-    /* ── PROJECT SECTION TITLE ── */
-    .project-title {
-      font-family: "Alan Sans", Arial, sans-serif;
+    .nav-links { display: flex; gap: 0.2rem; margin-left: auto; }
+    .nav-links a {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #a89fc8;
+      text-decoration: none;
+      padding: 0.38rem 1.1rem;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover { color: #fff; border-color: rgba(106,95,192,0.6); }
+    .nav-links a.active { background: var(--gold); color: #1a1535; border-color: transparent; }
+
+    /* ── SECTION WRAPPERS ── */
+    .section-wrap { position: relative; z-index: 1; }
+    .section-wrap.navy { background: rgba(26, 21, 53, 0.78); }
+    .section-wrap.dark { background: rgba(8, 6, 22, 0.82); }
+
+    /* ── PORTFOLIO BANNERS ── */
+    .portfolio-banner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 1.4rem 2rem;
+      background: rgba(8, 12, 30, 0.88);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 2px solid rgba(212, 164, 32, 0.45);
+      box-shadow: 0 4px 28px rgba(0,0,0,0.5);
+    }
+    .portfolio-banner h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.05rem, 2.4vw, 1.55rem);
       font-weight: 700;
-      font-size: clamp(1.1rem, 2.4vw, 1.45rem);
       color: #fff;
-      margin-bottom: 1rem;
+      letter-spacing: 4px;
     }
-    .project-title.centered { text-align: center; }
 
-    /* ── UNDERLINED SUBHEADINGS ── */
-    .subheading {
-      font-family: 'Allkin', Georgia, serif;
-      font-size: clamp(1rem, 2vw, 1.3rem);
+    /* ── CONTENT WRAPPER ── */
+    .portfolio-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem 0.5rem;
+    }
+
+    /* ── PROJECT BLOCKS ── */
+    .project-block { margin-bottom: 4rem; }
+    .project-block:last-child { margin-bottom: 2.5rem; }
+
+    /* ── PROJECT HEADER (title + badge row) ── */
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.65rem;
+    }
+    .project-header.centered { justify-content: center; }
+
+    /* ── PROJECT TITLES ── */
+    .project-title {
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      font-size: clamp(0.95rem, 2vw, 1.25rem);
       color: #fff;
+      letter-spacing: 1px;
+      margin-bottom: 0;
+    }
+
+    /* ── STATUS BADGES ── */
+    .status-badge {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.25rem 0.8rem;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .status-active {
+      background: rgba(40, 160, 100, 0.18);
+      color: #72dda8;
+      border: 1px solid rgba(40, 160, 100, 0.38);
+    }
+    .status-past {
+      background: rgba(168, 159, 200, 0.14);
+      color: #a89fc8;
+      border: 1px solid rgba(168, 159, 200, 0.28);
+    }
+
+    /* ── PROJECT INTRO BLURB ── */
+    .project-intro {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: rgba(240, 238, 255, 0.78);
+      margin-bottom: 1.5rem;
+      max-width: 820px;
+    }
+    .project-intro.centered { text-align: center; margin-left: auto; margin-right: auto; }
+
+    /* ── LEARN MORE LINK ── */
+    .learn-more {
+      margin-top: 1.25rem;
+      text-align: right;
+    }
+    .learn-more a {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .learn-more a:hover { color: var(--gold-hover); }
+
+    /* ── SUBHEADINGS ── */
+    .subheading {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(0.82rem, 1.7vw, 1rem);
+      color: var(--gold);
       display: inline-block;
       text-decoration: underline;
       text-underline-offset: 6px;
-      text-decoration-color: rgba(255,255,255,0.6);
+      text-decoration-color: rgba(212,164,32,0.5);
       margin-bottom: 1.1rem;
+      letter-spacing: 1px;
     }
+    .subheading.centered { display: block; text-align: center; }
 
     /* ── PROJECT HERO PHOTO ── */
     .project-photo {
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-      margin-bottom: 0.65rem;
+      box-shadow: 0 8px 36px rgba(0,0,0,0.6);
+      margin-bottom: 0.75rem;
+      background: rgba(26,21,53,0.5);
     }
     .project-photo img {
       width: 100%;
       height: auto;
-      display: block;
       max-height: 420px;
       object-fit: cover;
+      display: block;
     }
     .photo-caption {
-      font-family: "Alan Sans", Arial, sans-serif;
       font-size: 0.875rem;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.5;
+      color: var(--text-muted);
+      line-height: 1.55;
       margin-bottom: 1.75rem;
     }
+    .photo-caption.centered { text-align: center; }
 
-    /* ── SIDE IMAGE ── */
+    /* ── MISSION ROWS (CSS Grid, no Bootstrap) ── */
+    .mission-row {
+      display: grid;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+    .mission-row.orbit { grid-template-columns: 7fr 5fr; }
+    .mission-row.hulc  { grid-template-columns: 5fr 8fr; }
+
+    /* ── SIDE PHOTO ── */
     .side-photo {
       border-radius: 14px;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.45);
-      height: 100%;
-      min-height: 200px;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.55);
+      background: rgba(13, 11, 30, 0.85);
+      position: relative;
+      min-height: 220px;
     }
     .side-photo img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
+      object-position: center center;
+      image-orientation: from-image;
+    }
+    /* Mission-row side photos: contain shows the full subject */
+    .mission-row .side-photo img {
+      object-fit: contain;
+    }
+    /* Remove the dark panel so letterboxing blends into the section background */
+    .mission-row .side-photo {
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
     }
 
-    /* ── GOLD MISSION CARD ── */
+    /* ── MISSION CARD (gold) ── */
     .mission-card {
-      background: var(--surface);
+      background: var(--gold);
       border-radius: 22px;
       padding: 1.8rem 2rem;
-      color: var(--text-dark);
-      box-shadow: var(--shadow);
-      height: 100%;
+      color: #1a1535;
+      box-shadow: 0 10px 44px rgba(0,0,0,0.45);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -147,51 +323,20 @@
     .mission-card ul li {
       position: relative;
       padding-left: 1.1rem;
-      margin-bottom: 1.2rem;
-      font-family: "Alan Sans", Arial, sans-serif;
+      margin-bottom: 1.25rem;
       font-size: 0.97rem;
-      line-height: 1.7;
-      color: var(--text-dark);
+      line-height: 1.72;
+      color: #1a1535;
     }
     .mission-card ul li:last-child { margin-bottom: 0; }
     .mission-card ul li::before {
       content: "•";
       position: absolute;
-      left: 0; top: 0;
+      left: 0;
+      top: 0;
       font-size: 1.3rem;
       line-height: 1.45rem;
-      color: var(--text-dark);
-    }
-
-    /* ── ACHIEVEMENTS CARD ── */
-    .achievement-card {
-      background: var(--surface);
-      border-radius: 22px;
-      padding: 1.8rem 2rem;
-      color: var(--text-dark);
-      box-shadow: var(--shadow);
-    }
-    .achievement-card ul {
-      list-style: none;
-      padding: 0; margin: 0;
-    }
-    .achievement-card ul li {
-      position: relative;
-      padding-left: 1.1rem;
-      margin-bottom: 0.8rem;
-      font-family: "Alan Sans", Arial, sans-serif;
-      font-size: 0.95rem;
-      line-height: 1.65;
-      color: var(--text-dark);
-    }
-    .achievement-card ul li:last-child { margin-bottom: 0; }
-    .achievement-card ul li::before {
-      content: "•";
-      position: absolute;
-      left: 0; top: 0;
-      font-size: 1.3rem;
-      line-height: 1.45rem;
-      color: var(--text-dark);
+      color: rgba(26,21,53,0.6);
     }
 
     /* ── NASA MINDS TWO-PHOTO GRID ── */
@@ -201,59 +346,175 @@
       gap: 1.2rem;
       margin-bottom: 1.6rem;
     }
-    .two-photo-grid .side-photo { min-height: 220px; }
-
-    /* ── SPACING ── */
-    .project-block { margin-bottom: 4rem; }
-    .project-block:last-child { margin-bottom: 1.5rem; }
-
-    @media (max-width: 767px) {
-      .two-photo-grid { grid-template-columns: 1fr; }
+    .two-photo-grid .side-photo { min-height: 300px; }
+    /* Crop to show team members and whiteboard, reduce empty ceiling */
+    .two-photo-grid .side-photo:last-child img {
+      object-position: center 22%;
     }
+
+    /* ── ACHIEVEMENT CARD (gold) ── */
+    .achievement-card {
+      background: var(--gold);
+      border-radius: 22px;
+      padding: 1.8rem 2rem;
+      color: #1a1535;
+      box-shadow: 0 10px 44px rgba(0,0,0,0.45);
+    }
+    .achievement-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .achievement-card ul li {
+      position: relative;
+      padding-left: 1.1rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: #1a1535;
+    }
+    .achievement-card ul li:last-child { margin-bottom: 0; }
+    .achievement-card ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 1.3rem;
+      line-height: 1.45rem;
+      color: rgba(26,21,53,0.6);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: rgba(5, 4, 14, 0.97);
+      border-top: 1.5px solid rgba(106,95,192,0.28);
+      padding: 3.5rem 2.5rem 2rem;
+      color: var(--text-muted);
+    }
+    .footer-inner {
+      max-width: 860px;
+      margin: 0 auto 2.5rem;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+    .footer-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.9rem;
+      text-decoration: none;
+    }
+    .footer-logo-wrap img { width: 36px; height: 36px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(150,110,255,0.4)); }
+    .footer-logo-wrap span { font-family: 'Orbitron', monospace; font-size: 0.75rem; font-weight: 600; color: #fff; line-height: 1.3; }
+    .footer-tagline { font-size: 0.84rem; line-height: 1.72; color: var(--text-muted); margin-bottom: 1rem; }
+    .footer-col h4 {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.67rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+    .footer-col p,
+    .footer-col a:not(.footer-logo-wrap) {
+      font-size: 0.86rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: block;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-social { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      border: 1px solid rgba(168,159,200,0.25);
+      border-radius: 6px;
+      padding: 0.35rem 0.85rem;
+      transition: all 0.2s;
+    }
+    .footer-social a:hover { color: #fff; border-color: rgba(212,164,32,0.5); background: rgba(212,164,32,0.08); }
+    .footer-social svg { width: 15px; height: 15px; flex-shrink: 0; position: relative; top: 2px; }
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid rgba(106,95,192,0.15);
+      padding-top: 1.5rem;
+      font-size: 0.76rem;
+      color: rgba(168,159,200,0.38);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 767px) {
+      nav { flex-wrap: wrap; padding: 0.5rem 1rem; }
+      .nav-links { margin-left: 0; width: 100%; justify-content: center; }
+      .portfolio-content { padding: 2rem 1.2rem 0.5rem; }
+      .mission-row.orbit,
+      .mission-row.hulc { grid-template-columns: 1fr; }
+      .two-photo-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+
+    #page-veil {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--deep-navy);
+      pointer-events: none;
+      animation: veilOut 0.22s 0.04s ease-out forwards;
+    }
+    @keyframes veilOut { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes veilIn  { from { opacity: 0; } to { opacity: 1; } }
   </style>
 </head>
 <body>
 
-  <!-- ── NAVBAR ── -->
-  <div class="topbar">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <div class="brand-wrap d-flex align-items-center w-100">
-          <a href="index.html" class="d-flex align-items-center text-decoration-none gap-2">
-            <img
-              src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/ICSRC_Logo.webp"
-              alt="ICSRC Logo"
-              style="height:52px;width:52px;object-fit:contain;display:block;"
-            />
-          </a>
-          <h1 class="ms-3 mb-0" style="font-size:clamp(1rem,2.5vw,1.55rem);">Inter-Cosmic STEM Research Club</h1>
-        </div>
-      </div>
-    </nav>
-    <ul class="nav nav-tabs justify-content-center">
-      <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact Us</a></li>
-      <li class="nav-item"><a class="nav-link active" href="portfolio.html">Portfolio</a></li>
-    </ul>
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img
+      class="nav-logo-img"
+      src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/ICSRC_Logo.webp"
+      alt="ICSRC Logo"
+    />
+    <span class="nav-title">Inter-Cosmic STEM<br>Research Club</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#home">Home</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
   </div>
+</nav>
 
-  <!-- ── PAGE CONTENT ── -->
-  <div class="page-shell">
+<!-- ════════════════════════════════════
+     WHAT WE'RE DOING NOW
+════════════════════════════════════ -->
+<div class="portfolio-banner doing">
+  <h2>What We're Doing Now</h2>
+</div>
 
-    <!-- ════════════════════════════════════
-         WHAT WE'RE DOING NOW
-    ════════════════════════════════════ -->
-    <div class="banner-doing mt-4 mb-4">
-      <h2>What We're Doing Now</h2>
-    </div>
+<section class="section-wrap navy">
+  <div class="portfolio-content">
 
-    <!-- NASA ORBIT Competition -->
-    <div class="project-block">
-      <h3 class="project-title">NASA ORBIT Competition</h3>
+    <!-- ── NASA ORBIT Competition ── -->
+    <div class="project-block reveal">
+      <div class="project-header">
+        <h3 class="project-title">NASA ORBIT Competition</h3>
+        <span class="status-badge status-active">Active · Spring 2026</span>
+      </div>
+      <p class="project-intro">
+        NASA's ORBIT Challenge is a multi-phase student competition designed to inspire the next generation of engineers and researchers. Teams compete for prizes, receive mentorship from NASA experts, and present their work at an in-person showcase. ICSRC enters two sub-teams that develop distinct robotic platforms for navigating and mapping simulated lunar environments.
+      </p>
 
       <div class="project-photo">
         <img
-          src="portfolio-images/IMG_2431.JPG"
+          src="portfolio-images/orbit-drone-swarm.jpg"
           alt="Tello EDU drone swarm preparing to take off from the Lunar Geology Lab Flight Enclosure"
           loading="eager"
           decoding="async"
@@ -263,87 +524,104 @@
 
       <h4 class="subheading">Mission Goals</h4>
 
-      <div class="row g-3 align-items-stretch">
-        <div class="col-md-7">
-          <div class="mission-card">
-            <ul>
-              <li>
-                <strong>Cryo-Bot Team</strong>: Develop autonomous swarm of rovers to navigate the lunar environment and map critical resources.
-              </li>
-              <li>
-                <strong>Cryo UAV Team</strong>: Develop cold-gas thruster drone swarm to search for water-ice in permanently shaded regions of the Moon
-              </li>
-            </ul>
-          </div>
+      <div class="mission-row orbit">
+        <div class="mission-card">
+          <ul>
+            <li>
+              <strong>Cryo-Bot Team</strong>: Develop autonomous swarm of rovers to navigate the lunar environment and map critical resources.
+            </li>
+            <li>
+              <strong>Cryo UAV Team</strong>: Develop cold-gas thruster drone swarm to search for water-ice in permanently shaded regions of the Moon.
+            </li>
+          </ul>
         </div>
-        <div class="col-md-5">
-          <div class="side-photo">
-            <img
-              src="portfolio-images/Mission Launch Pad on Rover.JPG"
-              alt="Cryo-Bot rover with robotic arm on mission launch pad"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+        <div class="side-photo">
+          <img
+            src="portfolio-images/cryo-bot-rover.jpg"
+            alt="Cryo-Bot rover with robotic arm on mission launch pad"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
+      </div>
+
+      <div class="learn-more">
+        <a href="https://www.nasa.gov/directorates/stmd/prizes-challenges-crowdsourcing-program/center-of-excellence-for-collaborative-innovation-coeci/nasa-orbit-challenge-2026/" target="_blank" rel="noopener">Learn more about NASA ORBIT →</a>
       </div>
     </div>
 
-    <!-- NASA Human Lander Challenge (HuLC) -->
-    <div class="project-block">
-      <h3 class="project-title centered">NASA Human Lander Challenge (HuLC)</h3>
+    <!-- ── NASA Human Lander Challenge (HuLC) ── -->
+    <div class="project-block reveal reveal-delay-1">
+      <div class="project-header">
+        <h3 class="project-title">NASA Human Lander Challenge (HuLC)</h3>
+        <span class="status-badge status-active">Active · 2026</span>
+      </div>
+      <p class="project-intro">
+        The Human Lander Challenge is a collegiate competition administered by the National Institute of Aerospace. Teams develop innovative systems-level solutions that improve Environmental Control and Life Support System performance for long-duration spaceflight toward the Moon and Mars. ICSRC's Cryo-Sense team works to reduce the mass and power requirements of hardware health monitoring systems for the Human Landing System.
+      </p>
 
       <div class="project-photo">
         <img
-          src="portfolio-images/IMG_0148.jpg"
+          src="portfolio-images/hulc-sensor-diagram.jpg"
           alt="Diagram of Rack-Mountable Sensor Packages distributed throughout the Human Landing System cabin"
           loading="lazy"
           decoding="async"
         />
       </div>
-      <p class="photo-caption text-center">Diagram of Rack-Mountable Sensor Packages (in Yellow) which will be distributed throughout the Human Landing System cabin</p>
+      <p class="photo-caption">Diagram of Rack-Mountable Sensor Packages (in Yellow) which will be distributed throughout the Human Landing System cabin</p>
 
       <h4 class="subheading">Mission Goal</h4>
 
-      <div class="row g-3 align-items-stretch">
-        <div class="col-md-4">
-          <div class="side-photo">
-            <img
-              src="portfolio-images/Screenshot_3-6-2026_42151_www.figma.com.jpeg"
-              alt="Cryo-Sense Team photo"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+      <div class="mission-row hulc">
+        <div class="side-photo">
+          <img
+            src="portfolio-images/cryo-sense-team.jpg"
+            alt="Cryo-Sense Team photo"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-        <div class="col-md-8">
-          <div class="mission-card">
-            <ul>
-              <li>
-                <strong>Cryo-Sense Team</strong>: Integrate Sony Spresense hardware and Edge AI sensor fusion to improve the mass and power efficiencies of the Environmental Control and Life Support Systems for the Human Landing Systems
-              </li>
-            </ul>
-          </div>
+        <div class="mission-card">
+          <ul>
+            <li>
+              <strong>Cryo-Sense Team</strong>: Integrate Sony Spresense hardware and Edge AI sensor fusion to improve the mass and power efficiencies of the Environmental Control and Life Support Systems for the Human Landing Systems.
+            </li>
+          </ul>
         </div>
+      </div>
+
+      <div class="learn-more">
+        <a href="https://hulc.nianet.org/" target="_blank" rel="noopener">Learn more about HuLC →</a>
       </div>
     </div>
 
+  </div>
+</section>
 
-    <!-- ════════════════════════════════════
-         WHAT WE HAVE DONE BEFORE
-    ════════════════════════════════════ -->
-    <div class="banner-done mb-4">
-      <h2>What We Have Done Before</h2>
-    </div>
+<!-- ════════════════════════════════════
+     WHAT WE HAVE DONE BEFORE
+════════════════════════════════════ -->
+<div class="portfolio-banner done">
+  <h2>What We Have Done Before</h2>
+</div>
 
-    <!-- NASA MINDS Competition -->
-    <div class="project-block">
-      <h3 class="project-title">NASA MINDS Competition</h3>
+<section class="section-wrap dark">
+  <div class="portfolio-content">
+
+    <!-- ── NASA MINDS Competition ── -->
+    <div class="project-block reveal">
+      <div class="project-header">
+        <h3 class="project-title">NASA MINDS Competition</h3>
+        <span class="status-badge status-past">2023 – 2025</span>
+      </div>
+      <p class="project-intro">
+        NASA MINDS (MUREP Innovative New Designs for Space) is a multi-semester competition for undergraduate teams at Minority Serving Institutions. Teams select a NASA technology opportunity tied to the Artemis mission and develop a detailed design concept. ICSRC has competed since 2023 and has earned top finishes in both the Systems Engineering paper and team champion categories.
+      </p>
 
       <div class="two-photo-grid">
         <div class="side-photo">
           <img
-            src="portfolio-images/Screenshot_3-6-2026_43228_www.figma.com.jpeg"
+            src="portfolio-images/cryo-swarm-drone.jpg"
             alt="Cryo-Swarm drone in flight at NASA MINDS competition"
             loading="lazy"
             decoding="async"
@@ -372,15 +650,93 @@
       </div>
     </div>
 
-  </div><!-- /.page-shell -->
+  </div>
+</section>
 
-  <!-- ── FOOTER ── -->
-  <footer class="mt-4 py-4 text-center" style="border-top:1px solid rgba(255,255,255,0.08);">
-    <p style="font-size:0.8rem;color:rgba(255,255,255,0.35);margin:0;">
-      © 2026 Inter-Cosmic STEM Research Club · All rights reserved
-    </p>
-  </footer>
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <a href="index.html" class="footer-logo-wrap">
+        <img
+          src="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/ICSRC_Logo.webp"
+          alt="ICSRC Logo"
+        />
+        <span>Inter-Cosmic STEM<br>Research Club</span>
+      </a>
+      <p class="footer-tagline">Developing the next generation of space researchers at Cal State LA.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:intercosmicstemresearchclub@gmail.com">intercosmicstemresearchclub@gmail.com</a>
+      <p>Dept. of Physics &amp; Astronomy<br>California State University, LA</p>
+      <div class="footer-social" style="margin-top:0.9rem;">
+        <a href="https://www.instagram.com/csulanasaminds/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
+          @csulanasaminds
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Visit Us</h4>
+      <p>Fridays · 12:00 – 2:00 PM<br>BIOS-361, Cal State LA<br>Los Angeles, CA 90032<br>Lab open 11 AM – 3 PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Inter-Cosmic STEM Research Club · All rights reserved
+  </div>
+</footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<div id="page-veil"></div>
+
+<script>
+// ── IMAGE FADE-IN ──
+document.querySelectorAll('.project-photo img, .side-photo img').forEach(img => {
+  if (img.complete) {
+    img.classList.add('loaded');
+  } else {
+    img.addEventListener('load', () => img.classList.add('loaded'));
+    img.addEventListener('error', () => img.classList.add('loaded'));
+  }
+});
+
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.01, rootMargin: '0px 0px 400px 0px' });
+revealEls.forEach(el => observer.observe(el));
+
+// Fallback: make everything visible after 1.5s in case observer doesn't fire
+setTimeout(() => {
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+}, 1500);
+
+// ── PAGE TRANSITIONS ──
+let navigating = false;
+document.addEventListener('click', e => {
+  if (navigating) return;
+  const link = e.target.closest('a[href]');
+  if (!link) return;
+  const href = link.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('http') || link.target === '_blank') return;
+  e.preventDefault();
+  navigating = true;
+  const dest = link.href;
+  const veil = document.getElementById('page-veil');
+  veil.style.animation = 'veilIn 0.18s ease-in forwards';
+  veil.addEventListener('animationend', () => { location.href = dest; }, { once: true });
+});
+
+</script>
 </body>
 </html>

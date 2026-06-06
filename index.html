@@ -35,6 +35,7 @@ html {
   /* Custom Scrollbar for modern standard browsers */
   scrollbar-color: rgba(168, 159, 200, 0.3) var(--deep-navy);
   scrollbar-width: thin;
+  background-color: var(--deep-navy);
 }
 
 /* Custom Scrollbar for Webkit Browsers (Chrome, Safari, Edge) */
@@ -733,7 +734,7 @@ footer {
   padding: 0.35rem 0.85rem; transition: all 0.2s;
 }
 .footer-social a:hover { color: #fff; border-color: rgba(212,164,32,0.5); background: rgba(212,164,32,0.08); }
-.footer-social svg { width: 15px; height: 15px; flex-shrink: 0; }
+.footer-social svg { width: 15px; height: 15px; flex-shrink: 0; position: relative; top: 2px; }
 
 .footer-bottom {
   text-align: center; border-top: 1px solid rgba(106,95,192,0.15);
@@ -786,6 +787,17 @@ footer {
   .advisor-card { flex-direction: column; align-items: center; }
   .footer-inner { grid-template-columns: 1fr; }
 }
+
+#page-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--deep-navy);
+  pointer-events: none;
+  animation: veilOut 0.22s 0.04s ease-out forwards;
+}
+@keyframes veilOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes veilIn  { from { opacity: 0; } to { opacity: 1; } }
 </style>
 </head>
 <body>
@@ -806,7 +818,7 @@ footer {
   </a>
   <div class="nav-links">
     <a href="#home" class="active">Home</a>
-    <a href="#contact">Contact Us</a>
+    <a href="contact.html">Contact Us</a>
     <a href="portfolio.html">Portfolio</a>
   </div>
 
@@ -859,7 +871,7 @@ footer {
   <!-- JOIN CTA -->
   <div class="join-banner reveal">
     <h3>READY TO LAUNCH YOUR CAREER?</h3>
-    <p>Open to all students across all majors. No experience required, just curiosity and drive.</p>
+    <p>Open to all students across all majors. No experience required. Just bring curiosity and drive.</p>
     <a href="#contact" class="btn-gold">See Meeting Info →</a>
   </div>
 </section>
@@ -1101,6 +1113,8 @@ footer {
   </div>
 </footer>
 
+<div id="page-veil"></div>
+
 <script>
 // ── ANIMATED STARFIELD ──
 const canvas = document.getElementById('starfield');
@@ -1171,6 +1185,23 @@ window.addEventListener('scroll', () => {
     if (a.getAttribute('href') === '#' + current) a.classList.add('active');
   });
 });
+
+// ── PAGE TRANSITIONS ──
+let navigating = false;
+document.addEventListener('click', e => {
+  if (navigating) return;
+  const link = e.target.closest('a[href]');
+  if (!link) return;
+  const href = link.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('http') || link.target === '_blank') return;
+  e.preventDefault();
+  navigating = true;
+  const dest = link.href;
+  const veil = document.getElementById('page-veil');
+  veil.style.animation = 'veilIn 0.18s ease-in forwards';
+  veil.addEventListener('animationend', () => { location.href = dest; }, { once: true });
+});
+
 </script>
 </body>
 </html>
