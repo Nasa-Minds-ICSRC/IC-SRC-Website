@@ -13,7 +13,11 @@
 <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
 <link rel="manifest" href="./favicon_io/site.webmanifest">
 
-<link rel="preload" as="image" href="images/hero-team.webp" fetchpriority="high">
+<link rel="preload" as="image"
+  href="images/hero-team.webp"
+  imagesrcset="images/hero-team-mobile.webp 828w, images/hero-team.webp 1440w"
+  imagesizes="100vw"
+  fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Nunito:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -880,6 +884,8 @@ footer {
   <img
     class="hero-img"
     src="images/hero-team.webp"
+    srcset="images/hero-team-mobile.webp 828w, images/hero-team.webp 1440w"
+    sizes="100vw"
     alt="ICSRC club members in the lab."
     loading="eager"
     decoding="async"
@@ -938,6 +944,8 @@ footer {
     <div class="events-photo">
       <img
         src="images/campus-sign.webp"
+        srcset="images/campus-sign-mobile.webp 828w, images/campus-sign.webp 1440w"
+        sizes="100vw"
         alt="Club members at California State University, Los Angeles."
         loading="lazy"
         decoding="async"
