@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nasa-minds-icsrc.github.io/IC-SRC-Website/sitemap.xml
