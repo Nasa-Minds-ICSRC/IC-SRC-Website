@@ -75,6 +75,7 @@ body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  will-change: transform;
 }
 
 .nebula {
@@ -1239,16 +1240,23 @@ document.querySelectorAll(
 // ── NAV ACTIVE STATE ON SCROLL ──
 const sections = document.querySelectorAll('section[id], div[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
+let sectionOffsets = [];
+function cacheSectionOffsets() {
+  sectionOffsets = Array.from(sections).map(s => ({ id: s.id, top: s.offsetTop }));
+}
+cacheSectionOffsets();
+window.addEventListener('resize', cacheSectionOffsets);
 window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
   let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  sectionOffsets.forEach(({ id, top }) => {
+    if (scrollY >= top - 120) current = id;
   });
   navLinks.forEach(a => {
     a.classList.remove('active');
     if (a.getAttribute('href') === '#' + current) a.classList.add('active');
   });
-});
+}, { passive: true });
 
 // ── PAGE TRANSITIONS ──
 let navigating = false;
