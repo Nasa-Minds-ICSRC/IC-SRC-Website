@@ -700,6 +700,93 @@ a.alumni-card { text-decoration: none; color: inherit; }
 }
 
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      "@id": "https://nasa-minds-icsrc.github.io/IC-SRC-Website/#organization",
+      "name": "Inter-Cosmic STEM Research Club",
+      "alternateName": ["ICSRC", "IC-SRC"],
+      "description": "Student research club at California State University, Los Angeles that develops robotic technologies for NASA competitions including drone swarms, rovers, and sensor systems, and opens doors to research careers for every student.",
+      "url": "https://nasa-minds-icsrc.github.io/IC-SRC-Website/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/logo.webp"
+      },
+      "image": "https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/hero-team.webp",
+      "email": "intercosmicstemresearchclub@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "5151 State University Dr, BIOS-361",
+        "addressLocality": "Los Angeles",
+        "addressRegion": "CA",
+        "postalCode": "90032",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://www.instagram.com/csulanasaminds/",
+        "https://github.com/Nasa-Minds-ICSRC"
+      ],
+      "memberOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "California State University, Los Angeles",
+        "alternateName": ["Cal State LA", "CSULA"],
+        "url": "https://www.calstatela.edu/"
+      },
+      "award": "1st Place, NASA MINDS Systems Engineering Paper, Cal State LA Cryo-UAV Team",
+      "knowsAbout": [
+        "Robotics", "Space Exploration", "NASA Competitions",
+        "STEM Research", "Drone Technology", "Systems Engineering",
+        "Undergraduate Research", "Aerospace Engineering"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://nasa-minds-icsrc.github.io/IC-SRC-Website/#website",
+      "url": "https://nasa-minds-icsrc.github.io/IC-SRC-Website/",
+      "name": "Inter-Cosmic STEM Research Club",
+      "publisher": {
+        "@id": "https://nasa-minds-icsrc.github.io/IC-SRC-Website/#organization"
+      }
+    },
+    {
+      "@type": "Event",
+      "name": "ICSRC Weekly Club Meeting",
+      "description": "Weekly open club meeting for all students. Teams work on active NASA competition projects: drone swarms (Cryo-UAV), rovers (Cryo-Bot), and sensor systems (Cryo-Sense). No experience required.",
+      "organizer": {
+        "@id": "https://nasa-minds-icsrc.github.io/IC-SRC-Website/#organization"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "Biological Sciences Building, Room 361 (BIOS-361), Cal State LA",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "5151 State University Dr",
+          "addressLocality": "Los Angeles",
+          "addressRegion": "CA",
+          "postalCode": "90032",
+          "addressCountry": "US"
+        }
+      },
+      "eventSchedule": {
+        "@type": "Schedule",
+        "byDay": "https://schema.org/Friday",
+        "startTime": "12:00:00",
+        "endTime": "14:00:00",
+        "scheduleTimezone": "America/Los_Angeles",
+        "repeatFrequency": "P1W"
+      },
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "isAccessibleForFree": true,
+      "url": "https://nasa-minds-icsrc.github.io/IC-SRC-Website/#events"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
