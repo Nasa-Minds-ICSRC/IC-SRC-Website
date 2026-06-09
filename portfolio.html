@@ -353,7 +353,26 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 767px) {
-      body { background-attachment: scroll; }
+      /* On mobile, background-attachment: fixed is broken on iOS/Android.
+         The body background alone stretches across a very tall page and
+         sections cover it almost entirely. Instead, use body::before with
+         position: fixed — this creates a true fixed background layer that
+         works on mobile. brightness(1.5) makes the dark space image visible
+         through the semi-transparent section overlays. */
+      body {
+        background-image: none;        /* remove the body-level image */
+        background-color: transparent; /* let html's deep-navy show through instead,
+                                          so body doesn't paint over the ::before layer */
+        background-attachment: scroll;
+      }
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: url('portfolio-images/panstarrs-background.jpg') center/cover no-repeat;
+        filter: brightness(1.5) saturate(1.2);
+      }
       .portfolio-content { padding: 2rem 1.2rem 0.5rem; }
       .mission-row.orbit,
       .mission-row.hulc { grid-template-columns: 1fr; }

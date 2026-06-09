@@ -14,7 +14,7 @@
   --text-light: #f0eeff;
   --text-muted: #a89fc8;
   --section-navy: rgba(26, 21, 53, 0.80);
-  --section-dark: rgba(8, 6, 22, 0.84);
+  --section-dark: rgba(8, 6, 22, 0.82);
   --section-slate: rgba(34, 46, 88, 0.78);
 }
 
@@ -176,3 +176,16 @@ footer {
 }
 @keyframes veilOut { from { opacity: 1; } to { opacity: 0; } }
 @keyframes veilIn  { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── MOBILE SECTION OPACITY ─────────────────────────────────────────────────
+   On mobile, background-attachment switches to scroll, meaning section
+   overlays can hide the page background. Reducing opacity lets the photo
+   or starfield background show through more on small screens.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  :root {
+    --section-navy: rgba(26, 21, 53, 0.70);
+    --section-dark: rgba(8, 6, 22, 0.74);
+    --section-slate: rgba(34, 46, 88, 0.68);
+  }
+}
