@@ -373,6 +373,11 @@
         background: url('portfolio-images/panstarrs-background.jpg') center/cover no-repeat;
         filter: brightness(1.5) saturate(1.2);
       }
+      /* Slightly more opaque sections on mobile so text is easier to read,
+         while background still shows through clearly at brightness(1.5). */
+      .section-wrap.navy  { background: rgba(26, 21, 53, 0.82); }
+      .section-wrap.dark  { background: rgba(8,  6,  22, 0.84); }
+      .section-wrap.slate { background: rgba(34, 46, 88, 0.82); }
       .portfolio-content { padding: 2rem 1.2rem 0.5rem; }
       .mission-row.orbit,
       .mission-row.hulc { grid-template-columns: 1fr; }
