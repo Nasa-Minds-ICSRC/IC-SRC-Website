@@ -951,12 +951,12 @@ a.alumni-card { text-decoration: none; color: inherit; }
   <div class="news-section">
     <h2 class="section-title reveal">NEWS</h2>
     <div class="news-container reveal reveal-delay-1">
-      <a class="news-item" href="https://www.nasa.gov/blogs/missions/2026/04/01/live-artemis-ii-launch-day-updates/" target="_blank" rel="noopener"><div class="news-dot"></div><span class="news-text">Artemis II launched on 4/1/2026</span><span class="news-tag">NASA</span></a>
-      <a class="news-item" href="https://www.nasa.gov/news-release/nasa-welcomes-record-setting-artemis-ii-moonfarers-back-to-earth/" target="_blank" rel="noopener"><div class="news-dot"></div><span class="news-text">Artemis II returned on 4/10/2026</span><span class="news-tag">NASA</span></a>
+      <a class="news-item" href="https://www.nasa.gov/mission/artemis-ii/" target="_blank" rel="noopener"><div class="news-dot"></div><span class="news-text">Artemis II launched 4/1 and returned 4/10/2026</span><span class="news-tag">NASA</span></a>
       <a class="news-item" href="https://en.wikipedia.org/wiki/Artemis_III" target="_blank" rel="noopener"><div class="news-dot"></div><span class="news-text">Artemis III launch expected late 2027</span><span class="news-tag">NASA</span></a>
       <a class="news-item" href="https://science.nasa.gov/mission/viper/" target="_blank" rel="noopener"><div class="news-dot"></div><span class="news-text">VIPER Rover launch expected late 2027</span><span class="news-tag">NASA</span></a>
       <a class="news-item" href="https://www.jpl.nasa.gov/missions/cadre/" target="_blank" rel="noopener"><div class="news-dot"></div><span class="news-text">CADRE Rovers launch expected late 2026</span><span class="news-tag">NASA</span></a>
-      <a class="news-item" href="https://www.nasa.gov/missions/artemis/nasa-welcomes-gateway-lunar-space-stations-halo-module-to-us/" target="_blank" rel="noopener"><div class="news-dot"></div><span class="news-text">NASA Lunar Gateway HALO module arrives in the US</span><span class="news-tag">NASA</span></a>
+      <a class="news-item" href="https://www.nasa.gov/news-release/nasa-provides-update-on-moon-base-rovers-landers-missions/" target="_blank" rel="noopener"><div class="news-dot"></div><span class="news-text">NASA Moon Base I mission targets fall 2026 launch</span><span class="news-tag">NASA</span></a>
+      <a class="news-item" href="https://www.nasa.gov/mission/artemis-iii/" target="_blank" rel="noopener"><div class="news-dot"></div><span class="news-text">NASA announces Artemis III crew</span><span class="news-tag">NASA</span></a>
       <a class="news-item" href="https://www.nasa.gov/directorates/stmd/prizes-challenges-crowdsourcing-program/center-of-excellence-for-collaborative-innovation-coeci/nasa-orbit-challenge-2026/" target="_blank" rel="noopener"><div class="news-dot"></div><span class="news-text">ICSRC competes in NASA ORBIT Challenge 2026</span><span class="news-tag">Club</span></a>
     </div>
   </div>
@@ -1125,7 +1125,7 @@ cacheSectionOffsets();
 window.addEventListener('resize', cacheSectionOffsets);
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-  let current = '';
+  let current = 'home';
   sectionOffsets.forEach(({ id, top }) => {
     if (scrollY >= top - 120) current = id;
   });
