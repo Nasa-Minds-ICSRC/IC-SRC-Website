@@ -1209,15 +1209,13 @@ document.querySelectorAll(
 });
 
 // ── NAV ACTIVE STATE ON SCROLL ──
-const sections = document.querySelectorAll('section[id], div[id]');
+const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 let sectionOffsets = [];
 function cacheSectionOffsets() {
   sectionOffsets = Array.from(sections).map(s => ({ id: s.id, top: s.offsetTop }));
 }
-cacheSectionOffsets();
-window.addEventListener('resize', cacheSectionOffsets);
-window.addEventListener('scroll', () => {
+function updateActiveNav() {
   const scrollY = window.scrollY;
   let current = 'home';
   sectionOffsets.forEach(({ id, top }) => {
@@ -1227,7 +1225,11 @@ window.addEventListener('scroll', () => {
     a.classList.remove('active');
     if (a.getAttribute('href') === '#' + current) a.classList.add('active');
   });
-}, { passive: true });
+}
+cacheSectionOffsets();
+window.addEventListener('resize', cacheSectionOffsets);
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+window.addEventListener('load', () => { cacheSectionOffsets(); updateActiveNav(); });
 
 // ── PAGE TRANSITIONS ──
 let navigating = false;
