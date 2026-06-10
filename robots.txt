@@ -4,4 +4,7 @@ Allow: /
 User-agent: Googlebot-Image
 Disallow: /IC-SRC-Website/images/alumni-
 
+User-agent: Bingbot
+Disallow: /IC-SRC-Website/images/alumni-
+
 Sitemap: https://nasa-minds-icsrc.github.io/IC-SRC-Website/sitemap.xml
