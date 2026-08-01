@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "alumni": [
+    {
+      "id": "david-san",
+      "name": "David San",
+      "graduationYear": 2020,
+      "academicBackground": "Computer Science",
+      "photo": "images/alumni-david-san.webp",
+      "links": [
+        { "label": "LinkedIn", "url": "https://www.linkedin.com/in/david-san-648979139/" },
+        { "label": "GitHub", "url": "https://github.com/Daveed3" }
+      ],
+      "homepageQuote": "As someone who was mostly studying computer science, I appreciated the opportunity to work alongside mechanical engineering students and learn what other ECST majors were doing. Toward the end of the pandemic, I enjoyed passing down what I had learned to newer members. I now work at JPL as a web developer, primarily working on backend bugs, APIs, and database changes.",
+      "profileSections": [
+        { "heading": "ICSRC experience", "text": "As someone who was mostly studying computer science, I found the club experience eventful and appreciated the opportunity to work alongside mechanical engineering students and learn what other ECST majors were doing. It was also valuable to hear what Dr. Hays had learned through his studies and his time at JPL. Toward the end of the pandemic, I enjoyed passing down what I had learned to newer members and seeing the new technology the club was able to use." },
+        { "heading": "Where they are now", "text": "I now work at JPL as a web developer. I primarily work on the backend, fixing bugs, creating APIs that return different data, and making database changes. I also do occasional software engineering when the site needs new functionality." }
+      ]
+    },
+    {
+      "id": "sophia-sherzai",
+      "name": "Sophia Sherzai",
+      "graduationYear": 2025,
+      "academicBackground": "Electrical Engineering / Biomedical Engineering",
+      "photo": "images/alumni-sophia-sherzai.webp",
+      "links": [
+        { "label": "LinkedIn", "url": "https://www.linkedin.com/in/sophia-sherzai-29488a234/" }
+      ],
+      "homepageQuote": "The club was my first time applying engineering in a real group setting outside of the classroom. It ignited my passion for the field, taught me how to work with a team, and opened doors I hadn't expected. Dr. Hays was supportive well beyond just the competition. After NASA MINDS, opportunities started opening up. Now I'm at Harvard MGH doing neurotechnology research on epilepsy and neural stimulation.",
+      "profileSections": [
+        { "heading": "ICSRC experience", "text": "The club was my first time applying engineering in a real group setting outside of the classroom. It ignited my passion for the field, taught me how to work with a team, and opened doors I hadn't expected. Dr. Hays was supportive well beyond just the competition. After NASA MINDS, opportunities started opening up." },
+        { "heading": "Where they are now", "text": "Now I'm at Harvard MGH doing neurotechnology research on epilepsy and neural stimulation. I work as a research assistant in an epilepsy lab, working with clinical data and studying how neural stimulation intersects with technology and how it can be better understood and optimized." },
+        { "heading": "Advice for students", "text": "Try to take every opportunity to learn and enjoy what you’re learning. The job market can be tough and stressful, which can make it difficult to appreciate the experience in the moment. Take time to explore your field, learn from the people around you, and remember what made you passionate about it." }
+      ]
+    },
+    {
+      "id": "david-camacho",
+      "name": "David Camacho",
+      "graduationYear": 2021,
+      "academicBackground": "Computer Science",
+      "photo": "images/alumni-david-camacho.webp",
+      "links": [],
+      "homepageQuote": "Unlike other group projects I was part of, ICSRC gave me real opportunities to contribute and help others grow. I built skills in leadership, systems engineering, and programming robots with Python that I still use today. The influence of Dr. Hays and my teammates is hard to put into words. I would not be where I am today without NASA MINDS. Now I work as an associate software engineer with this project still on my resume and portfolio.",
+      "profileSections": [
+        { "heading": "ICSRC experience", "text": "Unlike other group projects I was part of, ICSRC gave me real opportunities to contribute and help others grow. I built skills in leadership, systems engineering, and programming robots with Python that I still use today. Over the year, the team grew, we spent many hours together, and we all made progress at our own pace. The influence of Dr. Hays and my teammates is hard to put into words. I would not be where I am today without NASA MINDS." },
+        { "heading": "Where they are now", "text": "Now I work as an associate software engineer with this project still on my resume and portfolio. My work includes IT troubleshooting, MATLAB plots, documentation, meetings, tracing code, and keeping track of different configurations and setups." }
+      ]
+    },
+    {
+      "id": "ziyi-zou",
+      "name": "Ziyi Zou",
+      "graduationYear": 2022,
+      "academicBackground": "Biochemistry major · Computer Science minor",
+      "photo": "images/alumni-ziyi-zou.webp",
+      "links": [
+        { "label": "LinkedIn", "url": "https://www.linkedin.com/in/ziyizou6402895/" }
+      ],
+      "homepageQuote": "These projects gave me firsthand experience with the practical aspects of working in a multidisciplinary team that weren’t taught in my classes. I am now a medical student conducting research at the intersection of medicine and technology, and the experience I gained through these projects and from the mentorship of Dr. Hays put me in a position to contribute to research early in medical school.",
+      "profileSections": [
+        { "heading": "ICSRC experience", "text": "As a biochemistry major with a computer science minor, these projects provided me with a great opportunity to apply what I had learned in class. More importantly, they gave me firsthand experience with the practical aspects of working in a multidisciplinary team that weren't taught in my classes." },
+        { "heading": "Leadership and contributions", "text": "I served as deputy team lead for Cryo-Swarms during the first half of the 2020–2021 academic year, then as team lead for the remainder of 2020–2021 and the 2021–2022 academic year. I helped organize meetings, coordinate the team, submit club forms, handle parts of an abstract submission, and support subteams wherever needed." },
+        { "heading": "Where they are now", "text": "I am now a medical student conducting research at the intersection of medicine and technology, and the experience I gained through these projects and from the mentorship of Dr. Hays put me in a position to contribute to research early in medical school. I'd be very open to talking more one on one with club members who are interested in either medical research or the process of applying to medical school." }
+      ]
+    },
+    {
+      "id": "hua-chen",
+      "name": "Hua Chen",
+      "graduationYear": 2021,
+      "academicBackground": "Computer Science",
+      "photo": "images/alumni-hua-chen.webp",
+      "links": [
+        { "label": "LinkedIn", "url": "https://www.linkedin.com/in/hchen63/" }
+      ],
+      "homepageQuote": "The club was one of the few opportunities I had to apply classroom knowledge to a real-life application. After NASA Minds, I started working for Vandenberg Space Force Base, building systems to support space launch efforts.",
+      "profileSections": [
+        { "heading": "ICSRC experience", "text": "The club was one of the few opportunities I had to apply classroom knowledge to a real-life application. The project challenged me in a way none others did, leading me to somewhere I never thought it would." },
+        { "heading": "Where they are now", "text": "After NASA Minds, I started working for Vandenberg Space Force Base, building systems to support space launch efforts." }
+      ]
+    },
+    {
+      "id": "jesus-cruz",
+      "name": "Jesus Cruz",
+      "graduationYear": 2023,
+      "academicBackground": "Computer Science",
+      "photo": "images/alumni-jesus-cruz.jpg",
+      "links": [
+        { "label": "LinkedIn", "url": "https://www.linkedin.com/in/j-cruz-447729225" }
+      ],
+      "homepageQuote": "I have always been drawn to software engineering projects that interact directly with the physical world as they impose many limitations that then force us as engineers to overcome through our ingenuity. ICSRC provided many of these scenarios and gave me many invaluable lessons that still inform the way I approach my work. I now work as a systems software engineer for NVIDIA in their autonomous vehicles division and am very grateful for the many lessons I learned in my time with ICSRC.",
+      "profileSections": [
+        { "heading": "ICSRC experience", "text": "ICSRC was the first time I was able to apply the skills I was learning in my CS degree within an interdisciplinary group setting. I have always been drawn to software engineering projects that interact directly with the physical world as they impose many limitations that then force us as engineers to overcome through our ingenuity. ICSRC provided many of these scenarios and gave me many invaluable lessons that still inform the way I approach my work." },
+        { "heading": "Projects and responsibilities", "text": "I worked as a developer on the ground software team for the spider bot, focusing on localization and pathfinding." },
+        { "heading": "Where they are now", "text": "I now work as a systems software engineer for NVIDIA in their autonomous vehicles division and am very grateful for the many lessons I learned in my time with ICSRC." }
+      ]
+    }
+  ]
+}

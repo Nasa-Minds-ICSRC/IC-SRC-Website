@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meet alumni of the Inter-Cosmic STEM Research Club at Cal State LA and explore the paths they have taken after IC-SRC.">
+  <link rel="canonical" href="https://nasa-minds-icsrc.github.io/IC-SRC-Website/alumni.html">
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+  <link rel="manifest" href="./favicon_io/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <title>Alumni | Inter-Cosmic STEM Research Club</title>
+  <style>
+    body { background: var(--deep-navy); }
+    #starfield { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .nebula {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 65% 45% at 10% 25%, rgba(90,45,175,0.22) 0%, transparent 70%),
+        radial-gradient(ellipse 55% 40% at 88% 65%, rgba(45,25,130,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 35% at 55% 10%, rgba(110,55,190,0.12) 0%, transparent 70%);
+    }
+    main { position: relative; z-index: 1; }
+    .alumni-hero { padding: 1.5rem 2rem 0; background: linear-gradient(to bottom, rgba(8,6,22,0.3), rgba(8,6,22,0.68)); }
+    .alumni-hero-photo {
+      position: relative; display: block; width: min(1100px, 100%); height: clamp(325px, 37vw, 470px); margin: 0 auto;
+      overflow: hidden; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; background: #151126;
+      box-shadow: 0 18px 55px rgba(0,0,0,0.52), 0 0 0 1px rgba(106,95,192,0.1);
+    }
+    .alumni-hero-photo::after {
+      position: absolute; inset: 0; content: '';
+      background:
+        linear-gradient(to bottom, rgba(8,6,22,0.08) 42%, rgba(8,6,22,0.58) 100%),
+        linear-gradient(to right, rgba(8,6,22,0.2), transparent 24%, transparent 76%, rgba(8,6,22,0.2));
+      box-shadow: inset 0 -2px rgba(212,164,32,0.38);
+    }
+    .alumni-hero-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 17%; opacity: 0.76; }
+    .alumni-hero-copy { width: min(850px, 100%); margin: 0 auto; padding: 2.7rem 2rem 3.4rem; text-align: center; }
+    .alumni-hero h1 { position: relative; display: inline-block; margin: 0; font-family: 'Orbitron', monospace; font-size: clamp(1.35rem, 3vw, 1.75rem); color: #fff; letter-spacing: 5px; }
+    .alumni-hero h1::after { position: absolute; bottom: -10px; left: 50%; width: 46%; height: 2px; border-radius: 2px; background: var(--gold); content: ''; transform: translateX(-50%); }
+    .alumni-hero p { max-width: 650px; margin: 1.55rem auto 0; color: var(--text-muted); font-size: 0.97rem; line-height: 1.75; }
+    .alumni-page { position: relative; z-index: 1; padding: 0; }
+    .alumni-page-grid { display: grid; }
+    .alumni-profile, a.alumni-profile {
+      display: grid; grid-template-columns: 218px minmax(0, 1fr); gap: clamp(2.25rem, 5vw, 4.75rem); align-items: center;
+      width: 100%; max-width: none; min-height: 390px; padding: 4.5rem max(2rem, calc((100vw - 1040px) / 2));
+      color: inherit; text-decoration: none; background: var(--section-navy); border-bottom: 1px solid rgba(106,95,192,0.16);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    @media (hover: hover) {
+      .alumni-profile:hover {
+        transform: translateY(-4px) scale(1.006);
+        box-shadow: 0 18px 52px rgba(0,0,0,0.48), 0 0 28px rgba(212,164,32,0.13);
+        z-index: 1; position: relative;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .alumni-profile, a.alumni-profile { transition: none; }
+    }
+    .alumni-profile:nth-child(even) { grid-template-columns: minmax(0, 1fr) 218px; background: var(--section-dark); }
+    .alumni-profile:nth-child(even) .alumni-photo { grid-column: 2; grid-row: 1; }
+    .alumni-profile:nth-child(even) .alumni-copy { grid-column: 1; grid-row: 1; padding: 0 2.25rem 0 0; border-right: 2px solid rgba(212,164,32,0.5); border-left: 0; }
+    .alumni-photo { width: 218px; height: 264px; overflow: hidden; border: 2.5px solid var(--gold); border-radius: 10px; background: rgba(26,21,53,0.5); box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 18px rgba(212,164,32,0.12); }
+    .alumni-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 15%; }
+    .alumni-copy { padding: 0 0 0 2.25rem; border-left: 2px solid rgba(212,164,32,0.5); }
+    .alumni-copy h2 { margin: 0; font-family: 'Orbitron', monospace; font-size: clamp(1.05rem, 2vw, 1.3rem); color: #fff; letter-spacing: 1px; }
+    .alumni-meta { margin: 0.48rem 0 0.55rem; color: var(--text-muted); font-size: 0.86rem; font-weight: 600; }
+    .alumni-profile-link {
+      display: inline-flex; align-items: center; gap: 0.35rem; margin: 0 0 1.6rem;
+      font-family: 'Orbitron', monospace; color: var(--gold); font-size: 0.66rem; font-weight: 600;
+      letter-spacing: 1px; text-decoration: none; text-underline-offset: 4px;
+    }
+    .alumni-profile-link:hover { color: var(--gold-hover); text-decoration: underline; }
+    .alumni-profile-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
+    .alumni-profile-links { display: flex; flex-wrap: wrap; gap: 0.7rem 1.25rem; margin: 0 0 1.6rem; }
+    .alumni-profile-links .alumni-profile-link { margin: 0; }
+    .alumni-meta + .alumni-section { margin-top: 1.6rem; }
+    .alumni-section + .alumni-section { margin-top: 1.25rem; }
+    .alumni-section h3 { margin: 0 0 0.45rem; font-family: 'Orbitron', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
+    .alumni-section p { margin: 0; max-width: 720px; color: rgba(240,238,255,0.82); font-size: 0.95rem; line-height: 1.75; }
+    @media (max-width: 720px) {
+      .alumni-hero { padding: 1rem 0.75rem 0; }
+      .alumni-hero-photo { height: clamp(260px, 72vw, 350px); border-radius: 10px; }
+      .alumni-hero-photo img { object-position: center 18%; }
+      .alumni-hero-copy { padding: 2.35rem 0.5rem 2.85rem; }
+      .alumni-profile, a.alumni-profile { grid-template-columns: 1fr; gap: 1.65rem; justify-items: center; min-height: 0; padding: 3.5rem 1.25rem; }
+      .alumni-profile:nth-child(even) { grid-template-columns: 1fr; }
+      .alumni-profile:nth-child(even) .alumni-photo, .alumni-profile:nth-child(even) .alumni-copy { grid-column: 1; }
+      .alumni-profile:nth-child(even) .alumni-photo { grid-row: 1; }
+      .alumni-profile:nth-child(even) .alumni-copy { grid-row: 2; }
+      .alumni-copy, .alumni-profile:nth-child(even) .alumni-copy { width: 100%; padding: 0; border: 0; text-align: left; }
+      .alumni-copy h2, .alumni-meta { text-align: center; }
+      .alumni-section p { margin-inline: auto; }
+    }
+    @media (max-width: 400px) { .alumni-photo { width: 204px; height: 248px; } }
+  </style>
+</head>
+<body>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="nebula" aria-hidden="true"></div>
+<nav>
+  <a href="index.html" class="nav-logo"><img class="nav-logo-img" src="images/logo.webp" alt="ICSRC logo"><span class="nav-title">Inter-Cosmic STEM<br>Research Club</span></a>
+  <div class="nav-links"><a href="index.html#home">Home</a><a href="alumni.html" class="active">Alumni</a><a href="contact.html">Contact Us</a><a href="portfolio.html">Portfolio</a></div>
+</nav>
+<main>
+  <section class="alumni-hero" aria-labelledby="alumni-title"><picture class="alumni-hero-photo"><source media="(max-width: 600px)" srcset="images/alumni-team-banner-mobile.webp"><img src="images/alumni-team-banner.webp" alt="NASA MINDS team holding the Inter-Cosmic STEM Research Club banner" fetchpriority="high" decoding="async"></picture><div class="alumni-hero-copy"><h1 id="alumni-title">OUR ALUMNI</h1><p>IC-SRC alumni carry hands-on research, teamwork, and technical problem-solving into careers and further study.</p></div></section>
+  <section class="alumni-page"><div class="alumni-page-grid">
+    <article class="alumni-profile"><div class="alumni-photo"><img src="images/alumni-david-san.webp" alt="Portrait of David San" loading="lazy" decoding="async"></div><div class="alumni-copy"><h2>David San</h2><p class="alumni-meta">2020 Alumni &middot; Computer Science</p><div class="alumni-profile-links"><a class="alumni-profile-link" href="https://www.linkedin.com/in/david-san-648979139/" target="_blank" rel="noopener" aria-label="View David San's LinkedIn profile (opens in a new tab)">LinkedIn profile <span aria-hidden="true">&nearr;</span></a><a class="alumni-profile-link" href="https://github.com/Daveed3" target="_blank" rel="noopener" aria-label="View David San's GitHub profile (opens in a new tab)">GitHub profile <span aria-hidden="true">&nearr;</span></a></div><div class="alumni-section"><h3>ICSRC experience</h3><p>As someone who was mostly studying computer science, I found the club experience eventful and appreciated the opportunity to work alongside mechanical engineering students and learn what other ECST majors were doing. It was also valuable to hear what Dr. Hays had learned through his studies and his time at JPL. Toward the end of the pandemic, I enjoyed passing down what I had learned to newer members and seeing the new technology the club was able to use.</p></div><div class="alumni-section"><h3>Where they are now</h3><p>I now work at JPL as a web developer. I primarily work on the backend, fixing bugs, creating APIs that return different data, and making database changes. I also do occasional software engineering when the site needs new functionality.</p></div></div></article>
+    <article class="alumni-profile"><div class="alumni-photo"><img src="images/alumni-sophia-sherzai.webp" alt="Portrait of Sophia Sherzai" loading="lazy" decoding="async"></div><div class="alumni-copy"><h2>Sophia Sherzai</h2><p class="alumni-meta">2025 Alumni &middot; Electrical Engineering / Biomedical Engineering</p><a class="alumni-profile-link" href="https://www.linkedin.com/in/sophia-sherzai-29488a234/" target="_blank" rel="noopener" aria-label="View Sophia Sherzai's LinkedIn profile (opens in a new tab)">LinkedIn profile <span aria-hidden="true">&nearr;</span></a><div class="alumni-section"><h3>ICSRC experience</h3><p>The club was my first time applying engineering in a real group setting outside of the classroom. It ignited my passion for the field, taught me how to work with a team, and opened doors I hadn't expected. Dr. Hays was supportive well beyond just the competition. After NASA MINDS, opportunities started opening up.</p></div><div class="alumni-section"><h3>Where they are now</h3><p>Now I'm at Harvard MGH doing neurotechnology research on epilepsy and neural stimulation. I work as a research assistant in an epilepsy lab, working with clinical data and studying how neural stimulation intersects with technology and how it can be better understood and optimized.</p></div><div class="alumni-section"><h3>Advice for students</h3><p>Try to take every opportunity to learn and enjoy what you’re learning. The job market can be tough and stressful, which can make it difficult to appreciate the experience in the moment. Take time to explore your field, learn from the people around you, and remember what made you passionate about it.</p></div></div></article>
+    <article class="alumni-profile"><div class="alumni-photo"><img src="images/alumni-david-camacho.webp" alt="Portrait of David Camacho" loading="lazy" decoding="async"></div><div class="alumni-copy"><h2>David Camacho</h2><p class="alumni-meta">2021 Alumni &middot; Computer Science</p><div class="alumni-section"><h3>ICSRC experience</h3><p>Unlike other group projects I was part of, ICSRC gave me real opportunities to contribute and help others grow. I built skills in leadership, systems engineering, and programming robots with Python that I still use today. Over the year, the team grew, we spent many hours together, and we all made progress at our own pace. The influence of Dr. Hays and my teammates is hard to put into words. I would not be where I am today without NASA MINDS.</p></div><div class="alumni-section"><h3>Where they are now</h3><p>Now I work as an associate software engineer with this project still on my resume and portfolio. My work includes IT troubleshooting, MATLAB plots, documentation, meetings, tracing code, and keeping track of different configurations and setups.</p></div></div></article>
+    <article class="alumni-profile"><div class="alumni-photo"><img src="images/alumni-ziyi-zou.webp" alt="Portrait of Ziyi Zou" loading="lazy" decoding="async"></div><div class="alumni-copy"><h2>Ziyi Zou</h2><p class="alumni-meta">2022 Alumni &middot; Biochemistry major &middot; Computer Science minor</p><a class="alumni-profile-link" href="https://www.linkedin.com/in/ziyizou6402895/" target="_blank" rel="noopener" aria-label="View Ziyi Zou's LinkedIn profile (opens in a new tab)">LinkedIn profile <span aria-hidden="true">&nearr;</span></a><div class="alumni-section"><h3>ICSRC experience</h3><p>As a biochemistry major with a computer science minor, these projects provided me with a great opportunity to apply what I had learned in class. More importantly, they gave me firsthand experience with the practical aspects of working in a multidisciplinary team that weren't taught in my classes.</p></div><div class="alumni-section"><h3>Leadership and contributions</h3><p>I served as deputy team lead for Cryo-Swarms during the first half of the 2020&ndash;2021 academic year, then as team lead for the remainder of 2020&ndash;2021 and the 2021&ndash;2022 academic year. I helped organize meetings, coordinate the team, submit club forms, handle parts of an abstract submission, and support subteams wherever needed.</p></div><div class="alumni-section"><h3>Where they are now</h3><p>I am now a medical student conducting research at the intersection of medicine and technology, and the experience I gained through these projects and from the mentorship of Dr. Hays put me in a position to contribute to research early in medical school. I'd be very open to talking more one on one with club members who are interested in either medical research or the process of applying to medical school.</p></div></div></article>
+    <article class="alumni-profile"><div class="alumni-photo"><img src="images/alumni-hua-chen.webp" alt="Portrait of Hua Chen" loading="lazy" decoding="async"></div><div class="alumni-copy"><h2>Hua Chen</h2><p class="alumni-meta">2021 Alumni &middot; Computer Science</p><a class="alumni-profile-link" href="https://www.linkedin.com/in/hchen63/" target="_blank" rel="noopener" aria-label="View Hua Chen's LinkedIn profile (opens in a new tab)">LinkedIn profile <span aria-hidden="true">&nearr;</span></a><div class="alumni-section"><h3>ICSRC experience</h3><p>The club was one of the few opportunities I had to apply classroom knowledge to a real-life application. The project challenged me in a way none others did, leading me to somewhere I never thought it would.</p></div><div class="alumni-section"><h3>Where they are now</h3><p>After NASA Minds, I started working for Vandenberg Space Force Base, building systems to support space launch efforts.</p></div></div></article>
+    <article class="alumni-profile"><div class="alumni-photo"><img src="images/alumni-jesus-cruz.jpg" alt="Portrait of Jesus Cruz" loading="lazy" decoding="async"></div><div class="alumni-copy"><h2>Jesus Cruz</h2><p class="alumni-meta">2023 Alumni &middot; Computer Science</p><a class="alumni-profile-link" href="https://www.linkedin.com/in/j-cruz-447729225" target="_blank" rel="noopener" aria-label="View Jesus Cruz's LinkedIn profile (opens in a new tab)">LinkedIn profile <span aria-hidden="true">&nearr;</span></a><div class="alumni-section"><h3>ICSRC experience</h3><p>ICSRC was the first time I was able to apply the skills I was learning in my CS degree within an interdisciplinary group setting. I have always been drawn to software engineering projects that interact directly with the physical world as they impose many limitations that then force us as engineers to overcome through our ingenuity. ICSRC provided many of these scenarios and gave me many invaluable lessons that still inform the way I approach my work.</p></div><div class="alumni-section"><h3>Projects and responsibilities</h3><p>I worked as a developer on the ground software team for the spider bot, focusing on localization and pathfinding.</p></div><div class="alumni-section"><h3>Where they are now</h3><p>I now work as a systems software engineer for NVIDIA in their autonomous vehicles division and am very grateful for the many lessons I learned in my time with ICSRC.</p></div></div></article>
+  </div></section>
+</main>
+<footer><div class="footer-inner"><div class="footer-col"><a href="index.html" class="footer-logo-wrap"><img src="images/logo.webp" alt="ICSRC logo"><span>Inter-Cosmic STEM<br>Research Club</span></a><p class="footer-tagline">Developing the next generation of space researchers at Cal State LA.</p></div><div class="footer-col"><h4>Contact</h4><a href="mailto:intercosmicstemresearchclub@gmail.com">intercosmicstemresearchclub@gmail.com</a><p>Dept. of Physics &amp; Astronomy<br>California State University, LA</p></div><div class="footer-col"><h4>Visit Us</h4><p>Fridays &middot; 12:00 PM to 2:00 PM<br>BIOS-361, Cal State LA<br>Los Angeles, CA 90032</p></div></div><div class="footer-bottom">&copy; 2026 Inter-Cosmic STEM Research Club &middot; All rights reserved</div></footer>
+<div id="page-veil"></div>
+<script>
+  function dailyRandom(seed) {
+    return function() {
+      seed += 0x6D2B79F5;
+      let value = seed;
+      value = Math.imul(value ^ value >>> 15, value | 1);
+      value ^= value + Math.imul(value ^ value >>> 7, value | 61);
+      return ((value ^ value >>> 14) >>> 0) / 4294967296;
+    };
+  }
+
+  function dateSeed(date) {
+    const key = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    let hash = 2166136261;
+    for (const character of key) {
+      hash ^= character.charCodeAt(0);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function shuffleAlumniForToday() {
+    const grid = document.querySelector('.alumni-page-grid');
+    const original = Array.from(grid.children);
+    const shuffled = [...original];
+    const random = dailyRandom(dateSeed(new Date()));
+
+    for (let index = shuffled.length - 1; index > 0; index -= 1) {
+      const other = Math.floor(random() * (index + 1));
+      [shuffled[index], shuffled[other]] = [shuffled[other], shuffled[index]];
+    }
+
+    const isSimpleRotation = shuffled.some((profile, index) =>
+      original.every((candidate, offset) => shuffled[(index + offset) % shuffled.length] === candidate)
+    );
+    if (isSimpleRotation && shuffled.length > 2) {
+      [shuffled[1], shuffled[2]] = [shuffled[2], shuffled[1]];
+    }
+
+    shuffled.forEach(profile => grid.appendChild(profile));
+  }
+
+  shuffleAlumniForToday();
+
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let stars = [];
+  let animationFrame;
+  let time = 0;
+
+  function resizeStarfield() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars = Array.from({ length: Math.floor((canvas.width * canvas.height) / 1500) }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 1.8 + 0.3,
+      alpha: Math.random() * 0.75 + 0.25,
+      speed: Math.random() * 0.02 + 0.015,
+      phase: Math.random() * Math.PI * 2
+    }));
+  }
+
+  function drawStarfield() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(star => {
+      const alpha = reduceMotion ? star.alpha * 0.65 : star.alpha * (0.55 + 0.45 * Math.sin(time * star.speed * 60 + star.phase));
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+      ctx.fill();
+    });
+    if (!reduceMotion) {
+      time += 0.016;
+      animationFrame = requestAnimationFrame(drawStarfield);
+    }
+  }
+
+  resizeStarfield();
+  drawStarfield();
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(animationFrame);
+    resizeStarfield();
+    drawStarfield();
+  });
+</script>
+</body>
+</html>

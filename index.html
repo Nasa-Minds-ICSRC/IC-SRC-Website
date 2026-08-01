@@ -48,7 +48,7 @@
 <link rel="icon" href="images/logo.webp" type="image/webp">
 <link rel="stylesheet" href="shared.css">
 <style>
-/* ── STARFIELD ── */
+/* —— STARFIELD —— */
 #starfield {
   position: fixed;
   inset: 0;
@@ -69,7 +69,7 @@
     radial-gradient(ellipse 35% 25% at 30% 80%, rgba(60,30,140,0.10) 0%, transparent 70%);
 }
 
-/* ── HERO ── */
+/* —— HERO —— */
 .hero {
   position: relative;
   z-index: 1;
@@ -195,16 +195,16 @@
   50% { transform: translateX(-50%) translateY(7px); }
 }
 
-/* ── SCROLL OFFSET FOR STICKY NAV ── */
+/* —— SCROLL OFFSET FOR STICKY NAV —— */
 section[id] { scroll-margin-top: 72px; }
 
-/* ── SECTION WRAPPER ── */
+/* —— SECTION WRAPPER —— */
 .section-wrap { position: relative; z-index: 1; }
 .section-wrap.navy  { background: var(--section-navy); }
 .section-wrap.dark  { background: var(--section-dark); }
 .section-wrap.slate { background: var(--section-slate); }
 
-/* ── SECTION TITLE ── */
+/* —— SECTION TITLE —— */
 .section-title {
   font-family: 'Orbitron', monospace;
   font-size: 1.55rem;
@@ -226,7 +226,7 @@ section[id] { scroll-margin-top: 72px; }
   border-radius: 2px;
 }
 
-/* ── GOLD CARDS ── */
+/* —— GOLD CARDS —— */
 .info-section {
   padding: 4.5rem 2.5rem;
   display: flex;
@@ -273,7 +273,7 @@ section[id] { scroll-margin-top: 72px; }
 .gold-card ul { padding-left: 1.3rem; }
 .gold-card ul li { font-size: 0.97rem; line-height: 1.75; color: #1a1535; margin-bottom: 0.3rem; }
 
-/* ── JOIN CTA BANNER ── */
+/* —— JOIN CTA BANNER —— */
 .join-banner {
   padding: 2.8rem 2.5rem;
   display: flex;
@@ -310,7 +310,7 @@ section[id] { scroll-margin-top: 72px; }
 }
 .btn-gold:hover { background: var(--gold-hover); transform: translateY(-2px); }
 
-/* ── EVENTS ── */
+/* —— EVENTS —— */
 .events-section { padding: 0; }
 .events-header { text-align: center; padding: 3rem 2.5rem 2rem; }
 .events-follow { font-size: 0.97rem; color: var(--text-muted); margin-top: 1rem; }
@@ -437,7 +437,7 @@ section[id] { scroll-margin-top: 72px; }
 .talk-card .tc-room { font-size: 0.83rem; opacity: 0.72; margin-bottom: 0.65rem; }
 .talk-card .tc-title { font-weight: 700; font-size: 0.94rem; font-style: italic; border-top: 1px solid rgba(26,21,53,0.15); padding-top: 0.6rem; }
 
-/* ── NEWS ── */
+/* —— NEWS —— */
 .news-section { padding: 4.5rem 2.5rem; text-align: center; }
 .news-section .section-title { margin-bottom: 2.5rem; }
 
@@ -474,7 +474,7 @@ a.news-item:hover { background: rgba(26,21,53,0.1); }
   background: rgba(26,21,53,0.14); color: #1a1535; white-space: nowrap;
 }
 
-/* ── ACHIEVEMENT ── */
+/* —— ACHIEVEMENT —— */
 .achievement-section { padding: 4.5rem 2.5rem; text-align: center; }
 
 .achievement-section .section-title { margin-bottom: 2.5rem; }
@@ -525,54 +525,41 @@ a.news-item:hover { background: rgba(26,21,53,0.1); }
   .achievement-text { text-align: center; }
 }
 
-/* ── ALUMNI ── */
+/* —— ALUMNI —— */
 .alumni-section { padding: 4.5rem 2.5rem 5rem; }
 
 .alumni-section .section-title { margin-bottom: 3rem; }
 
-.alumni-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-  max-width: 980px;
-  margin: 0 auto;
-  align-items: start;
-}
-
-.alumni-card {
-  display: flex; flex-direction: column; align-items: center; gap: 1rem;
-  transition: transform 0.22s;
-}
+.alumni-section { padding: 4.5rem 2.5rem 5rem; }
+.alumni-section .section-title { margin-bottom: 3rem; }
+.alumni-carousel { position: relative; max-width: 1080px; margin: 0 auto; padding: 0 3.5rem; }
+.alumni-carousel-viewport { overflow: hidden; margin-top: -8px; padding-top: 8px; transition: height 0.22s ease; }
+.alumni-track { display: flex; align-items: flex-start; gap: 2.5rem; transition: transform 0.5s ease; }
+.alumni-card { display: flex; flex: 0 0 calc((100% - 5rem) / 3); min-width: 0; flex-direction: column; align-items: center; gap: 1rem; transition: transform 0.22s; }
 .alumni-card:hover { transform: translateY(-5px); }
 a.alumni-card { text-decoration: none; color: inherit; }
-
-.alumni-photo-wrap {
-  width: 160px; height: 195px;
-  border-radius: 10px; overflow: hidden;
-  border: 2.5px solid var(--gold);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 18px rgba(212,164,32,0.12);
-  flex-shrink: 0;
-}
-.alumni-photo-wrap img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center 15%; display: block;
-}
-
-.alumni-info {
-  background: var(--gold); border-radius: 16px; padding: 1.3rem 1.5rem;
-  color: #1a1535; width: 100%; text-align: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.28);
-}
+.alumni-photo-wrap { width: 184px; height: 224px; border-radius: 10px; overflow: hidden; border: 2.5px solid var(--gold); box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 18px rgba(212,164,32,0.12); flex-shrink: 0; }
+.alumni-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
+.alumni-info { background: var(--gold); border-radius: 16px; padding: 1.3rem 1.5rem; color: #1a1535; width: 100%; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.28); }
 .alumni-info h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.15rem; }
 .alumni-divider { width: 48px; height: 2px; background: rgba(26,21,53,0.28); margin: 0.45rem auto 0.65rem; border-radius: 1px; }
 .alumni-meta { font-size: 0.83rem; font-weight: 600; opacity: 0.68; }
-.alumni-quote {
-  font-size: 0.82rem; line-height: 1.65; margin-top: 0.8rem;
-  font-style: italic; border-top: 1px solid rgba(26,21,53,0.12);
-  padding-top: 0.72rem; opacity: 0.88;
+.alumni-quote { font-size: 0.82rem; line-height: 1.65; margin-top: 0.8rem; font-style: italic; border-top: 1px solid rgba(26,21,53,0.12); padding-top: 0.72rem; opacity: 0.88; }
+.alumni-carousel-controls { display: flex; align-items: center; justify-content: center; margin-top: 1.5rem; }
+.alumni-carousel-button { position: absolute; top: 48%; display: grid; place-items: center; width: 44px; height: 44px; padding: 0 0 2px; border: 1px solid rgba(212,164,32,0.65); border-radius: 50%; background: rgba(8,6,22,0.76); color: var(--gold); font-size: 1.4rem; line-height: 1; cursor: pointer; transform: translateY(-50%); transition: background 0.2s, color 0.2s; }
+.alumni-previous { left: 0; }
+.alumni-next { right: 0; }
+.alumni-carousel-button:hover, .alumni-carousel-button:focus-visible { background: var(--gold); color: #1a1535; }
+.alumni-carousel-dots { display: flex; gap: 0; }
+.alumni-carousel-dot { display: grid; width: 28px; height: 28px; place-items: center; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.alumni-carousel-dot::before { width: 10px; height: 10px; border: 1px solid var(--gold); border-radius: 50%; background: transparent; content: ""; }
+.alumni-carousel-dot.active::before { background: var(--gold); }
+.alumni-carousel-dot:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+@media (min-width: 761px) {
+  .alumni-card { align-self: stretch; }
+  .alumni-info { flex: 1; }
 }
-
-/* ── ADVISOR ── */
+/* —— ADVISOR —— */
 .advisor-section { padding: 1rem 2.5rem 5rem; }
 
 .advisor-section .section-title { margin-bottom: 2.5rem; }
@@ -624,7 +611,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
 .talk-card--soon:hover { transform: none; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
 .tc-soon-icon { width: 30px; height: 30px; margin-bottom: 0.6rem; opacity: 0.75; }
 
-/* ── SKELETON SHIMMER & IMAGE FADE-IN ── */
+/* —— SKELETON SHIMMER & IMAGE FADE-IN —— */
 @keyframes shimmer {
   0%   { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
@@ -688,7 +675,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
 .alumni-photo-wrap.img-loaded img  { opacity: 1; }
 .advisor-photo-wrap.img-loaded img { opacity: 1; }
 
-/* ── RESPONSIVE ── */
+/* —— RESPONSIVE —— */
 @media (max-width: 760px) {
   .hero { height: 420px; }
   .hero-content { padding: 0 1.8rem; max-width: 100%; }
@@ -697,9 +684,25 @@ a.advisor-split { color: inherit; text-decoration: none; }
   .info-pair { grid-template-columns: 1fr; }
   .meetings-grid { grid-template-columns: 1fr; }
   .talks-row { grid-template-columns: 1fr; }
-  .alumni-grid { grid-template-columns: 1fr; max-width: 340px; }
+  .alumni-section { padding: 3.5rem 1.25rem 4rem; }
+  .alumni-carousel { padding: 0; }
+  .alumni-card { flex-basis: 100%; }
+  .alumni-carousel-controls { gap: 1rem; }
+  .alumni-carousel-button { position: static; transform: none; }
+  .alumni-carousel-dots { order: 2; }
+  .alumni-previous { order: 1; }
+  .alumni-next { order: 3; }
   .advisor-split { grid-template-columns: 1fr; }
   .advisor-photo-wrap { min-height: 260px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alumni-carousel-viewport,
+  .alumni-track,
+  .alumni-card,
+  .alumni-carousel-button { transition: none; }
+  .alumni-card:hover { transform: none; }
+  .alumni-photo-wrap::before { animation: none; }
 }
 
 </style>
@@ -820,7 +823,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
 <canvas id="starfield"></canvas>
 <div class="nebula"></div>
 
-<!-- ── NAV ── -->
+<!-- —— NAV —— -->
 <nav>
   <a href="#home" class="nav-logo">
     <!-- Using your real logo from the repo -->
@@ -833,6 +836,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
   </a>
   <div class="nav-links">
     <a href="#home" class="active">Home</a>
+    <a href="alumni.html">Alumni</a>
     <a href="contact.html">Contact Us</a>
     <a href="portfolio.html">Portfolio</a>
   </div>
@@ -841,7 +845,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
 
 <main>
 
-<!-- ── HERO ── -->
+<!-- —— HERO —— -->
 <section id="home" class="hero">
   <!-- Your real club photo from the repo -->
   <img
@@ -866,7 +870,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<!-- ── WHO ARE WE / WHY JOIN ── -->
+<!-- —— WHO ARE WE / WHY JOIN —— -->
 <section class="section-wrap navy">
   <div class="info-section">
     <div class="info-pair reveal">
@@ -896,69 +900,24 @@ a.advisor-split { color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<!-- ── ALUMNI SUCCESS ── -->
+<!-- —— ALUMNI SUCCESS —— -->
 <section class="section-wrap dark" id="alumni">
   <div class="alumni-section">
     <h2 class="section-title reveal">OUR ALUMNI</h2>
-    <div class="alumni-grid">
-
-      <a class="alumni-card reveal" href="https://github.com/Daveed3" target="_blank" rel="noopener">
-        <div class="alumni-photo-wrap">
-          <img
-            src="images/alumni-david-san.webp"
-          loading="lazy" decoding="async"
-            alt="Portrait of David San"
-          />
-        </div>
-        <div class="alumni-info">
-          <h3>David San</h3>
-          <div class="alumni-divider"></div>
-          <div class="alumni-meta">2020 Alumni · CS</div>
-          <div class="alumni-quote">"As a CS major, it was eye-opening to work alongside mechanical engineers and hear firsthand what Dr. Hays brought back from his time at JPL. I even got to pass that knowledge down to newer members as the club grew. Now I work at JPL myself, mostly doing backend development, APIs, and a little of everything else. The club was a real stepping stone."</div>
-        </div>
-      </a>
-
-      <a class="alumni-card reveal reveal-delay-1" href="https://www.linkedin.com/in/sophia-sherzai-29488a234/" target="_blank" rel="noopener">
-        <div class="alumni-photo-wrap">
-          <img
-            src="images/alumni-sophia-sherzai.webp"
-          loading="lazy" decoding="async"
-            alt="Portrait of Sophia Sherzai"
-          />
-        </div>
-        <div class="alumni-info">
-          <h3>Sophia Sherzai</h3>
-          <div class="alumni-divider"></div>
-          <div class="alumni-meta">2025 Alumni · EE/BME</div>
-          <div class="alumni-quote">"The club was my first time applying engineering in a real group setting outside of the classroom. It ignited my passion for the field, taught me how to work with a team, and opened doors I hadn't expected. Dr. Hays was supportive well beyond just the competition. After NASA MINDS, opportunities started opening up. Now I'm at Harvard MGH doing neurotechnology research on epilepsy and neural stimulation."</div>
-        </div>
-      </a>
-
-      <div class="alumni-card reveal reveal-delay-2">
-        <div class="alumni-photo-wrap">
-          <img
-            src="images/alumni-david-camacho.webp"
-          loading="lazy" decoding="async"
-            alt="Portrait of David Camacho"
-          />
-        </div>
-        <div class="alumni-info">
-          <h3>David Camacho</h3>
-          <div class="alumni-divider"></div>
-          <div class="alumni-meta">2021 Alumni · CS</div>
-          <div class="alumni-quote">"Unlike other group projects I was part of, ICSRC gave me real opportunities to contribute and help others grow. I built skills in leadership, systems engineering, and programming robots with Python that I still use today. The influence of Dr. Hays and my teammates is hard to put into words. I would not be where I am today without NASA MINDS. Now I work as an associate software engineer with this project still on my resume and portfolio."</div>
-        </div>
-      </div>
-
+    <div class="alumni-carousel reveal" aria-label="Alumni profiles">
+      <div class="alumni-carousel-viewport"><div class="alumni-track">
+        <a class="alumni-card" href="https://www.linkedin.com/in/david-san-648979139/" target="_blank" rel="noopener"><div class="alumni-photo-wrap"><img src="images/alumni-david-san.webp" loading="lazy" decoding="async" alt="Portrait of David San"></div><div class="alumni-info"><h3>David San</h3><div class="alumni-divider"></div><div class="alumni-meta">2020 Alumni &middot; Computer Science</div><div class="alumni-quote">&ldquo;As someone who was mostly studying computer science, I appreciated the opportunity to work alongside mechanical engineering students and learn what other ECST majors were doing. Toward the end of the pandemic, I enjoyed passing down what I had learned to newer members. I now work at JPL as a web developer, primarily working on backend bugs, APIs, and database changes.&rdquo;</div></div></a>
+        <a class="alumni-card" href="https://www.linkedin.com/in/sophia-sherzai-29488a234/" target="_blank" rel="noopener"><div class="alumni-photo-wrap"><img src="images/alumni-sophia-sherzai.webp" loading="lazy" decoding="async" alt="Portrait of Sophia Sherzai"></div><div class="alumni-info"><h3>Sophia Sherzai</h3><div class="alumni-divider"></div><div class="alumni-meta">2025 Alumni &middot; Electrical Engineering / Biomedical Engineering</div><div class="alumni-quote">&ldquo;The club was my first time applying engineering in a real group setting outside of the classroom. It ignited my passion for the field, taught me how to work with a team, and opened doors I hadn't expected. Dr. Hays was supportive well beyond just the competition. After NASA MINDS, opportunities started opening up. Now I'm at Harvard MGH doing neurotechnology research on epilepsy and neural stimulation.&rdquo;</div></div></a>
+        <article class="alumni-card"><div class="alumni-photo-wrap"><img src="images/alumni-david-camacho.webp" loading="lazy" decoding="async" alt="Portrait of David Camacho"></div><div class="alumni-info"><h3>David Camacho</h3><div class="alumni-divider"></div><div class="alumni-meta">2021 Alumni &middot; Computer Science</div><div class="alumni-quote">&ldquo;Unlike other group projects I was part of, ICSRC gave me real opportunities to contribute and help others grow. I built skills in leadership, systems engineering, and programming robots with Python that I still use today. The influence of Dr. Hays and my teammates is hard to put into words. I would not be where I am today without NASA MINDS. Now I work as an associate software engineer with this project still on my resume and portfolio.&rdquo;</div></div></article>
+        <a class="alumni-card" href="https://www.linkedin.com/in/ziyizou6402895/" target="_blank" rel="noopener"><div class="alumni-photo-wrap"><img src="images/alumni-ziyi-zou.webp" loading="lazy" decoding="async" alt="Portrait of Ziyi Zou"></div><div class="alumni-info"><h3>Ziyi Zou</h3><div class="alumni-divider"></div><div class="alumni-meta">2022 Alumni &middot; Biochemistry &middot; Computer Science minor</div><div class="alumni-quote">&ldquo;These projects gave me firsthand experience with the practical aspects of working in a multidisciplinary team that weren’t taught in my classes. I am now a medical student conducting research at the intersection of medicine and technology, and the experience I gained through these projects and from the mentorship of Dr. Hays put me in a position to contribute to research early in medical school.&rdquo;</div></div></a>
+        <a class="alumni-card" href="https://www.linkedin.com/in/hchen63/" target="_blank" rel="noopener"><div class="alumni-photo-wrap"><img src="images/alumni-hua-chen.webp" loading="lazy" decoding="async" alt="Portrait of Hua Chen"></div><div class="alumni-info"><h3>Hua Chen</h3><div class="alumni-divider"></div><div class="alumni-meta">2021 Alumni &middot; Computer Science</div><div class="alumni-quote">&ldquo;The club was one of the few opportunities I had to apply classroom knowledge to a real-life application. After NASA Minds, I started working for Vandenberg Space Force Base, building systems to support space launch efforts.&rdquo;</div></div></a>
+        <a class="alumni-card" href="https://www.linkedin.com/in/j-cruz-447729225" target="_blank" rel="noopener"><div class="alumni-photo-wrap"><img src="images/alumni-jesus-cruz.jpg" loading="lazy" decoding="async" alt="Portrait of Jesus Cruz"></div><div class="alumni-info"><h3>Jesus Cruz</h3><div class="alumni-divider"></div><div class="alumni-meta">2023 Alumni &middot; Computer Science</div><div class="alumni-quote">&ldquo;I have always been drawn to software engineering projects that interact directly with the physical world as they impose many limitations that then force us as engineers to overcome through our ingenuity. ICSRC provided many of these scenarios and gave me many invaluable lessons that still inform the way I approach my work. I now work as a systems software engineer for NVIDIA in their autonomous vehicles division and am very grateful for the many lessons I learned in my time with ICSRC.&rdquo;</div></div></a>
+      </div></div>
+      <div class="alumni-carousel-controls"><button class="alumni-carousel-button alumni-previous" type="button" aria-label="Show previous alumni">&larr;</button><div class="alumni-carousel-dots" aria-label="Alumni carousel pages"></div><button class="alumni-carousel-button alumni-next" type="button" aria-label="Show next alumni">&rarr;</button></div>
     </div>
-    <div style="text-align:center; margin-top:2.5rem;" class="reveal">
-      <a href="contact.html" class="btn-gold">Join the Club →</a>
-    </div>
+    <div style="text-align:center; margin-top:2.5rem;" class="reveal"><a href="alumni.html" class="btn-gold">Meet More Alumni &rarr;</a></div>
   </div>
-</section>
-
-<!-- ── ACHIEVEMENT ── -->
-<section class="section-wrap navy">
+</section><section class="section-wrap navy">
   <div class="achievement-section">
     <h2 class="section-title reveal">AWARDS</h2>
     <div class="achievement-card reveal reveal-delay-1">
@@ -986,7 +945,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<!-- ── EVENTS ── -->
+<!-- —— EVENTS —— -->
 <section class="section-wrap slate" id="events">
   <div class="events-section">
     <div class="events-header reveal">
@@ -1062,7 +1021,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<!-- ── NEWS ── -->
+<!-- —— NEWS —— -->
 <section class="section-wrap navy">
   <div class="news-section">
     <h2 class="section-title reveal">NEWS</h2>
@@ -1078,7 +1037,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<!-- ── ADVISOR ── -->
+<!-- —— ADVISOR —— -->
 <!-- JPL THROUGHLINE: Dr. Hays spent 11 years at JPL (see bio below), and David San
      (Our Alumni section) also works at JPL. Consider referencing this connection
      explicitly in one of the two sections — e.g. "The same JPL that shaped Dr. Hays
@@ -1099,7 +1058,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
         <p>Dr. Hays is a Senior Lecturer in the Department of Physics and Astronomy at Cal State LA. Before joining CSULA in 2013, he spent 12 years at NASA's Jet Propulsion Laboratory (JPL), contributing to the Planck and Mars Science Laboratory missions. He received NASA Group Achievement Awards for his work on both the Planck US High-Frequency-Instrument (HFI) Team and the Mars Science Laboratory ChemCam Team. In 2018, he and the Planck Team received the Gruber Prize in Cosmology.</p>
         <p>His research spans Condensed Matter Physics, Materials Science, and Instruments for Space Science. Prior to JPL, he worked as a Postdoctoral Scholar at the California Institute of Technology (Caltech), where he delivered the Bulk Metallic Glass Solar Wind Collector used on the NASA Genesis Mission. His most recent publication is <em>"Background Studies for the MINER Coherent Neutrino Scattering Reactor Experiment."</em></p>
         <div class="advisor-quote">
-          "Logic will get you from A to Z;<br>imagination will get you everywhere."<br><br>― Albert Einstein
+          "Logic will get you from A to Z;<br>imagination will get you everywhere."<br><br>Albert Einstein
         </div>
       </div>
     </a>
@@ -1109,7 +1068,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
 
 </main>
 
-<!-- ── FOOTER ── -->
+<!-- —— FOOTER —— -->
 <footer>
   <div class="footer-inner">
     <div class="footer-col">
@@ -1121,6 +1080,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
         <span>Inter-Cosmic STEM<br>Research Club</span>
       </a>
       <p class="footer-tagline">Developing the next generation of space researchers at Cal State LA.</p>
+      <a href="alumni.html">Meet Our Alumni</a>
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
@@ -1151,7 +1111,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
 <div id="page-veil"></div>
 
 <script>
-// ── ANIMATED STARFIELD ──
+// —— ANIMATED STARFIELD ——
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
 let stars = [];
@@ -1205,7 +1165,7 @@ document.addEventListener('visibilitychange', () => {
   }
 });
 
-// ── SCROLL REVEAL ──
+// —— SCROLL REVEAL ——
 const revealEls = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -1217,7 +1177,7 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.08, rootMargin: '0px 0px 80px 0px' });
 revealEls.forEach(el => observer.observe(el));
 
-// ── IMAGE SKELETON LOADERS ──
+// —— IMAGE SKELETON LOADERS ——
 document.querySelectorAll(
   '.hero-img, .events-photo img, .achievement-photo img, .alumni-photo-wrap img, .advisor-photo-wrap img'
 ).forEach(img => {
@@ -1230,31 +1190,180 @@ document.querySelectorAll(
   }
 });
 
-// ── NAV ACTIVE STATE ON SCROLL ──
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-let sectionOffsets = [];
-function cacheSectionOffsets() {
-  sectionOffsets = Array.from(sections).map(s => ({ id: s.id, top: s.offsetTop }));
-}
-function updateActiveNav() {
-  const scrollY = window.scrollY;
-  let current = 'home';
-  sectionOffsets.forEach(({ id, top }) => {
-    if (scrollY >= top - 120) current = id;
-  });
-  navLinks.forEach(a => {
-    a.classList.remove('active');
-    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
-  });
-}
-cacheSectionOffsets();
-window.addEventListener('resize', cacheSectionOffsets);
-window.addEventListener('scroll', updateActiveNav, { passive: true });
-window.addEventListener('load', () => { cacheSectionOffsets(); updateActiveNav(); });
+// —— NAV ACTIVE STATE ON SCROLL ——
 
-// ── PAGE TRANSITIONS ──
-let navigating = false;
+// —— PAGE TRANSITIONS ——
+const alumniCarousel = document.querySelector('.alumni-carousel');
+if (alumniCarousel) {
+  const alumniViewport = alumniCarousel.querySelector('.alumni-carousel-viewport');
+  const alumniTrack = alumniCarousel.querySelector('.alumni-track');
+  const sourceAlumniCards = Array.from(alumniTrack.children);
+  const previousAlumni = alumniCarousel.querySelector('.alumni-previous');
+  const nextAlumni = alumniCarousel.querySelector('.alumni-next');
+  const alumniDots = alumniCarousel.querySelector('.alumni-carousel-dots');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const dailyGroupCount = Math.ceil(sourceAlumniCards.length / 3);
+  const dailyGroup = Math.floor(Date.now() / 86400000) % dailyGroupCount;
+  const dailyStart = dailyGroup * 3;
+  const alumniCards = sourceAlumniCards.slice(dailyStart).concat(sourceAlumniCards.slice(0, dailyStart));
+  alumniCards.forEach(card => alumniTrack.appendChild(card));
+  alumniCarousel.dataset.dailyStart = String(dailyStart);
+  let visibleCount = 0;
+  let physicalIndex = 0;
+  let activePage = 0;
+  let isAnimating = false;
+  let resizeFrame = 0;
+  const moveQueue = [];
+
+  const visibleAlumni = () => window.matchMedia('(max-width: 760px)').matches ? 1 : 3;
+
+  const pageCount = () => Math.ceil(alumniCards.length / visibleCount);
+
+  const updateDots = () => {
+    Array.from(alumniDots.children).forEach((dot, page) => {
+      const isActive = page === activePage;
+      dot.classList.toggle('active', isActive);
+      if (isActive) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
+  };
+
+  const updateViewportHeight = index => {
+    if (visibleCount !== 1) {
+      alumniViewport.style.height = '';
+      return;
+    }
+    const card = alumniTrack.children[index];
+    if (card) alumniViewport.style.height = `${Math.ceil(card.getBoundingClientRect().height)}px`;
+  };
+
+  const positionTrack = (index, animate) => {
+    const renderedCards = alumniTrack.children;
+    const offset = renderedCards[index].offsetLeft - renderedCards[0].offsetLeft;
+    const shouldAnimate = animate && !reducedMotion.matches;
+    alumniTrack.style.transition = shouldAnimate ? '' : 'none';
+    if (!animate) alumniViewport.style.transition = 'none';
+    alumniTrack.style.transform = `translateX(${-offset}px)`;
+    updateViewportHeight(index);
+    if (!shouldAnimate) {
+      alumniTrack.getBoundingClientRect();
+      alumniTrack.style.transition = '';
+      alumniViewport.style.transition = '';
+    }
+    return shouldAnimate;
+  };
+
+  const prepareClone = card => {
+    const clone = card.cloneNode(true);
+    clone.classList.add('alumni-card-clone');
+    clone.setAttribute('aria-hidden', 'true');
+    if (clone.matches('a')) clone.tabIndex = -1;
+    clone.querySelectorAll('a, button, input, select, textarea').forEach(element => {
+      element.tabIndex = -1;
+    });
+    clone.querySelectorAll('img').forEach(img => {
+      const markLoaded = () => img.closest('.alumni-photo-wrap')?.classList.add('img-loaded');
+      if (img.complete) markLoaded();
+      else {
+        img.addEventListener('load', markLoaded, { once: true });
+        img.addEventListener('error', markLoaded, { once: true });
+      }
+    });
+    return clone;
+  };
+
+  const buildDots = () => {
+    alumniDots.innerHTML = '';
+    for (let page = 0; page < pageCount(); page++) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = `alumni-carousel-dot${page === activePage ? ' active' : ''}`;
+      dot.setAttribute('aria-label', `Show alumni group ${page + 1}`);
+      if (page === activePage) dot.setAttribute('aria-current', 'true');
+      dot.addEventListener('click', () => {
+        if (isAnimating || page === activePage) return;
+        moveQueue.length = 0;
+        activePage = page;
+        physicalIndex = visibleCount + (page * visibleCount);
+        isAnimating = true;
+        const animated = positionTrack(physicalIndex, true);
+        updateDots();
+        if (!animated) completeMove();
+      });
+      alumniDots.appendChild(dot);
+    }
+  };
+
+  const buildLoop = () => {
+    moveQueue.length = 0;
+    isAnimating = false;
+    alumniTrack.querySelectorAll('.alumni-card-clone').forEach(clone => clone.remove());
+    const firstVisibleCard = activePage * (visibleCount || visibleAlumni());
+    visibleCount = visibleAlumni();
+    activePage = Math.floor(firstVisibleCard / visibleCount) % pageCount();
+
+    const leadingClones = document.createDocumentFragment();
+    alumniCards.slice(-visibleCount).forEach(card => leadingClones.appendChild(prepareClone(card)));
+    alumniTrack.insertBefore(leadingClones, alumniTrack.firstChild);
+    alumniCards.slice(0, visibleCount).forEach(card => alumniTrack.appendChild(prepareClone(card)));
+
+    physicalIndex = visibleCount + (activePage * visibleCount);
+    positionTrack(physicalIndex, false);
+    buildDots();
+  };
+
+  function completeMove() {
+    if (physicalIndex >= alumniCards.length + visibleCount) {
+      physicalIndex = visibleCount;
+      positionTrack(physicalIndex, false);
+    } else if (physicalIndex <= 0) {
+      physicalIndex = alumniCards.length;
+      positionTrack(physicalIndex, false);
+    }
+
+    isAnimating = false;
+    runNextMove();
+  }
+
+  function runNextMove() {
+    if (isAnimating || moveQueue.length === 0) return;
+    const direction = moveQueue.shift();
+    activePage = (activePage + direction + pageCount()) % pageCount();
+    physicalIndex += direction * visibleCount;
+    isAnimating = true;
+    const animated = positionTrack(physicalIndex, true);
+    updateDots();
+    if (!animated) completeMove();
+  }
+
+  const queueMove = direction => {
+    moveQueue.push(direction);
+    runNextMove();
+  };
+
+  alumniTrack.addEventListener('transitionend', event => {
+    if (event.target !== alumniTrack || event.propertyName !== 'transform' || !isAnimating) return;
+    completeMove();
+  });
+
+  previousAlumni.addEventListener('click', () => queueMove(-1));
+  nextAlumni.addEventListener('click', () => queueMove(1));
+  reducedMotion.addEventListener('change', event => {
+    if (event.matches && isAnimating) {
+      positionTrack(physicalIndex, false);
+      completeMove();
+    }
+  });
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => {
+      if (visibleCount !== visibleAlumni()) buildLoop();
+      else positionTrack(physicalIndex, false);
+    });
+  });
+
+  buildLoop();
+}let navigating = false;
 document.addEventListener('click', e => {
   if (navigating) return;
   const link = e.target.closest('a[href]');
