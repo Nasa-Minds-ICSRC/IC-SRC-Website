@@ -37,7 +37,8 @@
         linear-gradient(to right, rgba(8,6,22,0.2), transparent 24%, transparent 76%, rgba(8,6,22,0.2));
       box-shadow: inset 0 -2px rgba(212,164,32,0.38);
     }
-    .alumni-hero-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 17%; opacity: 0.76; }
+    .alumni-hero-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 17%; opacity: 0; transition: opacity 0.5s ease; }
+    .alumni-hero-photo.img-loaded img { opacity: 0.76; }
     .alumni-hero-copy { width: min(850px, 100%); margin: 0 auto; padding: 2.7rem 2rem 3.4rem; text-align: center; }
     .alumni-hero h1 { position: relative; display: inline-block; margin: 0; font-family: 'Orbitron', monospace; font-size: clamp(1.35rem, 3vw, 1.75rem); color: #fff; letter-spacing: 5px; }
     .alumni-hero h1::after { position: absolute; bottom: -10px; left: 50%; width: 46%; height: 2px; border-radius: 2px; background: var(--gold); content: ''; transform: translateX(-50%); }
@@ -63,8 +64,24 @@
     .alumni-profile:nth-child(even) { grid-template-columns: minmax(0, 1fr) 218px; background: var(--section-dark); }
     .alumni-profile:nth-child(even) .alumni-photo { grid-column: 2; grid-row: 1; }
     .alumni-profile:nth-child(even) .alumni-copy { grid-column: 1; grid-row: 1; padding: 0 2.25rem 0 0; border-right: 2px solid rgba(212,164,32,0.5); border-left: 0; }
-    .alumni-photo { width: 218px; height: 264px; overflow: hidden; border: 2.5px solid var(--gold); border-radius: 10px; background: rgba(26,21,53,0.5); box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 18px rgba(212,164,32,0.12); }
-    .alumni-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 15%; }
+    @keyframes alumni-shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .alumni-photo { position: relative; width: 218px; height: 264px; overflow: hidden; border: 2.5px solid var(--gold); border-radius: 10px; background: rgba(26,21,53,0.5); box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 18px rgba(212,164,32,0.12); }
+    .alumni-photo::before {
+      position: absolute; inset: 0; z-index: 1; content: '';
+      background: linear-gradient(90deg, transparent 0%, rgba(80,65,160,0.4) 50%, transparent 100%);
+      animation: alumni-shimmer 1.6s infinite linear;
+      pointer-events: none; transition: opacity 0.4s ease;
+    }
+    .alumni-photo.img-loaded::before { opacity: 0; animation: none; }
+    .alumni-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 15%; opacity: 0; transition: opacity 0.5s ease; }
+    .alumni-photo.img-loaded img { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .alumni-photo::before { animation: none; }
+      .alumni-photo img, .alumni-hero-photo img { transition: none; }
+    }
     .alumni-copy { padding: 0 0 0 2.25rem; border-left: 2px solid rgba(212,164,32,0.5); }
     .alumni-copy h2 { margin: 0; font-family: 'Orbitron', monospace; font-size: clamp(1.05rem, 2vw, 1.3rem); color: #fff; letter-spacing: 1px; }
     .alumni-meta { margin: 0.48rem 0 0.55rem; color: var(--text-muted); font-size: 0.86rem; font-weight: 600; }
@@ -161,6 +178,16 @@
   }
 
   shuffleAlumniForToday();
+
+  document.querySelectorAll('.alumni-hero-photo img, .alumni-photo img').forEach(img => {
+    const container = img.parentElement;
+    const markLoaded = () => container.classList.add('img-loaded');
+    if (img.complete && img.naturalWidth) markLoaded();
+    else {
+      img.addEventListener('load', markLoaded, { once: true });
+      img.addEventListener('error', markLoaded, { once: true });
+    }
+  });
 
   const canvas = document.getElementById('starfield');
   const ctx = canvas.getContext('2d');
