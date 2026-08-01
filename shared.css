@@ -162,6 +162,7 @@ footer {
 @media (max-width: 767px) {
   nav { flex-wrap: wrap; padding: 0.5rem 1rem; }
   .nav-links { margin-left: 0; width: 100%; justify-content: center; }
+  .nav-links a { padding: 0.38rem 0.5rem; font-size: 0.8rem; }
   .footer-inner { grid-template-columns: 1fr; }
 }
 
