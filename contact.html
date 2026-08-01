@@ -39,11 +39,11 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Nunito:wght@300;400;600;700&display=swap"></noscript>
 
   <link rel="icon" href="images/logo.webp" type="image/webp">
-  <link rel="preload" as="image" href="contact-images/eddie-campus-walkway.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="contact-images/eddie-campus-walkway.webp" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="shared.css">
   <style>
     body {
-      background: url('contact-images/eddie-campus-walkway.jpg') center top/cover fixed no-repeat;
+      background: url('contact-images/eddie-campus-walkway.webp') center top/cover fixed no-repeat;
       background-color: var(--deep-navy);
     }
 
@@ -190,7 +190,20 @@
       box-shadow: 0 0 0 3px rgba(212,164,32,0.18);
     }
     .form-field input.error,
-    .form-field textarea.error { border-color: #f07070; }
+    .form-field select.error,
+    .form-field textarea.error {
+      border-color: #f07070;
+      box-shadow: 0 0 0 3px rgba(240,112,112,0.14);
+    }
+
+    .form-status {
+      display: none;
+      grid-column: 1 / -1;
+      font-size: 0.86rem;
+      line-height: 1.45;
+      color: #ffd0d0;
+    }
+    .form-status.visible { display: block; }
 
     /* Custom select arrow */
     .select-wrap { position: relative; }
@@ -422,6 +435,7 @@
   </a>
   <div class="nav-links">
     <a href="index.html#home">Home</a>
+    <a href="alumni.html">Alumni</a>
     <a href="contact.html" class="active">Contact Us</a>
     <a href="portfolio.html">Portfolio</a>
   </div>
@@ -458,6 +472,9 @@
             name="email"
             placeholder="yourname@calstatela.edu"
             autocomplete="email"
+            autocapitalize="off"
+            autocorrect="off"
+            spellcheck="false"
             required
           />
           <p class="field-hint">Please use your CSULA email if you have one (@calstatela.edu)</p>
@@ -494,17 +511,18 @@
 
         <!-- Submit -->
         <div class="form-submit-row">
-          <p style="font-size:0.78rem; color:rgba(168,159,200,0.65); margin:0;">Your information is only used for club membership and will not be shared. A club officer will follow up at your email address.</p>
+          <p style="font-size:0.78rem; color:rgba(168,159,200,0.65); margin:0;">Your information is used only for club membership and will not be shared. Submissions are processed through <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">Google Forms</a>. A club officer will follow up at your email address.</p>
           <button type="submit" class="btn-submit" id="join-submit">Submit</button>
         </div>
+        <p id="join-status" class="form-status" role="alert" aria-live="polite"></p>
 
       </div>
     </form>
 
     <div id="join-success" class="form-success" hidden>
       <div class="success-icon">✓</div>
-      <h3>You're in!</h3>
-      <p>Thanks for signing up. We'll be in touch soon. See you Friday!</p>
+      <h3>Sign-up sent</h3>
+      <p>Thanks for signing up. A club officer will follow up by email soon.</p>
     </div>
 
   </div>
@@ -539,7 +557,7 @@
         <!-- Email -->
         <div class="form-field full-width">
           <label for="contact-email">Email <span class="required">*</span></label>
-          <input type="email" id="contact-email" name="email" autocomplete="email" required />
+          <input type="email" id="contact-email" name="email" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" required />
         </div>
 
         <!-- Message -->
@@ -552,14 +570,16 @@
         <div class="form-submit-row">
           <button type="submit" class="btn-submit" id="contact-submit">Send Message</button>
         </div>
+        <p style="font-size:0.78rem; color:rgba(168,159,200,0.65); margin:0; grid-column:1 / -1;">Your message is handled by the club and submitted through <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">Google Forms</a>.</p>
+        <p id="contact-status" class="form-status" role="alert" aria-live="polite"></p>
 
       </div>
     </form>
 
     <div id="contact-success" class="form-success" hidden>
       <div class="success-icon">✓</div>
-      <h3>Message sent!</h3>
-      <p>Thanks for reaching out. We'll get back to you at your email address soon.</p>
+      <h3>Message submitted</h3>
+      <p>Thanks for reaching out. We will reply at your email address soon.</p>
     </div>
 
   </div>
@@ -590,6 +610,7 @@
         <span>Inter-Cosmic STEM<br>Research Club</span>
       </a>
       <p class="footer-tagline">Developing the next generation of space researchers at Cal State LA.</p>
+      <a href="alumni.html">Meet Our Alumni</a>
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
@@ -644,13 +665,43 @@
   function hideEl(id)  { document.getElementById(id).hidden = true; }
   function getVal(id)  { return document.getElementById(id).value.trim(); }
 
+
+  function setStatus(id, message = '') {
+    const status = document.getElementById(id);
+    status.textContent = message;
+    status.classList.toggle('visible', Boolean(message));
+  }
+
+  function validateForm(form, statusId) {
+    const invalidFields = Array.from(form.querySelectorAll('input, select, textarea'))
+      .filter(field => !field.disabled && !field.checkValidity());
+    form.querySelectorAll('.error').forEach(field => field.classList.remove('error'));
+    invalidFields.forEach(field => field.classList.add('error'));
+    if (!invalidFields.length) {
+      setStatus(statusId);
+      return true;
+    }
+    setStatus(statusId, 'Please complete all required fields with valid information.');
+    invalidFields[0].focus();
+    return false;
+  }
+
+  document.querySelectorAll('form input, form select, form textarea').forEach(field => {
+    field.addEventListener('input', () => {
+      if (field.checkValidity()) field.classList.remove('error');
+    });
+    field.addEventListener('change', () => {
+      if (field.checkValidity()) field.classList.remove('error');
+    });
+  });
+
   function submitToGoogleForms(url, entryMap, values) {
-    if (!url) return Promise.resolve(); // no-op until URL is configured
+    if (!url) return Promise.reject(new Error('The form is not configured yet.'));
     const body = new FormData();
     Object.entries(entryMap).forEach(([key, entryId]) => {
       if (entryId && values[key] !== undefined) body.append(entryId, values[key]);
     });
-    return fetch(url, { method: 'POST', mode: 'no-cors', body });
+    return fetch(url, { method: 'POST', mode: 'no-cors', body, keepalive: true });
   }
 
   // ── JOIN FORM ──
@@ -658,8 +709,8 @@
 
   document.getElementById('join-form').addEventListener('submit', function(e) {
     e.preventDefault();
+    if (!validateForm(this, 'join-status')) return;
     const email = getVal('join-email');
-    if (!email) return;
 
     if (!email.toLowerCase().endsWith('@calstatela.edu') && !pendingJoinSubmit) {
       showEl('email-modal');
@@ -684,10 +735,16 @@
       year:      getVal('join-year')
     };
 
-    submitToGoogleForms(JOIN_FORM_URL, JOIN_ENTRY, values).then(() => {
-      document.getElementById('join-form').hidden = true;
-      showEl('join-success');
-    });
+    submitToGoogleForms(JOIN_FORM_URL, JOIN_ENTRY, values)
+      .then(() => {
+        document.getElementById('join-form').hidden = true;
+        showEl('join-success');
+      })
+      .catch(() => {
+        btn.disabled = false;
+        btn.textContent = 'Submit';
+        setStatus('join-status', 'We could not send your sign-up. Please check your connection and try again.');
+      });
   }
 
   document.getElementById('modal-back').addEventListener('click', function() {
@@ -711,6 +768,7 @@
   // ── CONTACT FORM ──
   document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
+    if (!validateForm(this, 'contact-status')) return;
 
     const btn = document.getElementById('contact-submit');
     btn.disabled = true;
@@ -723,10 +781,16 @@
       message:      getVal('contact-message')
     };
 
-    submitToGoogleForms(CONTACT_FORM_URL, CONTACT_ENTRY, values).then(() => {
-      document.getElementById('contact-form').hidden = true;
-      showEl('contact-success');
-    });
+    submitToGoogleForms(CONTACT_FORM_URL, CONTACT_ENTRY, values)
+      .then(() => {
+        document.getElementById('contact-form').hidden = true;
+        showEl('contact-success');
+      })
+      .catch(() => {
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+        setStatus('contact-status', 'We could not send your message. Please check your connection and try again.');
+      });
   });
 
   // ── PAGE TRANSITIONS ──
@@ -756,7 +820,7 @@
   class="cat-egg"
   title="psst..."
 >
-  <img src="contact-images/cat-easter-egg.jpg" alt="Claw Command cat mascot" />
+  <img src="contact-images/cat-easter-egg.webp" alt="Claw Command cat mascot" />
 </a>
 
 </body>
