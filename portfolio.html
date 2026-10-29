@@ -12,17 +12,17 @@
     gtag('js', new Date());
     gtag('config', 'G-5B4QP117YL');
   </script>
-  <meta name="description" content="Projects Portfolio of the Inter-Cosmic STEM Research Club (IC-SRC / ICSRC) at Cal State LA. Explore our NASA ORBIT, HuLC, and NASA MINDS achievements.">
-  <meta name="keywords" content="ICSRC, Inter-Cosmic STEM Research Club, Cal State LA, CSULA, NASA MINDS, NASA ORBIT, HuLC, Human Lander Challenge, Cryo-UAV, Cryo-Bot, Cryo-Sense, drone swarm, lunar rover, robotics, undergraduate research, aerospace engineering">
+  <meta name="description" content="Explore Cal State LA ICSRC projects in NASA ORBIT, HuLC, NASA MINDS, Crazyflie flight research, robotics, and lunar exploration.">
+  <meta name="keywords" content="ICSRC, Inter-Cosmic STEM Research Club, Cal State LA, CSULA, NASA MINDS, NASA ORBIT, HuLC, Human Lander Challenge, Cryo-UAV, Crazyflie, Multi-ranger, point cloud, drone swarm, Cryo-Bot, Cryo-Sense, lunar rover, robotics, undergraduate research, aerospace engineering">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inter-Cosmic STEM Research Club">
 <meta property="og:title" content="Projects Portfolio – Inter-Cosmic STEM Research Club">
-<meta property="og:description" content="Explore our NASA ORBIT, HuLC, and NASA MINDS competition achievements. Real engineering challenges, real results.">
+<meta property="og:description" content="Explore our NASA competition projects, Crazyflie flight research, robotics, and lunar exploration work.">
 <meta property="og:url" content="https://nasa-minds-icsrc.github.io/IC-SRC-Website/portfolio.html">
 <meta property="og:image" content="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/nasa-minds-award.webp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Projects Portfolio – Inter-Cosmic STEM Research Club">
-<meta name="twitter:description" content="Explore our NASA ORBIT, HuLC, and NASA MINDS competition achievements. Real engineering challenges, real results.">
+<meta name="twitter:description" content="Explore our NASA competition projects, Crazyflie flight research, robotics, and lunar exploration work.">
 <meta name="twitter:image" content="https://nasa-minds-icsrc.github.io/IC-SRC-Website/images/nasa-minds-award.webp">
 <link rel="canonical" href="https://nasa-minds-icsrc.github.io/IC-SRC-Website/portfolio.html">
   <title>Projects Portfolio – Inter-Cosmic STEM Research Club</title>
@@ -308,6 +308,125 @@
       color: rgba(26,21,53,0.6);
     }
 
+    /* ── CRAZYFLIE FEATURE ── */
+    .crazyflie-feature {
+      margin-top: 3rem;
+      padding-top: 2.6rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .crazyflie-copy {
+      max-width: 880px;
+      margin-bottom: 1.6rem;
+    }
+    .crazyflie-copy p {
+      color: rgba(240, 238, 255, 0.78);
+      font-size: 0.97rem;
+      line-height: 1.72;
+      margin-bottom: 0.9rem;
+    }
+    .crazyflie-copy p:last-child { margin-bottom: 0; }
+    .crazyflie-media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+      align-items: stretch;
+    }
+    .crazyflie-media-card {
+      margin: 0;
+      min-width: 0;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(8, 6, 22, 0.82);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.42);
+      display: flex;
+      flex-direction: column;
+    }
+    .crazyflie-media-card.wide { grid-column: 1 / -1; }
+    .crazyflie-media-card > video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #080616;
+    }
+    .crazyflie-media-card > video { max-height: 620px; }
+    .crazyflie-photo-stage {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #080616;
+    }
+    .crazyflie-photo-stage img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .crazyflie-media-card figcaption {
+      padding: 0.85rem 1rem 1rem;
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      flex: 1;
+    }
+    .pointcloud-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(67, 84, 155, 0.28), transparent 56%),
+        linear-gradient(145deg, #09091c, #101938);
+    }
+    .pointcloud-stage canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+      touch-action: none;
+      outline-offset: -3px;
+    }
+    .pointcloud-stage canvas.dragging { cursor: grabbing; }
+    .pointcloud-stage canvas:focus-visible { outline: 2px solid var(--gold); }
+    .pointcloud-instruction,
+    .pointcloud-status {
+      position: absolute;
+      left: 0.75rem;
+      padding: 0.35rem 0.55rem;
+      border-radius: 7px;
+      background: rgba(3, 5, 18, 0.72);
+      color: rgba(255,255,255,0.82);
+      font-size: 0.73rem;
+      pointer-events: none;
+    }
+    .pointcloud-instruction { top: 0.75rem; }
+    .pointcloud-status { bottom: 0.75rem; }
+    .pointcloud-reset {
+      position: absolute;
+      top: 0.65rem;
+      right: 0.65rem;
+      z-index: 2;
+      padding: 0.42rem 0.65rem;
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 8px;
+      background: rgba(3, 5, 18, 0.78);
+      color: #fff;
+      font: inherit;
+      font-size: 0.73rem;
+      cursor: pointer;
+    }
+    .pointcloud-reset:hover,
+    .pointcloud-reset:focus-visible {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
     /* ── NASA MINDS TWO-PHOTO GRID ── */
     .two-photo-grid {
       display: grid;
@@ -384,6 +503,8 @@
       .mission-row.orbit,
       .mission-row.hulc { grid-template-columns: 1fr; }
       .two-photo-grid { grid-template-columns: 1fr; }
+      .crazyflie-media-grid { grid-template-columns: 1fr; }
+      .crazyflie-media-card.wide { grid-column: auto; }
     }
   </style>
 
@@ -464,7 +585,7 @@
     <div class="project-block reveal">
       <div class="project-header">
         <h3 class="project-title">NASA ORBIT Competition</h3>
-        <span class="status-badge status-active">Active · Spring 2026</span>
+        <span class="status-badge status-active">Active · 2026</span>
       </div>
       <p class="project-intro">
         NASA's ORBIT Challenge is a multi-phase student competition designed to inspire the next generation of engineers and researchers. Teams compete for prizes, receive mentorship from NASA experts, and present their work at an in-person showcase. ICSRC enters two sub-teams that develop distinct robotic platforms for navigating and mapping simulated lunar environments.
@@ -502,6 +623,64 @@
           />
         </div>
       </div>
+
+      <section class="crazyflie-feature" aria-labelledby="crazyflie-title">
+        <h4 class="subheading" id="crazyflie-title">Crazyflie Flight and Sensor Development</h4>
+        <div class="crazyflie-copy">
+          <p>
+            The Cryo-UAV team uses the Crazyflie 2.1+ to test flight and sensors inside the Lunar Geology Lab Flight Enclosure. We assembled the drone, added a Flow deck for stable indoor flight, and created programmed flight paths. We also connected an Xbox controller and manually flew the drone through our lunar maze.
+          </p>
+          <p>
+            In 2026, we added the Multi-ranger deck. Its sensors measure the distance to nearby objects in five directions. We then adapted an open-source viewer to turn the recorded sensor readings into the interactive 3D point cloud below. The program also shows the battery level and flight status, and saves data for later study.
+          </p>
+          <p>
+            We are using this work to develop obstacle avoidance and environmental mapping. It is an important step toward autonomous navigation and SLAM, where a drone builds a map while determining its location.
+          </p>
+        </div>
+
+        <div class="crazyflie-media-grid">
+          <figure class="crazyflie-media-card">
+            <div class="crazyflie-photo-stage">
+              <img
+                src="portfolio-images/crazyflie-hardware.webp"
+                alt="Crazyflie 2.1+ equipped with stacked Flow and Multi-ranger sensor decks"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption>Crazyflie 2.1+ research platform with its stacked sensor-deck configuration.</figcaption>
+          </figure>
+
+          <figure class="crazyflie-media-card">
+            <div class="pointcloud-stage">
+              <canvas
+                id="crazyflie-pointcloud"
+                tabindex="0"
+                aria-label="Interactive 3D view of recorded Crazyflie flight and distance-sensor data. Drag to rotate, use the mouse wheel or plus and minus keys to zoom, and press zero to reset the view."
+                aria-describedby="crazyflie-pointcloud-caption"
+              ></canvas>
+              <button class="pointcloud-reset" id="pointcloud-reset" type="button">Reset view</button>
+              <span class="pointcloud-instruction">Drag to rotate · Scroll to zoom</span>
+              <span class="pointcloud-status" id="pointcloud-status" aria-live="polite">Loading flight data…</span>
+            </div>
+            <figcaption id="crazyflie-pointcloud-caption">Interactive 3D view of recorded Crazyflie flight and distance-sensor data. Gold traces the drone's flight path, while blue shows points detected around it. This work is helping us develop mapping and autonomous navigation.</figcaption>
+          </figure>
+
+          <figure class="crazyflie-media-card wide">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              poster="portfolio-images/crazyflie-flight-poster.webp"
+              aria-label="Crazyflie flight test inside the Lunar Geology Lab Flight Enclosure"
+            >
+              <source src="portfolio-images/crazyflie-flight.mp4" type="video/mp4" />
+              Your browser does not support embedded MP4 video.
+            </video>
+            <figcaption>Crazyflie 2.1+ flight test inside the Lunar Geology Lab Flight Enclosure.</figcaption>
+          </figure>
+        </div>
+      </section>
 
       <div class="learn-more">
         <a href="https://www.nasa.gov/directorates/stmd/prizes-challenges-crowdsourcing-program/center-of-excellence-for-collaborative-innovation-coeci/nasa-orbit-challenge-2026/" target="_blank" rel="noopener">Learn more about NASA ORBIT →</a>
@@ -629,7 +808,7 @@
     <div class="footer-col">
       <h4>Contact</h4>
       <a href="mailto:intercosmicstemresearchclub@gmail.com">intercosmicstemresearchclub@gmail.com</a>
-      <p>Dept. of Physics &amp; Astronomy<br>California State University, LA</p>
+      <p>California State University, Los Angeles</p>
       <div class="footer-social" style="margin-top:0.9rem;">
         <a href="https://www.instagram.com/csulanasaminds/" target="_blank" rel="noopener">
           <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -653,6 +832,7 @@
 
 <div id="page-veil"></div>
 
+<script src="portfolio-data/crazyflie-pointcloud.js"></script>
 <script>
 // ── IMAGE SKELETON FADE-IN ──
 document.querySelectorAll('.project-photo img, .side-photo img').forEach(img => {
@@ -667,6 +847,193 @@ document.querySelectorAll('.project-photo img, .side-photo img').forEach(img => 
     img.addEventListener('error', markLoaded);
   }
 });
+
+// ── CRAZYFLIE INTERACTIVE POINT CLOUD ──
+(() => {
+  const canvas = document.getElementById('crazyflie-pointcloud');
+  const resetButton = document.getElementById('pointcloud-reset');
+  const status = document.getElementById('pointcloud-status');
+  if (!canvas || !resetButton || !status) return;
+
+  const context = canvas.getContext('2d');
+  let positionPoints = [];
+  let measurementPoints = [];
+  let yaw = 0.62;
+  let pitch = -0.42;
+  let zoom = 1;
+  let dragging = false;
+  let lastX = 0;
+  let lastY = 0;
+  let frameRequested = false;
+
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+  function resetView() {
+    yaw = 0.62;
+    pitch = -0.42;
+    zoom = 1;
+    requestDraw();
+  }
+
+  function resizeCanvas() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = canvas.getBoundingClientRect();
+    const width = Math.max(1, Math.round(rect.width * ratio));
+    const height = Math.max(1, Math.round(rect.height * ratio));
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+    requestDraw();
+  }
+
+  function rotate(point) {
+    const [x, y, z] = point;
+    const cy = Math.cos(yaw);
+    const sy = Math.sin(yaw);
+    const cp = Math.cos(pitch);
+    const sp = Math.sin(pitch);
+    const x1 = x * cy - y * sy;
+    const y1 = x * sy + y * cy;
+    return [x1, y1 * cp - z * sp, y1 * sp + z * cp];
+  }
+
+  function project(point, width, height) {
+    const [x, depthAxis, vertical] = rotate(point);
+    const cameraDistance = 2.4;
+    const depth = Math.max(1.2, cameraDistance - depthAxis);
+    const scale = Math.min(width, height) * 1.55 * zoom / depth;
+    return {
+      x: width / 2 + x * scale,
+      y: height / 2 - vertical * scale,
+      depth,
+      size: clamp(3.3 * zoom / depth, 0.75, 2.6)
+    };
+  }
+
+  function drawAxes(width, height) {
+    const axes = [
+      { end: [0.32, 0, 0], color: 'rgba(255,110,120,0.68)' },
+      { end: [0, 0.32, 0], color: 'rgba(104,220,170,0.68)' },
+      { end: [0, 0, 0.32], color: 'rgba(135,170,255,0.72)' }
+    ];
+    const origin = project([0, 0, 0], width, height);
+    context.lineWidth = Math.max(1, window.devicePixelRatio || 1);
+    axes.forEach(axis => {
+      const end = project(axis.end, width, height);
+      context.strokeStyle = axis.color;
+      context.beginPath();
+      context.moveTo(origin.x, origin.y);
+      context.lineTo(end.x, end.y);
+      context.stroke();
+    });
+  }
+
+  function draw() {
+    frameRequested = false;
+    const width = canvas.width;
+    const height = canvas.height;
+    context.clearRect(0, 0, width, height);
+    if (!measurementPoints.length) return;
+
+    drawAxes(width, height);
+
+    const projectedMeasurements = measurementPoints
+      .map(point => project(point, width, height))
+      .sort((a, b) => b.depth - a.depth);
+    context.fillStyle = 'rgba(89, 198, 255, 0.54)';
+    context.globalCompositeOperation = 'lighter';
+    projectedMeasurements.forEach(point => {
+      context.beginPath();
+      context.arc(point.x, point.y, point.size, 0, Math.PI * 2);
+      context.fill();
+    });
+
+    context.globalCompositeOperation = 'source-over';
+    if (positionPoints.length > 1) {
+      context.strokeStyle = 'rgba(242, 193, 68, 0.92)';
+      context.lineWidth = Math.max(1.4, (window.devicePixelRatio || 1) * 1.1);
+      context.beginPath();
+      positionPoints.forEach((point, index) => {
+        const projected = project(point, width, height);
+        if (index === 0) context.moveTo(projected.x, projected.y);
+        else context.lineTo(projected.x, projected.y);
+      });
+      context.stroke();
+    }
+  }
+
+  function requestDraw() {
+    if (frameRequested) return;
+    frameRequested = true;
+    requestAnimationFrame(draw);
+  }
+
+  canvas.addEventListener('pointerdown', event => {
+    dragging = true;
+    lastX = event.clientX;
+    lastY = event.clientY;
+    canvas.classList.add('dragging');
+    canvas.setPointerCapture(event.pointerId);
+  });
+
+  canvas.addEventListener('pointermove', event => {
+    if (!dragging) return;
+    const dx = event.clientX - lastX;
+    const dy = event.clientY - lastY;
+    lastX = event.clientX;
+    lastY = event.clientY;
+    yaw += dx * 0.008;
+    pitch = clamp(pitch + dy * 0.008, -1.35, 1.35);
+    requestDraw();
+  });
+
+  function stopDragging(event) {
+    if (!dragging) return;
+    dragging = false;
+    canvas.classList.remove('dragging');
+    if (event && canvas.hasPointerCapture(event.pointerId)) {
+      canvas.releasePointerCapture(event.pointerId);
+    }
+  }
+  canvas.addEventListener('pointerup', stopDragging);
+  canvas.addEventListener('pointercancel', stopDragging);
+
+  canvas.addEventListener('wheel', event => {
+    event.preventDefault();
+    zoom = clamp(zoom * (event.deltaY > 0 ? 0.9 : 1.1), 0.55, 1.8);
+    requestDraw();
+  }, { passive: false });
+
+  canvas.addEventListener('keydown', event => {
+    let handled = true;
+    if (event.key === 'ArrowLeft') yaw -= 0.12;
+    else if (event.key === 'ArrowRight') yaw += 0.12;
+    else if (event.key === 'ArrowUp') pitch = clamp(pitch - 0.1, -1.35, 1.35);
+    else if (event.key === 'ArrowDown') pitch = clamp(pitch + 0.1, -1.35, 1.35);
+    else if (event.key === '+' || event.key === '=') zoom = clamp(zoom * 1.1, 0.55, 1.8);
+    else if (event.key === '-' || event.key === '_') zoom = clamp(zoom * 0.9, 0.55, 1.8);
+    else if (event.key === '0') resetView();
+    else handled = false;
+    if (handled) {
+      event.preventDefault();
+      requestDraw();
+    }
+  });
+
+  resetButton.addEventListener('click', resetView);
+  new ResizeObserver(resizeCanvas).observe(canvas);
+
+  const data = window.CRAZYFLIE_POINTCLOUD;
+  if (data) {
+      positionPoints = Array.isArray(data.position) ? data.position : [];
+      measurementPoints = Array.isArray(data.measurement) ? data.measurement : [];
+      status.textContent = `${(positionPoints.length + measurementPoints.length).toLocaleString()} recorded points`;
+      resizeCanvas();
+  } else {
+    status.textContent = 'Flight-data visualization unavailable';
+  }
+})();
 
 // ── SCROLL REVEAL ──
 const revealEls = document.querySelectorAll('.reveal');
