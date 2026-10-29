@@ -536,6 +536,7 @@ a.news-item:hover { background: rgba(26,21,53,0.1); }
 .alumni-carousel-viewport { overflow: hidden; margin-top: -8px; padding-top: 8px; transition: height 0.22s ease; }
 .alumni-track { display: flex; align-items: flex-start; gap: 2.5rem; transition: transform 0.5s ease; }
 .alumni-card { display: flex; flex: 0 0 calc((100% - 5rem) / 3); min-width: 0; flex-direction: column; align-items: center; gap: 1rem; transition: transform 0.22s; }
+.alumni-card-placeholder { visibility: hidden; pointer-events: none; }
 .alumni-card:hover { transform: translateY(-5px); }
 a.alumni-card { text-decoration: none; color: inherit; }
 .alumni-photo-wrap { width: 184px; height: 224px; border-radius: 10px; overflow: hidden; border: 2.5px solid var(--gold); box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 18px rgba(212,164,32,0.12); flex-shrink: 0; }
@@ -912,6 +913,8 @@ a.advisor-split { color: inherit; text-decoration: none; }
         <a class="alumni-card" href="https://www.linkedin.com/in/ziyizou6402895/" target="_blank" rel="noopener"><div class="alumni-photo-wrap"><img src="images/alumni-ziyi-zou.webp" loading="lazy" decoding="async" alt="Portrait of Ziyi Zou"></div><div class="alumni-info"><h3>Ziyi Zou</h3><div class="alumni-divider"></div><div class="alumni-meta">2022 Alumni &middot; Biochemistry &middot; Computer Science minor</div><div class="alumni-quote">&ldquo;These projects gave me firsthand experience with the practical aspects of working in a multidisciplinary team that weren’t taught in my classes. I am now a medical student conducting research at the intersection of medicine and technology, and the experience I gained through these projects and from the mentorship of Dr. Hays put me in a position to contribute to research early in medical school.&rdquo;</div></div></a>
         <a class="alumni-card" href="https://www.linkedin.com/in/hchen63/" target="_blank" rel="noopener"><div class="alumni-photo-wrap"><img src="images/alumni-hua-chen.webp" loading="lazy" decoding="async" alt="Portrait of Hua Chen"></div><div class="alumni-info"><h3>Hua Chen</h3><div class="alumni-divider"></div><div class="alumni-meta">2021 Alumni &middot; Computer Science</div><div class="alumni-quote">&ldquo;The club was one of the few opportunities I had to apply classroom knowledge to a real-life application. After NASA Minds, I started working for Vandenberg Space Force Base, building systems to support space launch efforts.&rdquo;</div></div></a>
         <a class="alumni-card" href="https://www.linkedin.com/in/j-cruz-447729225" target="_blank" rel="noopener"><div class="alumni-photo-wrap"><img src="images/alumni-jesus-cruz.jpg" loading="lazy" decoding="async" alt="Portrait of Jesus Cruz"></div><div class="alumni-info"><h3>Jesus Cruz</h3><div class="alumni-divider"></div><div class="alumni-meta">2023 Alumni &middot; Computer Science</div><div class="alumni-quote">&ldquo;I have always been drawn to software engineering projects that interact directly with the physical world as they impose many limitations that then force us as engineers to overcome through our ingenuity. ICSRC provided many of these scenarios and gave me many invaluable lessons that still inform the way I approach my work. I now work as a systems software engineer for NVIDIA in their autonomous vehicles division and am very grateful for the many lessons I learned in my time with ICSRC.&rdquo;</div></div></a>
+        <a class="alumni-card" href="https://www.linkedin.com/in/marian-gomez-cs" target="_blank" rel="noopener"><div class="alumni-photo-wrap"><img src="images/alumni-marian-gomez.webp" loading="lazy" decoding="async" alt="Portrait of Marian Gomez"></div><div class="alumni-info"><h3>Marian Gomez</h3><div class="alumni-divider"></div><div class="alumni-meta">Class of 2023 &middot; Bachelor&rsquo;s in Computer Science</div><div class="alumni-quote">&ldquo;ICSRC was my true introduction to robotics and engineering. I spent countless hours tinkering with Arduinos, servos, and sensors, and what started as a way to fill that gap eventually became one of my genuine hobbies. Funny enough, I&rsquo;ve since become a competitive robotics coach for three different teams. When I&rsquo;m not coaching, I work as a database administrator for several nonprofits.&rdquo;</div></div></a>
+        <a class="alumni-card" href="https://www.linkedin.com/in/marisolhn/" target="_blank" rel="noopener"><div class="alumni-photo-wrap"><img src="images/alumni-marisol-hernandez-nieblas.webp" loading="lazy" decoding="async" alt="Portrait of Marisol Hernandez Nieblas"></div><div class="alumni-info"><h3>Marisol Hernandez Nieblas</h3><div class="alumni-divider"></div><div class="alumni-meta">2022 Alumni &middot; Business Administration &middot; International Business</div><div class="alumni-quote">&ldquo;The club was a great experience and a stepping stone for me into the aerospace industry. I learned and worked alongside students from diverse backgrounds and disciplines, which was something I hadn&rsquo;t done outside of working with my business peers. I learned how to apply my business knowledge&mdash;from supply chain to marketing&mdash;to the aerospace industry. I currently work as a Buyer at Vast Space, where I support the procurement of flight hardware and manage supplier relationships and performance.&rdquo;</div></div></a>
       </div></div>
       <div class="alumni-carousel-controls"><button class="alumni-carousel-button alumni-previous" type="button" aria-label="Show previous alumni">&larr;</button><div class="alumni-carousel-dots" aria-label="Alumni carousel pages"></div><button class="alumni-carousel-button alumni-next" type="button" aria-label="Show next alumni">&rarr;</button></div>
     </div>
@@ -1213,6 +1216,7 @@ if (alumniCarousel) {
   let isAnimating = false;
   let resizeFrame = 0;
   let transitionFallback = 0;
+  let loopCards = [];
   const moveQueue = [];
   const maxQueuedMoves = 2;
   const transitionFallbackDelay = 650;
@@ -1220,6 +1224,27 @@ if (alumniCarousel) {
   const visibleAlumni = () => window.matchMedia('(max-width: 760px)').matches ? 1 : 3;
 
   const pageCount = () => Math.ceil(alumniCards.length / visibleCount);
+
+  const createPlaceholder = () => {
+    const placeholder = document.createElement('div');
+    placeholder.className = 'alumni-card alumni-card-placeholder';
+    placeholder.setAttribute('aria-hidden', 'true');
+    return placeholder;
+  };
+
+  const buildDisplayCards = () => {
+    if (visibleCount === 1 || alumniCards.length % visibleCount === 0) return [...alumniCards];
+    const remainder = alumniCards.length % visibleCount;
+    const completeCardCount = alumniCards.length - remainder;
+    const displayCards = alumniCards.slice(0, completeCardCount);
+    const finalCards = alumniCards.slice(completeCardCount);
+    if (remainder === 1) {
+      displayCards.push(createPlaceholder(), finalCards[0], createPlaceholder());
+    } else {
+      displayCards.push(finalCards[0], createPlaceholder(), finalCards[1]);
+    }
+    return displayCards;
+  };
 
   const updateDots = () => {
     Array.from(alumniDots.children).forEach((dot, page) => {
@@ -1315,15 +1340,19 @@ if (alumniCarousel) {
     clearTransitionFallback();
     moveQueue.length = 0;
     isAnimating = false;
-    alumniTrack.querySelectorAll('.alumni-card-clone').forEach(clone => clone.remove());
+    alumniTrack.querySelectorAll('.alumni-card-clone, .alumni-card-placeholder').forEach(card => card.remove());
     const firstVisibleCard = activePage * (visibleCount || visibleAlumni());
     visibleCount = visibleAlumni();
     activePage = Math.floor(firstVisibleCard / visibleCount) % pageCount();
 
+    alumniCards.forEach(card => alumniTrack.appendChild(card));
+    loopCards = buildDisplayCards();
+    loopCards.forEach(card => alumniTrack.appendChild(card));
+
     const leadingClones = document.createDocumentFragment();
-    alumniCards.slice(-visibleCount).forEach(card => leadingClones.appendChild(prepareClone(card)));
+    loopCards.slice(-visibleCount).forEach(card => leadingClones.appendChild(prepareClone(card)));
     alumniTrack.insertBefore(leadingClones, alumniTrack.firstChild);
-    alumniCards.slice(0, visibleCount).forEach(card => alumniTrack.appendChild(prepareClone(card)));
+    loopCards.slice(0, visibleCount).forEach(card => alumniTrack.appendChild(prepareClone(card)));
 
     physicalIndex = visibleCount + (activePage * visibleCount);
     positionTrack(physicalIndex, false);
@@ -1333,11 +1362,11 @@ if (alumniCarousel) {
   function completeMove() {
     if (!isAnimating) return;
     clearTransitionFallback();
-    if (physicalIndex >= alumniCards.length + visibleCount) {
+    if (physicalIndex >= loopCards.length + visibleCount) {
       physicalIndex = visibleCount;
       positionTrack(physicalIndex, false);
     } else if (physicalIndex <= 0) {
-      physicalIndex = alumniCards.length;
+      physicalIndex = loopCards.length;
       positionTrack(physicalIndex, false);
     }
 

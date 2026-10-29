@@ -92,6 +92,38 @@
         { "heading": "Projects and responsibilities", "text": "I worked as a developer on the ground software team for the spider bot, focusing on localization and pathfinding." },
         { "heading": "Where they are now", "text": "I now work as a systems software engineer for NVIDIA in their autonomous vehicles division and am very grateful for the many lessons I learned in my time with ICSRC." }
       ]
+    },
+    {
+      "id": "marian-gomez",
+      "name": "Marian Gomez",
+      "graduationYear": 2023,
+      "academicBackground": "Bachelor’s in Computer Science",
+      "photo": "images/alumni-marian-gomez.webp",
+      "links": [
+        { "label": "LinkedIn", "url": "https://www.linkedin.com/in/marian-gomez-cs" }
+      ],
+      "homepageQuote": "ICSRC was my true introduction to robotics and engineering. I spent countless hours tinkering with Arduinos, servos, and sensors, and what started as a way to fill that gap eventually became one of my genuine hobbies. Funny enough, I’ve since become a competitive robotics coach for three different teams. When I’m not coaching, I work as a database administrator for several nonprofits.",
+      "profileSections": [
+        { "heading": "ICSRC experience", "text": "ICSRC was my true introduction to robotics and engineering. I wasn’t able to get into the robotics elective courses, so the club ended up being a lifesaver. Through ICSRC, I spent countless hours tinkering with Arduinos, servos, and sensors. What started as a way to fill that gap eventually became one of my genuine hobbies." },
+        { "heading": "Projects and responsibilities", "text": "Truth be told, I don’t remember many of the specifics beyond working on the gimbal and LiDAR code. I was part of the Cryo-SpyderBot team from fall 2022 through spring 2023. We used LiDAR for object detection and mapping with either OpenCV or MATLAB. The gimbal served as the robot’s “head,” where all the sensors were attached." },
+        { "heading": "Where they are now", "text": "Funny enough, I’ve since become a competitive robotics coach for three different teams, passing along my knowledge of servos, motors, and all that jazz to elementary, middle, and high school students. When I’m not coaching, I work as a database administrator for several nonprofits." }
+      ]
+    },
+    {
+      "id": "marisol-hernandez-nieblas",
+      "name": "Marisol Hernandez Nieblas",
+      "graduationYear": 2022,
+      "academicBackground": "Business Administration · International Business",
+      "photo": "images/alumni-marisol-hernandez-nieblas.webp",
+      "links": [
+        { "label": "LinkedIn", "url": "https://www.linkedin.com/in/marisolhn/" }
+      ],
+      "homepageQuote": "The club was a great experience and a stepping stone for me into the aerospace industry. I learned and worked alongside students from diverse backgrounds and disciplines, which was something I hadn’t done outside of working with my business peers. I learned how to apply my business knowledge—from supply chain to marketing—to the aerospace industry. I currently work as a Buyer at Vast Space, where I support the procurement of flight hardware and manage supplier relationships and performance.",
+      "profileSections": [
+        { "heading": "ICSRC experience", "text": "The club was a great experience and a stepping stone for me into the aerospace industry. I learned and worked alongside students from diverse backgrounds and disciplines, which was something I hadn’t experienced outside of working with my business peers. I learned how to apply my business knowledge—from supply chain to marketing—to the aerospace industry, an opportunity not many students get." },
+        { "heading": "Leadership and responsibilities", "text": "I served as the club’s treasurer. In that role, I tracked how much money the club received for the project during the school year." },
+        { "heading": "Where they are now", "text": "I currently work as a Buyer at Vast Space, where I support the procurement of flight hardware to meet schedule demands and manage supplier relationships and performance." }
+      ]
     }
   ]
 }
