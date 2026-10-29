@@ -537,7 +537,34 @@ a.news-item:hover { background: rgba(26,21,53,0.1); }
 .alumni-track { display: flex; align-items: flex-start; gap: 2.5rem; transition: transform 0.5s ease; }
 .alumni-card { display: flex; flex: 0 0 calc((100% - 5rem) / 3); min-width: 0; flex-direction: column; align-items: center; gap: 1rem; transition: transform 0.22s; }
 .alumni-card-placeholder { visibility: hidden; pointer-events: none; }
+.alumni-coin-slot { position: relative; align-self: stretch; pointer-events: none; }
+.alumni-coin {
+  position: absolute; top: calc(224px + 0.5rem); left: 50%; width: min(204px, 86%); aspect-ratio: 1;
+  padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer;
+  perspective: 900px; pointer-events: auto; transform: translate(-50%, -50%);
+}
+.alumni-coin-inner { position: absolute; inset: 0; transition: transform 0.7s cubic-bezier(0.2, 0.72, 0.2, 1); transform-style: preserve-3d; }
+.alumni-coin[aria-pressed="true"] .alumni-coin-inner { transform: rotateY(180deg); }
+.alumni-coin-face {
+  position: absolute; inset: 0; display: grid; overflow: hidden; place-items: center; border: 3px solid var(--gold);
+  border-radius: 50%; backface-visibility: hidden; box-shadow: 0 10px 34px rgba(0,0,0,0.55), 0 0 26px rgba(212,164,32,0.24), inset 0 0 0 2px rgba(255,255,255,0.1);
+}
+.alumni-coin-front {
+  background:
+    radial-gradient(circle at 24% 25%, rgba(255,255,255,0.72) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 76% 29%, rgba(255,255,255,0.55) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 66% 76%, rgba(255,255,255,0.46) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 42% 54%, rgba(78,62,164,0.72), transparent 48%),
+    #080616;
+}
+.alumni-coin-front img { position: absolute; top: 50%; left: 50%; width: 152%; height: auto; max-width: none; transform: translate(-50%, -46%); }
+.alumni-coin-back { background: #080616; transform: rotateY(180deg); }
+.alumni-coin-back img { position: absolute; top: 50%; left: 50%; width: 190%; height: auto; max-width: none; transform: translate(-53%, -65%); }
+.alumni-coin:hover .alumni-coin-face { box-shadow: 0 12px 38px rgba(0,0,0,0.6), 0 0 32px rgba(212,164,32,0.4), inset 0 0 0 2px rgba(255,255,255,0.14); }
+.alumni-coin:focus-visible { outline: 3px solid #fff; outline-offset: 5px; }
+.alumni-card-clone .alumni-coin { pointer-events: none; }
 .alumni-card:hover { transform: translateY(-5px); }
+.alumni-coin-slot:hover { transform: none; }
 a.alumni-card { text-decoration: none; color: inherit; }
 .alumni-photo-wrap { width: 184px; height: 224px; border-radius: 10px; overflow: hidden; border: 2.5px solid var(--gold); box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 18px rgba(212,164,32,0.12); flex-shrink: 0; }
 .alumni-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
@@ -688,6 +715,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
   .alumni-section { padding: 3.5rem 1.25rem 4rem; }
   .alumni-carousel { padding: 0; }
   .alumni-card { flex-basis: 100%; }
+  .alumni-coin-slot { display: none; }
   .alumni-carousel-controls { gap: 1rem; }
   .alumni-carousel-button { position: static; transform: none; }
   .alumni-carousel-dots { order: 2; }
@@ -704,6 +732,7 @@ a.advisor-split { color: inherit; text-decoration: none; }
   .alumni-carousel-button { transition: none; }
   .alumni-card:hover { transform: none; }
   .alumni-photo-wrap::before { animation: none; }
+  .alumni-coin-inner { transition: none; }
 }
 
 </style>
@@ -1232,6 +1261,19 @@ if (alumniCarousel) {
     return placeholder;
   };
 
+  const createCoinSlot = () => {
+    const slot = document.createElement('div');
+    slot.className = 'alumni-card alumni-coin-slot';
+    slot.innerHTML = `
+      <button class="alumni-coin" type="button" aria-label="Flip coin to show the moon mascot" aria-pressed="false">
+        <span class="alumni-coin-inner" aria-hidden="true">
+          <span class="alumni-coin-face alumni-coin-front"><img src="images/alumni-coin-logo-original.PNG" alt=""></span>
+          <span class="alumni-coin-face alumni-coin-back"><img src="images/alumni-moon-mascot-original.jpg" alt=""></span>
+        </span>
+      </button>`;
+    return slot;
+  };
+
   const buildDisplayCards = () => {
     if (visibleCount === 1 || alumniCards.length % visibleCount === 0) return [...alumniCards];
     const remainder = alumniCards.length % visibleCount;
@@ -1241,7 +1283,7 @@ if (alumniCarousel) {
     if (remainder === 1) {
       displayCards.push(createPlaceholder(), finalCards[0], createPlaceholder());
     } else {
-      displayCards.push(finalCards[0], createPlaceholder(), finalCards[1]);
+      displayCards.push(finalCards[0], createCoinSlot(), finalCards[1]);
     }
     return displayCards;
   };
@@ -1340,7 +1382,7 @@ if (alumniCarousel) {
     clearTransitionFallback();
     moveQueue.length = 0;
     isAnimating = false;
-    alumniTrack.querySelectorAll('.alumni-card-clone, .alumni-card-placeholder').forEach(card => card.remove());
+    alumniTrack.querySelectorAll('.alumni-card-clone, .alumni-card-placeholder, .alumni-coin-slot').forEach(card => card.remove());
     const firstVisibleCard = activePage * (visibleCount || visibleAlumni());
     visibleCount = visibleAlumni();
     activePage = Math.floor(firstVisibleCard / visibleCount) % pageCount();
@@ -1399,6 +1441,13 @@ if (alumniCarousel) {
 
   previousAlumni.addEventListener('click', () => queueMove(-1));
   nextAlumni.addEventListener('click', () => queueMove(1));
+  alumniCarousel.addEventListener('click', event => {
+    const coin = event.target.closest('.alumni-coin');
+    if (!coin || coin.closest('.alumni-card-clone')) return;
+    const showMascot = coin.getAttribute('aria-pressed') !== 'true';
+    coin.setAttribute('aria-pressed', String(showMascot));
+    coin.setAttribute('aria-label', showMascot ? 'Flip coin to show the ICSRC logo' : 'Flip coin to show the moon mascot');
+  });
   reducedMotion.addEventListener('change', event => {
     if (event.matches && isAnimating) {
       positionTrack(physicalIndex, false);
